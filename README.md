@@ -1,1 +1,1 @@
-# MagicShop-
+# MagicShop
