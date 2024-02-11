@@ -15,6 +15,16 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/products.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/categories.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/protfolio.css') }}" rel="stylesheet">
+  {{-- for cards  shopping --}}
+  <link rel="stylesheet" href="{{ asset('frontEnd/css/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('frontEnd/css/custom.css') }}"></head>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/slider.css">
   <!-- Vendor CSS Files -->
   {{-- <link href="assets/vendor/aos/aos.css" rel="stylesheet"> --}}
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -43,8 +53,6 @@
             @yield('content')
        </main>
     @include('layouts.footer')
-    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-<div class="elfsight-app-e180f630-013d-456d-9e9c-159256b03185" data-elfsight-app-lazy></div>
 
 <!-- Vendor JS Files -->
 <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
@@ -58,9 +66,38 @@
 
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="{{ asset('/js/protfolio.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Template Main JS File -->
+<!-- Vendor JS-->
+<script src="frontEnd/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="frontEnd/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="frontEnd/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+<script src="frontEnd/js/vendor/bootstrap.bundle.min.js"></script>
+<script src="frontEnd/js/plugins/slick.js"></script>
+<script src="frontEnd/js/plugins/jquery.syotimer.min.js"></script>
+<script src="frontEnd/js/plugins/wow.js"></script>
+<script src="frontEnd/js/plugins/jquery-ui.js"></script>
+<script src="frontEnd/js/plugins/perfect-scrollbar.js"></script>
+<script src="frontEnd/js/plugins/magnific-popup.js"></script>
+<script src="frontEnd/js/plugins/select2.min.js"></script>
+<script src="frontEnd/js/plugins/waypoints.js"></script>
+<script src="frontEnd/js/plugins/counterup.js"></script>
+<script src="frontEnd/js/plugins/jquery.countdown.min.js"></script>
+<script src="frontEnd/js/plugins/images-loaded.js"></script>
+<script src="frontEnd/js/plugins/isotope.js"></script>
+<script src="frontEnd/js/plugins/scrollup.js"></script>
+<script src="frontEnd/js/plugins/jquery.vticker-min.js"></script>
+<script src="frontEnd/js/plugins/jquery.theia.sticky.js"></script>
+<script src="frontEnd/js/plugins/jquery.elevatezoom.js"></script>
+<!-- Template  JS -->
+<script src="frontEnd/js/main.js?v=3.3"></script>
+{{-- <script src="frontEnd/js/shop.js?v=3.3"></script> --}}
 
+
+<!-- Template  JS -->
 <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-    <div class="elfsight-app-e180f630-013d-456d-9e9c-159256b03185" data-elfsight-app-lazy></div>
+<div class="elfsight-app-e180f630-013d-456d-9e9c-159256b03185" data-elfsight-app-lazy></div>
 
 </body>
 </html>

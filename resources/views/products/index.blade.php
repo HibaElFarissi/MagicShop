@@ -90,5 +90,4 @@
     {{$products->links()}}
 </div>
 
-
 @endsection

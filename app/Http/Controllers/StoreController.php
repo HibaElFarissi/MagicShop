@@ -15,7 +15,7 @@ class StoreController extends Controller
     {
         //
         $categories = Category::all();
-        $products = Product::query()->orderBy('created_at', 'desc')->limit(6)->get();
+        $products = Product::query()->orderBy('created_at', 'desc')->limit(8)->get();
         return view('store.index', compact('products', 'categories'));
     }
 

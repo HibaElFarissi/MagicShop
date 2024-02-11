@@ -37,7 +37,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="/" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">MagicShop</span>
       </a>
@@ -63,7 +63,9 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            {{-- <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle"> --}}
+            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
+
+            {{-- Avatar:  --}}
             {{-- <img src="{{Avatar::create(Auth::user()->name)->toBase64()}}" alt="Profile" > --}}
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->username }}</span>
           </a><!-- End Profile Iamge Icon -->
@@ -132,7 +134,10 @@
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
+      <!-- End Dashboard Nav -->
+
+      {{-- Categories --}}
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
@@ -150,13 +155,16 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Category Nav -->
+      </li>
+      <!-- End Category Nav -->
+
+      {{-- Products --}}
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#products-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="products-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="products-nav" class="nav-content collapse"  data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{ route('products.index') }}">
               <i class="bi bi-circle"></i><span>All Products </span>
@@ -168,7 +176,146 @@
             </a>
           </li>
         </ul>
-      </li><!-- End products Nav -->
+      </li>
+
+
+
+      {{-- Brands --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Brands-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Brands</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Brands-nav" class="nav-content collapse " data-bs-parent="#brands-nav">
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>All Brands </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Create Brand</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+      {{-- Colors --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Colors-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Colors</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Colors-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>All Colors </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Create Color</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+
+       {{-- Slider --}}
+
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('#') }}">
+          <i class="bi bi-card-list"></i>
+          <span>Home Slider</span>
+        </a>
+      </li>
+
+
+      {{-- Page About --}}
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#About-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-menu-button-wide"></i><span>About Content</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="About-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ route('abouts.create') }}">
+                    <i class="bi bi-circle"></i><span>Update Content</span>
+                </a>
+            </li>
+            </ul>
+        </li>
+
+ 
+      {{-- Quotes --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Quotes-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Quotes</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Quotes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>All Quotes </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Create A Quote</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      {{-- Questions - Answers --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#FAQ-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>FAQ</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="FAQ-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>All FAQ </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Create A FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      {{-- Feedback --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Feedback-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Feedback</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Feedback-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ route('feedback.index') }}">
+                <i class="bi bi-circle"></i><span>All Feedbacks </span>
+            </a>
+        </li>
+        <li>
+              <a href="{{ route('feedback.create') }}">
+              <i class="bi bi-circle"></i><span>Create A Feedback</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+       {{-- Settings --}}
+       {{-- <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Settings</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="settings-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="#"><i class="bi bi-circle"></i><span>FAQ</span></a>
+        </li>
+        </ul>
+      </li> --}}
+
 
       <li class="nav-heading">Pages</li>
 
@@ -177,7 +324,8 @@
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="/register">
@@ -196,6 +344,9 @@
     </ul>
 
   </aside><!-- End Sidebar-->
+
+    {{-- Settings --}}
+
 
   <main id="main" class="main">
     @yield('content')

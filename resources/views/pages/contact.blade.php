@@ -3,6 +3,16 @@
 @include('sweetalert::alert')
 
       <!-- ======= Contact Section ======= -->
+      <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="/" rel="nofollow">Home</a>
+                    <span></span> Contact
+                </div>
+            </div>
+        </div>
+
       <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
 
@@ -76,6 +86,7 @@
         </div>
       </section><!-- End Contact Section -->
     </main><!-- End #main -->
+    <br><br>
 
        {{-- <div class="container">
           <div class="content">

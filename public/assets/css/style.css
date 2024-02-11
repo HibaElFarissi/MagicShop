@@ -336,6 +336,71 @@ h6 {
   }
 }
 
+/* dropdown-login */
+
+.navbar .dropdown-login ul {
+    display: block;
+    position:absolute;
+    left: 28px;
+    top: calc(100% + 30px);
+    margin: 0;
+    padding: 10px 0;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    background: #000;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    transition: 0.3s;
+  }
+
+  .navbar .dropdown-login ul li {
+    min-width: 100px;
+  }
+
+  .navbar .dropdown-login ul a {
+    padding: 10px 20px;
+    font-weight: 400;
+  }
+
+  .navbar .dropdown-login ul a i {
+    font-size: 12px;
+  }
+
+  .navbar .dropdown-login ul a:hover,
+  .navbar .dropdown-login ul .active:hover,
+  .navbar .dropdown-login ul li:hover>a {
+    color: #ff014fff;
+  }
+
+  .navbar .dropdown-login:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+  }
+
+  .navbar .dropdown-login .dropdown-login ul {
+    top: 0;
+    left: calc(100% - 30px);
+    visibility: hidden;
+  }
+
+  .navbar .dropdown-login .dropdown-login:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: 100%;
+    visibility: visible;
+  }
+
+  @media (max-width: 1366px) {
+    .navbar .dropdown-login .dropdown-login ul {
+      left: -90%;
+    }
+
+    .navbar .dropdown-login .dropdown-login:hover>ul {
+      left: -100%;
+    }
+  }
+
 /**
 * Mobile Navigation
 */
@@ -989,7 +1054,7 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("/images/shadow.svg") no-repeat;
+  background: url("/images/testimonials-bg.jpg") no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -1478,7 +1543,7 @@ section {
   font-weight: 400;
   padding-left: 25px;
   cursor: pointer;
-  color: #0d58ba;
+  color: #ff014fff;
   transition: 0.3s;
 }
 
@@ -1820,4 +1885,27 @@ section {
     text-align: center;
     padding: 2px 0;
   }
+}
+
+
+#iphone {
+    width: 100%;
+    height: 70vh;
+    background: url("/assets/img/banner6.svg") top left;
+    background-size: cover;
+    position: relative;
+
+  }
+
+/*
+  section {
+    scroll-margin-top: 70px;
+  } */
+
+.whlogo{
+    color: #fff;
+}
+
+.white{
+    color: #fff;
 }
