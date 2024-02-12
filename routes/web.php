@@ -46,7 +46,6 @@ Route::get('/MoreCategory',[MoreCategoryController::class,'index'])->name('MoreC
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/blog-details',[BlogDetailsController::class,'index'])->name('blog-details');
 Route::get('/shop',[ShopController::class,'index'])->name('shop');
-
 //Email - contact :
  Route::get('/contact', [ContactController::class, 'create'])->name('contact');
  Route::post('/contact', [ContactController::class, 'sendEmail'])->name('send.email');
@@ -81,9 +80,6 @@ Route::middleware('auth')->group(function () {
 });
 
 // FAQ:
-
 Route::resource('faqs',FaqController::class);
-
-
 
 require __DIR__.'/auth.php';

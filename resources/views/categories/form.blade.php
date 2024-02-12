@@ -1,7 +1,7 @@
 {{-- @extends('layouts.base') --}}
-@extends('layouts.Dashboard_nav')
+{{-- @extends('layouts.Dashboard_nav') --}}
+@extends('layouts.DashAdmin_nav')
 @section('title' , ($isUpdate?'Update':'Create') . ' Category')
-@include('layouts.errors-notif')
 
 @php
     $route = route('categories.store');
@@ -9,11 +9,12 @@
         $route =  route('categories.update', $category);
     }
 
-@endphp
+    @endphp
 
 
 @section('content')
-<br>
+@include('layouts.errors-notif')
+
 <div class="container">
     <h1>@yield('title')</h1>
     <br>

@@ -1,10 +1,10 @@
 {{-- @extends('layouts.base') --}}
-@extends('layouts.Dashboard_nav')
+{{-- @extends('layouts.Dashboard_nav') --}}
+@extends('layouts.DashAdmin_nav')
 @section('title' , 'Categories')
 @section('content')
 @include('sweetalert::alert')
 @include('layouts.errors-notif')
-<br>
 
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
@@ -51,7 +51,6 @@
 
         </tbody>
     </table>
-
 
     {{$categories->links()}}
 </div>

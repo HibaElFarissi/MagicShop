@@ -1,19 +1,20 @@
 {{-- @extends('layouts.base') --}}
-@extends('layouts.Dashboard_nav')
+{{-- @extends('layouts.Dashboard_nav') --}}
+@extends('layouts.DashAdmin_nav')
 
 @section('title', ($isUpdate ? 'Update' : 'Create') . ' Feedback')
-@include('layouts.errors-notif')
 
 @php
     $route = route('feedback.store');
     if ($isUpdate) {
         $route = route('feedback.update', $feedback);
     }
-@endphp
+    @endphp
 
 
 
 @section('content')
+@include('layouts.errors-notif')
 
     <div class="container my-5">
         <h1>@yield('title')</h1>
@@ -32,16 +33,28 @@
             </div>
             <br>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="formFile" class="form-label">Image</label>
                 <input class="form-control" name="image" type="file" id="formFile"
                 value="{{ old('image', $feedback->image) }}">
+            </div> --}}
 
-                {{-- Afficher old image :  --}}
-                @if ($feedback->image)
-                    <img width="100px" src="/storage/{{ $feedback->image }}" alt="">
-                @endif
+            <div class="form-group">
+                <label for="formFile" class="form-label">File Upload</label>
+                <div class="form-control h-100 text-center position-relative p-4 p-lg-5">
+                    <div class="product-upload">
+                        <label for="file-upload" class="file-upload mb-0">
+                            <i class="ri-upload-cloud-2-line fs-2 text-gray-light"></i>
+                            <span class="d-block fw-semibold text-body">Drop files here or click to upload.</span>
+                        </label>
+                        <input id="file-upload" type="file" value="{{ old('image', $feedback->image) }}">
+                    </div>
+                </div>
 
+                 {{-- Afficher old image :  --}}
+                 @if ($feedback->image)
+                 <img width="100px" src="/storage/{{ $feedback->image }}" alt="">
+             @endif
             </div>
             <br>
 
@@ -61,7 +74,7 @@
 
 
             <div class="form-group">
-                <input type="submit" class="btn btn-success w-100" value="{{ $isUpdate ? 'Edit' : 'Create' }}">
+                <input type="submit" class="btn btn-primary w-100" value="{{ $isUpdate ? 'Edit' : 'Create' }}">
             </div>
 
         </form>

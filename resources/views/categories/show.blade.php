@@ -1,9 +1,11 @@
 {{-- @extends('layouts.base') --}}
-@extends('layouts.Dashboard_nav')
+{{-- @extends('layouts.Dashboard_nav') --}}
+@extends('layouts.DashAdmin_nav')
 @section('title' , 'Categories')
 @section('content')
 @include('sweetalert::alert')
 @include('layouts.errors-notif')
+<br>
 <br>
     <div class="d-flex justify-content-between align-items-center">
         <h1>Category : {{ $category->name }} </h1>

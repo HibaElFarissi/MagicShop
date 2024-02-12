@@ -15,16 +15,14 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-           ' name' => 'required|min:3',
-            'description' => 'required|min:50',
+            'name' => 'required|min:3',
+            'description' => 'required|min:10',
             'quantity'  => 'required|numeric',
             'price' => 'required|numeric',
             'category_id' => 'required|numeric',
-            // 'color' => 'nullable',
-            // 'size' => 'nullable',
-            // 'status' => 'required|nullable',
 
         ];
+
         if($this->route()->getActionMethod() === 'store'){
             $rules['image']='required|image|mimes:jpg,jpeg,png|max:5024';
         }

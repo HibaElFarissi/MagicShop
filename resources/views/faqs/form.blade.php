@@ -1,21 +1,22 @@
 {{-- @extends('layouts.base') --}}
-@extends('layouts.Dashboard_nav')
+{{-- @extends('layouts.Dashboard_nav') --}}
+@extends('layouts.DashAdmin_nav')
 
-@section('title', ($isUpdate ? 'Update' : 'Create') . 'Faq')
-@include('layouts.errors-notif')
+@section('title', ($isUpdate ? 'Update' : 'Create') . ' Faq')
 
 @php
     $route = route('faqs.store');
     if ($isUpdate) {
         $route = route('faqs.update', $faq);
     }
-@endphp
+    @endphp
 
 
 
 
 @section('content')
-    
+@include('layouts.errors-notif')
+
     <div class="container my-5">
         <h1>@yield('title')</h1>
         <br>
@@ -39,7 +40,7 @@
 
 
             <div class="form-group">
-                <input type="submit" class="btn btn-success w-100" value="{{ $isUpdate ? 'Edit' : 'Create' }}">
+                <input type="submit" class="btn btn-primary w-100" value="{{ $isUpdate ? 'Edit' : 'Create' }}">
             </div>
 
 

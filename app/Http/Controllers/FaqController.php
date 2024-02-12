@@ -13,8 +13,8 @@ class FaqController extends Controller
     public function index()
     {
         //
-        $faqs = Faq::all();
-        return view('faqs.index', compact('faqs'));
+        $Faqs = Faq::all();
+        return view('faqs.index', compact('Faqs'));
     }
 
     /**

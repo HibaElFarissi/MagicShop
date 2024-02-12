@@ -1,5 +1,6 @@
 {{-- @extends('layouts.base') --}}
-@extends('layouts.Dashboard_nav')
+{{-- @extends('layouts.Dashboard_nav') --}}
+@extends('layouts.DashAdmin_nav')
 @section('title' , 'Products')
 @section('content')
 @include('sweetalert::alert')
