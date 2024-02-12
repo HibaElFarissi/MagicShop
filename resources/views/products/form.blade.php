@@ -15,7 +15,7 @@
 @section('content')
 @include('layouts.errors-notif')
 
-    <div class="container">
+         <div class="container">
         <h1>@yield('title')</h1>
         <br>
         <form action="{{ $route }}" method="POST" enctype="multipart/form-data">
@@ -42,16 +42,7 @@
             </div>
             <br>
 
-            {{-- <div class="form-group">
-                <label for="formFile" class="form-label">Image</label>
-                <input class="form-control" name="image" type="file" id="formFile">
 
-                @if ($product->image)
-                    <img width="100px" src="/storage/{{ $product->image }}" alt="">
-                @endif
-
-            </div> --}}
-            {{-- new --}}
             <div class="form-group">
                 <label for="formFile" class="form-label">File Upload</label>
                 <div class="form-control h-100 text-center position-relative p-4 p-lg-5">
@@ -113,5 +104,7 @@
             <br>
 
         </form>
-    </div>
+    </div> 
+
+
 @endsection

@@ -228,17 +228,17 @@ Sellers
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="profile-3.html" class="menu-link">
+                            <a href="#" class="menu-link">
                                 Profile
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="account.html" class="menu-link">
+                            <a href="#" class="menu-link">
                                 Account
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="security.html" class="menu-link">
+                            <a href="#" class="menu-link">
                                 Security
                             </a>
                         </li>
