@@ -34,30 +34,26 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $file=$request->file('image');
-        // $photo=$request->filE('image')->getClientOriginalName();
-        // $file->storeAs('public',$photo);
+        $validatedData=$request->validate([
+            'name'=>'required',
+            'job'=>'required',
+            'feedback'=>'required',
+            'image'=>'nullable|image|mimes:png,jpg|max:2048',
 
+        ]);
 
-        // // Validation
-        // $feedback = Feedback::create([
-        //     'name' => $request-> name,
-        //     'job' => $request-> job,
-        //     'feedback' => $request-> feedback,
-        //     'image' => $photo,
-
-        // ]);
-        $file=$request->photo ;
-        $path= $file->store("image");
-        $data=$request->all();
-        $data['image']=$path;
-        Feedback::create($data);
-
-
+        if($request->hasFile('image')){
+            $photoPath = $request->file('image')->store('Feedbacks','public');
+        }
+        $validatedData['image']=$photoPath;
+        // $validatedData['user_id'] = Auth::id();
+        Feedback::create($validatedData);
         Alert::success('succes', 'the Feedback has been added successfully');
         return to_route('feedback.index');
-    }
+
+}
+
+
 
     /**
      * Display the specified resource.
@@ -81,22 +77,36 @@ class FeedbackController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Feedback $feedback)
+    public function update(Request $request, string $id)
     {
-        // $feedback=Feedback::findOrFail($id);
-        // $file=$request->file('image');
-        // $photo=$request->filE('image')->getClientOriginalName();
-        // $file->storeAs('public',$photo);
-        // $feedback->update($request->all());
-        $file=$request->photo;
-        $path= $file->store("image");
-        $data=$request->all();
-        $data['image']=$path;
-        $feedback->update($data);
 
+        $validatedData=$request->validate([
+            'name'=>'required',
+            'job'=>'required',
+            'feedback'=>'required',
+            'image'=>'nullable|image|mimes:png,jpg|max:2048',
 
+        ]);
+
+        $feedback=Feedback::findOrFail($id);
+        if($request->hasFile('image')){
+            $photoPath = $request->file('image')->store('Feedbacks','public');
+            $validatedData['image']=$photoPath;
+        }
+        $feedback->update($validatedData);
         Alert::success('Successfully Updated!', "The feedback {$feedback->name} has been updated");
         return to_route('feedback.index');
+
+
+        // $file=$request->photo;
+        // $path= $file->store("image");
+        // $data=$request->all();
+        // $data['image']=$path;
+        // $feedback->update($data);
+
+
+        // Alert::success('Successfully Updated!', "The feedback {$feedback->name} has been updated");
+        // return to_route('feedback.index');
     }
 
     /**

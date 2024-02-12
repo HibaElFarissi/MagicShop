@@ -11,6 +11,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogDetailsController;
+use App\Http\Controllers\DashAdmin_navController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MoreCategoryController;
@@ -55,18 +56,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-// Slider:
-// Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
-//     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
-
-//     Route::controller(App\Http\Controllers\Admin\SliderController::class)->group(function () {
-//     Route::get('sliders', 'index');
-//     Route::get('sliders/create', 'create');
-//     Route::post('sliders/create', 'store');
-// });
-// })
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -81,5 +70,6 @@ Route::middleware('auth')->group(function () {
 
 // FAQ:
 Route::resource('faqs',FaqController::class);
+
 
 require __DIR__.'/auth.php';

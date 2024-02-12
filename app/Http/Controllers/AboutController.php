@@ -113,6 +113,7 @@ class AboutController extends Controller
     public function update(Request $request, About $About)
     {
         //
+        
     }
 
     /**

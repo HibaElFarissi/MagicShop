@@ -46,7 +46,7 @@
                             <i class="ri-upload-cloud-2-line fs-2 text-gray-light"></i>
                             <span class="d-block fw-semibold text-body">Drop files here or click to upload.</span>
                         </label>
-                        <input id="file-upload" type="file">
+                        <input name="image" id="file-upload" type="file">
                     </div>
                 </div>
             </div>

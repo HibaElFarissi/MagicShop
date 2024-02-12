@@ -145,11 +145,11 @@
                                                 data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
                                             <a aria-label="Add To Wishlist" class="action-btn hover-up"
                                                 href="wishlist.php"><i class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i
-                                                    class="fi-rs-shuffle"></i></a>
+                                            {{-- <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i
+                                                    class="fi-rs-shuffle"></i></a> --}}
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
-                                            <span class="hot">Hot</span>
+                                            <span class="hot">{{ $product->status}}</span>
                                         </div>
                                     </div>
                                     <div class="product-content-wrap">
@@ -219,10 +219,10 @@
                                 <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
                                     <i class="fi-rs-eye"></i></a>
                                 <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                <a aria-label="Compare" class="action-btn small hover-up" href="compare.php" tabindex="0"><i class="fi-rs-shuffle"></i></a>
+                                {{-- <a aria-label="Compare" class="action-btn small hover-up" href="compare.php" tabindex="0"><i class="fi-rs-shuffle"></i></a> --}}
                             </div>
                             <div class="product-badges product-badges-position product-badges-mrg">
-                                <span class="hot">New</span>
+                                <span class="hot">{{ $product->status}}</span>
                             </div>
                         </div>
                         <div class="product-content-wrap">

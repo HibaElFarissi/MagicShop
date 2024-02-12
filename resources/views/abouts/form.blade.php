@@ -1,15 +1,13 @@
-{{-- @extends('layouts.base') --}}
-{{-- @extends('layouts.Dashboard_nav') --}}
 @extends('layouts.DashAdmin_nav')
 
 @section('title', ($isUpdate ? 'Update' : 'Create') . ' About')
-{{-- @section('title', 'About') --}}
+
 @php
     $route = route('abouts.store');
     if ($isUpdate) {
         $route = route('abouts.update');
     }
-    @endphp
+@endphp
 
 @section('content')
 @include('layouts.errors-notif')
@@ -17,7 +15,7 @@
     <div class="container my-5">
         <h1>@yield('title')</h1>
         <br>
-        <form action="{{ route('abouts.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ $route }}"  method="POST" enctype="multipart/form-data">
             @csrf
             @if ($isUpdate)
                 @method('PUT')
@@ -90,10 +88,6 @@
             </div>
             <br>
 
-            {{-- <div class="form-group">
-                <label for="image1" class="form-label">Image1</label>
-                <input type="file" name="image1" id="image1" class="form-control">
-            </div> --}}
             <div class="form-group">
                 <label for="image1" class="form-label">File Upload 1</label>
                 <div class="form-control h-100 text-center position-relative p-4 p-lg-5">
@@ -102,7 +96,7 @@
                             <i class="ri-upload-cloud-2-line fs-2 text-gray-light"></i>
                             <span class="d-block fw-semibold text-body">Drop files here or click to upload.</span>
                         </label>
-                        <input id="file-upload" type="file">
+                        <input name="image1" id="file-upload" type="file">
                     </div>
                 </div>
             </div>
@@ -116,23 +110,13 @@
                             <i class="ri-upload-cloud-2-line fs-2 text-gray-light"></i>
                             <span class="d-block fw-semibold text-body">Drop files here or click to upload.</span>
                         </label>
-                        <input id="file-upload" type="file">
+                        <input name="image2" id="file-upload" type="file">
                     </div>
                 </div>
             </div>
 
-            {{-- <div class="form-group">
-                <label for="image2" class="form-label">Image2</label>
-                <input type="file" name="image2" id="image2" class="form-control">
-            </div> --}}
+
             <br>
-
-            {{-- <div class="form-group">
-                <label for="image3" class="form-label">Image3</label>
-                <input type="file" name="image3" id="image3" class="form-control">
-            </div>
-            <br> --}}
-
             <div class="form-group">
                 <label for="TitleQuotes" class="form-label">Title Quotes</label>
                 <input type="text" name="TitleQuotes" id="TitleQuotes" class="form-control"
@@ -182,8 +166,8 @@
 
             <br>
             <div class="form-group">
-                {{-- <input type="submit" class="btn btn-success w-100" value="{{ $isUpdate ? 'Edit' : 'Create' }}"> --}}
-                <input type="submit" class="btn btn-primary w-100" value="save">
+                <input type="submit" class="btn btn-success w-100" value="{{ $isUpdate ? 'Edit' : 'Create' }}">
+                {{-- <input type="submit" class="btn btn-primary w-100" value="save"> --}}
             </div>
             <br>
             <br>

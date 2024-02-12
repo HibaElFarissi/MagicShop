@@ -119,41 +119,41 @@
                             </a>
                         </li>
                         {{-- <li class="menu-item">
-<a href="product-details.html" class="menu-link">
-Product Details
-</a>
-</li> --}}
+                        <a href="product-details.html" class="menu-link">
+                        Product Details
+                        </a>
+                        </li> --}}
 
-                        {{-- <li class="menu-item">
-<a href="#" class="menu-link">
-Orders List
-</a>
-</li>
-<li class="menu-item">
-<a href="#" class="menu-link">
-Order Details
-</a>
-</li>
-<li class="menu-item">
-<a href="#" class="menu-link">
-Customers
-</a>
-</li>
-<li class="menu-item">
-<a href="#" class="menu-link">
-Cart
-</a>
-</li>
-<li class="menu-item">
-<a href="#" class="menu-link">
-Checkout
-</a>
-</li>
-<li class="menu-item">
-<a href="#" class="menu-link">
-Sellers
-</a>
-</li> --}}
+                                                {{-- <li class="menu-item">
+                        <a href="#" class="menu-link">
+                        Orders List
+                        </a>
+                        </li>
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                        Order Details
+                        </a>
+                        </li>
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                        Customers
+                        </a>
+                        </li>
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                        Cart
+                        </a>
+                        </li>
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                        Checkout
+                        </a>
+                        </li>
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                        Sellers
+                        </a>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -163,11 +163,14 @@ Sellers
                     </a>
                     <ul class="menu-sub">
 
-                        <li class="menu-item">
-                            <a href="{{ route('abouts.create') }}" class="menu-link">
-                                About Content
-                            </a>
-                        </li>
+                        @foreach ($abouts as $about )
+                            <li class="menu-item">
+                                <a href="{{ route('abouts.edit', $about) }}" class="menu-link">
+                                {{-- <a href="{{ route('products.edit', $product) }}"> --}}
+                                    About Content
+                                </a>
+                            </li>
+                        @endforeach
 
 
                         <li class="menu-item">
