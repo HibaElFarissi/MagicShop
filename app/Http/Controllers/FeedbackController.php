@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,7 +16,8 @@ class FeedbackController extends Controller
     {
         //
         $feedbacks = Feedback::paginate(3);
-        return view('feedback.index', compact('feedbacks'));
+        $abouts = About::paginate(1);
+        return view('feedback.index', compact('feedbacks','abouts'));
     }
 
     /**

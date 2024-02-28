@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class FaqController extends Controller
     {
         //
         $Faqs = Faq::all();
-        return view('faqs.index', compact('Faqs'));
+        $abouts = About::paginate(1);
+        return view('faqs.index', compact('Faqs','abouts'));
     }
 
     /**

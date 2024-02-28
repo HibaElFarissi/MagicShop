@@ -1,5 +1,3 @@
-{{-- @extends('layouts.base') --}}
-{{-- @extends('layouts.Dashboard_nav') --}}
 @extends('layouts.DashAdmin_nav')
 
 @section('title', ($isUpdate ? 'Update' : 'Create') . ' Product')
@@ -51,7 +49,8 @@
                             <i class="ri-upload-cloud-2-line fs-2 text-gray-light"></i>
                             <span class="d-block fw-semibold text-body">Drop files here or click to upload.</span>
                         </label>
-                        <input class="form-control" name="image" id="file-upload" type="file">
+                        <input class="form-control" name="image" id="file-upload" type="file"
+                            value="{{ old('image', $product->image) }}">
                     </div>
                 </div>
             </div>
@@ -104,7 +103,7 @@
             <br>
 
         </form>
-    </div> 
+    </div>
 
 
 @endsection

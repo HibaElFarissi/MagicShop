@@ -30,9 +30,9 @@ class AboutController extends Controller
     public function create()
     {
         //
-        $Abouts = new About();
+        $abouts = new About();
         $isUpdate = false;
-        return view('abouts.form', compact('Abouts', 'isUpdate'));
+        return view('abouts.form', compact('abouts', 'isUpdate'));
     }
 
     /**
@@ -100,11 +100,11 @@ class AboutController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(About $about)
     {
-        $Abouts=About::findOrFail($id);
+        $abouts=About::all();
         $isUpdate = true;
-        return view('abouts.form', compact('isUpdate', 'Abouts'));
+        return view('abouts.form', compact('isUpdate', 'abouts'));
     }
 
     /**
@@ -113,7 +113,7 @@ class AboutController extends Controller
     public function update(Request $request, About $About)
     {
         //
-        
+
     }
 
     /**

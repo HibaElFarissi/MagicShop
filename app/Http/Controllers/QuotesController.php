@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuotesRequest;
+use App\Models\About;
 use App\Models\Quotes;
 use Illuminate\Http\Request;
+use League\CommonMark\Extension\SmartPunct\Quote;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class QuotesController extends Controller
@@ -15,8 +17,9 @@ class QuotesController extends Controller
     public function index()
     {
         //
-        $quotes = Quotes::all();
-        return view('quotes.index', compact('quotes'));
+        $Quotes = Quotes::all();
+        $abouts = About::paginate(1);
+        return view('quotes.index', compact('Quotes', 'abouts'));
 
     }
 
@@ -36,23 +39,37 @@ class QuotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
 
-        $file=$request->file('image');
-        $image=$request->filE('image')->getClientOriginalName();
-        $file->storeAs('public',$image);
-
-
-        // Validation
-        $Quotes = Quotes::create([
-            'title' => $request-> title,
-            'description' => $request-> description,
-            'image' => $image,
-
+        $validatedData=$request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'image'=>'nullable|image|mimes:png,jpg|max:2048',
         ]);
 
-        Alert::success('succes', 'the Quote has been added successfully');
+        if($request->hasFile('image')){
+            $photoPath = $request->file('image')->store('Quotes','public');
+        }
+        $validatedData['image']=$photoPath;
+        // $validatedData['user_id'] = Auth::id();
+        Quotes::create($validatedData);
+        Alert::success('Successfully Added!', "The Quote has been Added");
         return to_route('quotes.index');
+
+        // it's working too
+        // $file=$request->file('image');
+        // $image=$request->filE('image')->getClientOriginalName();
+        // $file->storeAs('public',$image);
+
+
+        // $Quotes = Quotes::create([
+        //     'title' => $request-> title,
+        //     'description' => $request-> description,
+        //     'image' => $image,
+
+        // ]);
+
+        // Alert::success('succes', 'the Quote has been added successfully');
+        // return to_route('quotes.index');
 
     }
 
@@ -67,13 +84,14 @@ class QuotesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Quotes $quote)
     {
         //
-        $isUpdate = true;
-        $Quotes = Quotes::all();
+         $isUpdate = true;
+        // $Quotes = Quotes::all();
+        // $quote = Quotes::findOrFail($id);
 
-        return view('quotes.form', compact('Quotes', 'isUpdate'));
+        return view('quotes.form', compact('quote', 'isUpdate'));
     }
 
     /**
@@ -81,13 +99,21 @@ class QuotesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        // $Quotes->fill($request->validated());
-        // $fromFields['image']=$this->uploadImage($request);
-        // $Quotes->fill($fromFields)->save();
+        $validatedData=$request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'image'=>'nullable|image|mimes:png,jpg|max:2048',
 
-        //     Alert::success('Successfully Updated!', "The Quotes {$Quotes->name} has been updated");
-        //     return to_route('quotes.index');
+        ]);
+
+        $quote=Quotes::findOrFail($id);
+        if($request->hasFile('image')){
+            $photoPath = $request->file('image')->store('Quotes','public');
+            $validatedData['image']=$photoPath;
+        }
+        $quote->update($validatedData);
+        Alert::success('Successfully Updated!', "The Quote {$quote->name} has been updated");
+        return to_route('quotes.index');
     }
 
     /**
@@ -96,5 +122,9 @@ class QuotesController extends Controller
     public function destroy(string $id)
     {
         //
+        $quote=Quotes::findOrFail($id);
+        $quote->delete();
+        Alert::success('Successfully Deleted!', "The feedback {$quote->name} has been Deleted");
+        return to_route('quotes.index');
     }
 }

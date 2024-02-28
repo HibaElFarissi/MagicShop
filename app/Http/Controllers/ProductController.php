@@ -81,24 +81,23 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(ProductRequest $request, string $id)
     {
-        //
-        $product->fill($request->validated());
-        $fromFields['image']=$this->uploadImage($request);
-        $product->fill($fromFields)->save();
-        // $product=Product::findOrFail($product);
+        // $product->fill($request->validated());
+        // $fromFields['image']=$this->uploadImage($request);
+        // $product->fill($fromFields)->save();
 
-        // $product=Product::findOrFail($id);
-        // if($request->hasFile('photo')){
-            //     $photoPath = $request->file('photo')->store('product','public');
-            //     $validatedData['photo']=$photoPath;
-            // }
-            //  $product->update($product);
+        $product=Product::findOrFail($id);
+        $validatedData = $request->validate();
 
-            // Alert::success('succes', 'Product has been updated successfully');
-            Alert::success('Successfully Updated!', "The product {$product->name} has been updated");
-            return to_route('products.index');
+        if($request->hasFile('image')) {
+            $photoPath1 = $request->file('image')->store('Products','public');
+            $validatedData['image']=$photoPath1;
+        }
+        $product->update($validatedData);
+
+        Alert::success('Successfully Updated!', "The product {$product->name} has been updated");
+        return to_route('products.index');
 
     }
 

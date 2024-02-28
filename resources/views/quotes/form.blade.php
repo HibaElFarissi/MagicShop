@@ -1,17 +1,18 @@
-{{-- @extends('layouts.base') --}}
-{{-- @extends('layouts.Dashboard_nav') --}}
 @extends('layouts.DashAdmin_nav')
-
 @section('title', ($isUpdate ? 'Update' : 'Create') . ' Quotes')
 
+{{-- @php
+    $route = route('quotes.store');
+    if ($isUpdate && $quote) {
+        $route = route('quotes.update', $quote);
+    }
+@endphp --}}
 @php
     $route = route('quotes.store');
-    if ($isUpdate) {
-        $route = route('quotes.update', $quotes);
+    if ($isUpdate && isset($quote)) {
+        $route = route('quotes.update', $quote);
     }
-    @endphp
-
-
+@endphp
 
 
 @section('content')
@@ -27,9 +28,15 @@
                 @method('PUT')
             @endif
 
+            {{-- <div class="form-group">
+                <label for="title" class="form-label">Name</label>
+                <input type="text" name="title" id="title" class="form-control"
+                value="{{ old('title', $quote->title) }}">
+            </div> --}}
             <div class="form-group">
                 <label for="title" class="form-label">Name</label>
-                <input type="text" name="title" id="title" class="form-control">
+                <input type="text" name="title" id="title" class="form-control"
+                value="{{ old('title', isset($quote) ? $quote->title : '') }}">
             </div>
             <br>
 
@@ -55,7 +62,8 @@
 
             <div class="form-group">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" name="description" id="description" class="form-control">
+                <input type="text" name="description" id="description" class="form-control"
+                value="{{ old('description', isset($quote) ? $quote->description : '')  }}">
             </div>
             <br><br>
 

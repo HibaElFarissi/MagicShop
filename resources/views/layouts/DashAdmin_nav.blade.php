@@ -118,42 +118,48 @@
                                 Create Category
                             </a>
                         </li>
-                        {{-- <li class="menu-item">
+                    <li class="menu-item">
                         <a href="product-details.html" class="menu-link">
                         Product Details
                         </a>
-                        </li> --}}
+                    </li>
 
-                                                {{-- <li class="menu-item">
+                     <li class="menu-item">
                         <a href="#" class="menu-link">
                         Orders List
                         </a>
-                        </li>
-                        <li class="menu-item">
+                    </li>
+
+                    <li class="menu-item">
                         <a href="#" class="menu-link">
                         Order Details
                         </a>
-                        </li>
-                        <li class="menu-item">
+                    </li>
+
+                    <li class="menu-item">
                         <a href="#" class="menu-link">
                         Customers
                         </a>
-                        </li>
-                        <li class="menu-item">
+                    </li>
+
+                    <li class="menu-item">
                         <a href="#" class="menu-link">
                         Cart
                         </a>
-                        </li>
-                        <li class="menu-item">
+
+                    </li>
+
+                    <li class="menu-item">
                         <a href="#" class="menu-link">
                         Checkout
                         </a>
-                        </li>
-                        <li class="menu-item">
+                    </li>
+
+                    <li class="menu-item">
                         <a href="#" class="menu-link">
                         Sellers
                         </a>
-                        </li> --}}
+                    </li> 
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -163,14 +169,13 @@
                     </a>
                     <ul class="menu-sub">
 
-                        @foreach ($abouts as $about )
-                            <li class="menu-item">
+                        {{-- <li class="menu-item">
+                                @foreach ($abouts as $about)
                                 <a href="{{ route('abouts.edit', $about) }}" class="menu-link">
-                                {{-- <a href="{{ route('products.edit', $product) }}"> --}}
                                     About Content
                                 </a>
-                            </li>
-                        @endforeach
+                                @endforeach
+                        </li> --}}
 
 
                         <li class="menu-item">
@@ -263,8 +268,9 @@
                     </a>
                 </div>
                 <div class="flex-grow-1 ms-3 info">
-                    <a href="profile.html" class="d-block name">Adison Jeck</a>
-                    <a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Log Out</a>
+                    <a href="#" class="d-block name">{{ auth()->user()->username }}</a>
+                    <a href=""
+                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">Log Out</a>
                     <form action="{{ route('logout') }}" id="logout-form" method="post">
                         @csrf
                     </form>
@@ -355,11 +361,14 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="dropdown-item d-flex align-items-center text-body" >
+                                                <a href="#"
+                                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                                                    class="dropdown-item d-flex align-items-center text-body">
                                                     <i data-feather="log-out"></i>
                                                     <span class="ms-2">Logout</span>
                                                 </a>
-                                                <form action="{{ route('logout') }}" id="logout-form" method="post">
+                                                <form action="{{ route('logout') }}" id="logout-form"
+                                                    method="post">
                                                     @csrf
                                                 </form>
                                             </li>

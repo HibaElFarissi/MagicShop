@@ -24,7 +24,7 @@ class ProductRequest extends FormRequest
         ];
 
         if($this->route()->getActionMethod() === 'store'){
-            $rules['image']='required|image|mimes:jpg,jpeg,png|max:5024';
+            $rules['image']='nullable|image|mimes:jpg,jpeg,png|max:5024';
         }
         return $rules;
 

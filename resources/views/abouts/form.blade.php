@@ -5,7 +5,7 @@
 @php
     $route = route('abouts.store');
     if ($isUpdate) {
-        $route = route('abouts.update');
+        $route = route('abouts.update', $about);
     }
 @endphp
 

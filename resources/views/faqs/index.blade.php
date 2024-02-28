@@ -5,7 +5,7 @@
         <h3 class="mb-sm-0 mb-1 fs-18">FAQ</h3>
         <ul class="ps-0 mb-0 list-unstyled d-flex justify-content-center">
             <li>
-                <a href="index.html" class="text-decoration-none">
+                <a href="/admin/dashboard" class="text-decoration-none">
                     <i class="ri-home-2-line" style="position: relative; top: -1px;"></i>
                     <span>Home</span>
                 </a>

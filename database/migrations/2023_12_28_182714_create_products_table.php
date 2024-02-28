@@ -17,9 +17,7 @@ return new class extends Migration
             $table->longText('description');
             $table->integer('quantity', unsigned:true);
             $table->unsignedDouble('price');
-            $table->string('image');
-            // $table->enum('color', ['white', 'black', 'blue', 'brown', 'yellow']);
-            // $table->string('size')->nullable();
+            $table->string('image')->nullable();
             $table->enum('status', ['In Stock', 'Out of Stock']);
             $table->softDeletes();
             $table->timestamps();
