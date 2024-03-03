@@ -159,7 +159,7 @@
                         <a href="#" class="menu-link">
                         Sellers
                         </a>
-                    </li> 
+                    </li>
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -177,6 +177,12 @@
                                 @endforeach
                         </li> --}}
 
+
+                        {{-- <li class="menu-item">
+                            <a href="{{ route('faqs.index') }}" class="menu-link">
+                                Home Slide
+                            </a>
+                        </li> --}}
 
                         <li class="menu-item">
                             <a href="{{ route('faqs.index') }}" class="menu-link">
@@ -220,11 +226,64 @@
                             </a>
                         </li>
 
-
-
-
                     </ul>
                 </li>
+
+
+                {{-- Email --}}
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="mail" class="menu-icon tf-icons"></i>
+                    <span class="title">Email</span>
+                </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('inbox') }}" class="menu-link">
+                    Inbox
+                    </a>
+                </li>
+            </ul>
+
+
+                {{-- Slide Home --}}
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+                    <span class="title">Slide Home</span>
+                </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('inbox') }}" class="menu-link">
+                        SlideShow
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('inbox') }}" class="menu-link">
+                    Create
+                    </a>
+                </li>
+            </ul>
+
+                {{-- Banner --}}
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+                    <span class="title">Banners</span>
+                </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        Banner Show
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                    Create
+                    </a>
+                </li>
+            </ul>
+
+
                 <!-- Auth -->
                 <li class="menu-title small text-uppercase">
                     <span class="menu-title-text">Settings & Others</span>

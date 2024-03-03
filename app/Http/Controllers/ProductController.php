@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -27,12 +30,15 @@ class ProductController extends Controller
 
         $product = new Product();
         $categories = Category::all();
+        $brands = Brand::all();
+        $colors=Color::all();
+        $sizes=Size::all();
 
         $product->fill([
             'quantity' => 0,
         ]);
         $isUpdate = false;
-        return view('products.form', compact('product', 'isUpdate', 'categories'));
+        return view('products.create', compact('product', 'isUpdate', 'categories','brands','colors','sizes'));
 
 
     }
@@ -40,20 +46,65 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
 
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'slug' => 'required',
+            'price' => 'nullable',
+            'description' => 'nullable',
+            'old_price' => 'required',
+            'sold' => 'required',
+            'quantity' => 'required',
+            'status' => 'required',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'colors.*' => 'nullable|string|max:255',
+            'sizes.*' => 'nullable|string|max:255',
 
-        $fromFields = $request->validated();
-        if ($request->hasFile('image')) {
-            // $fromFields['image'] = $request->file('image')->store('product' , 'public');
-            $fromFields['image']=$this->uploadImage($request);
+        ]);
+
+        if ($request->hasFile('images')) {
+            $imagePaths = [];
+            foreach ($request->file('images') as $image) {
+                $imageName = $image->getClientOriginalName();
+                $image->move(public_path('images'), $imageName);
+                $imagePaths[] = $imageName;
+            }
+
+            // Add the image paths to the validated data
+
+            $validatedData['images'] = json_encode($imagePaths);
         }
 
-        Product::create($fromFields);
+
+        $Product = Product::create($validatedData);
+
+        if ($request->filled('colors')) {
+            $colors = $request->input('colors');
+            $Product->colors()->attach($colors);
+        }
+
+        if ($request->filled('sizes')) {
+            $sizes = $request->input('sizes');
+            $Product->sizes()->attach($sizes);
+        }
 
         Alert::success('succes', 'Product has been added successfully');
         return to_route('products.index');
+
+
+        // $fromFields = $request->validated();
+        // if ($request->hasFile('image')) {
+        //     // $fromFields['image'] = $request->file('image')->store('product' , 'public');
+        //     $fromFields['image']=$this->uploadImage($request);
+        // }
+
+        // Product::create($fromFields);
+
+
 
 
     }
@@ -61,10 +112,17 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+   public function show(string $id)
     {
-        //
+
+        $product = Product::findOrFail($id);
+        $product->load('colors'); // BOUCLE
+        $product->load('sizes');
+        $categories = Category::all();
+
+        return view('products.show', compact('product','categories'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -74,37 +132,77 @@ class ProductController extends Controller
 
         $isUpdate = true;
         $categories = Category::all();
+        $brands = Brand::all();
+        $colors=Color::all();
+        $sizes=Size::all();
 
-        return view('products.form', compact('product', 'isUpdate', 'categories'));
+        return view('products.form', compact('product', 'isUpdate', 'categories', 'brands','colors','sizes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        // $product->fill($request->validated());
-        // $fromFields['image']=$this->uploadImage($request);
-        // $product->fill($fromFields)->save();
+        // $product=Product::findOrFail($id);
+        // $validatedData = $request->validate();
 
-        $product=Product::findOrFail($id);
-        $validatedData = $request->validate();
+        // if($request->hasFile('image')) {
+        //     $photoPath1 = $request->file('image')->store('Products','public');
+        //     $validatedData['image']=$photoPath1;
+        // }
+        // $product->update($validatedData);
 
-        if($request->hasFile('image')) {
-            $photoPath1 = $request->file('image')->store('Products','public');
-            $validatedData['image']=$photoPath1;
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'slug' => 'required',
+            'price' => 'nullable',
+            'description' => 'nullable',
+            'old_price' => 'required',
+            'sold' => 'required',
+            'quantity' => 'required',
+            'status' => 'required',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'colors.*' => 'nullable|string|max:255',
+            'sizes.*' => 'nullable|string|max:255',
+        ]);
+
+        if ($request->hasFile('images')) {
+            $imagePaths = [];
+            foreach ($request->file('images') as $image) {
+                $imageName = $image->getClientOriginalName();
+                $image->move(public_path('images'), $imageName);
+                $imagePaths[] = $imageName;
+            }
+
+            // Add the image paths to the validated data
+
+            $validatedData['images'] = json_encode($imagePaths);
         }
+
+
+
+        $product = Product::findOrFail($id);
+
+
         $product->update($validatedData);
+
+        if ($request->filled('colors')) {
+            $colors = $request->input('colors');
+            $product->colors()->sync($colors);
+        }
+
+        // Sync sizes to the product, if provided
+        if ($request->filled('sizes')) {
+            $sizes = $request->input('sizes');
+            $product->sizes()->sync($sizes);
+        }
 
         Alert::success('Successfully Updated!', "The product {$product->name} has been updated");
         return to_route('products.index');
 
-    }
-
-    private function uploadImage(ProductRequest $request){
-        if($request->hasFile('image')){
-           return $request->file('image')->store('product' , 'public');
-        }
     }
 
     /**

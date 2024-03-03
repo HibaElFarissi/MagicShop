@@ -11,12 +11,17 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogDetailsController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\DashAdmin_navController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MoreCategoryController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +45,13 @@ Route::resource('feedback',FeedbackController::class);
 
 
 Route::get('/MoreCategory',[MoreCategoryController::class,'index'])->name('MoreCategory');
+Route::get('/cart',[CartController::class,'index'])->name('cart');
+Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout');
+
+
+// page de contact:
+Route::get('/inbox',[ContactController::class,'index'])->name('inbox');
+
 
 
 // Pages:
@@ -49,7 +61,7 @@ Route::get('/blog-details',[BlogDetailsController::class,'index'])->name('blog-d
 Route::get('/shop',[ShopController::class,'index'])->name('shop');
 //Email - contact :
  Route::get('/contact', [ContactController::class, 'create'])->name('contact');
- Route::post('/contact', [ContactController::class, 'sendEmail'])->name('send.email');
+//  Route::post('/contact', [ContactController::class, 'sendEmail'])->name('send.email');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -70,6 +82,10 @@ Route::middleware('auth')->group(function () {
 
 // FAQ:
 Route::resource('faqs',FaqController::class);
+
+Route::resource('Brands' , BrandController::class);
+Route::resource('Color', ColorController::class);
+Route::resource('sizes', SizeController::class);
 
 
 require __DIR__.'/auth.php';
