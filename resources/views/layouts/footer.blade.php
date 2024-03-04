@@ -15,8 +15,9 @@
                 </div>
                 <div class="col-lg-5">
                     <!-- Subscribe Form -->
-                    <form class="form-subcriber d-flex wow fadeIn animated">
-                        <input type="email" class="form-control bg-white font-small" placeholder="Enter your email">
+                    <form action="{{ route('send.email') }}"  method="POST" class="form-subcriber d-flex wow fadeIn animated">
+                        @csrf
+                        <input type="email" name="email" class="form-control bg-white font-small" placeholder="Enter your email" >
                         <button class="btn bg-dark text-white" type="submit">Subscribe</button>
                     </form>
                     <!-- End Subscribe Form -->

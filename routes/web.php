@@ -88,4 +88,8 @@ Route::resource('Color', ColorController::class);
 Route::resource('sizes', SizeController::class);
 
 
+// Newsletter :
+Route::get('/email', [App\Http\Controllers\EmailController::class, 'create']);
+Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('send.email');
+
 require __DIR__.'/auth.php';
