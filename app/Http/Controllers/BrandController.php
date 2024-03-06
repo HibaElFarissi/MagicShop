@@ -21,7 +21,8 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('Brands.create');
+        $isUpdate = false;
+        return view('Brands.form');
     }
 
     /**
@@ -56,6 +57,7 @@ class BrandController extends Controller
      */
     public function edit(string $id)
     {
+        $isUpdate = true;
         $brand = Brand::findOrFail($id);
         return view('Brands.edit', compact('brand'));
     }

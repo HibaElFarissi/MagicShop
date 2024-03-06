@@ -44,11 +44,17 @@
             <div class="form-check p-0 d-flex align-items-center">
                 <span class="ms-4">Product</span>
         </div>
-        <th scope="col">name</th>
+        <th scope="col">Name</th>
+        <th scope="col">Slug</th>
         <th scope="col">Description</th>
         <th scope="col">Category</th>
         <th scope="col">Quantity</th>
         <th scope="col">Price</th>
+        <th scope="col">Old Price</th>
+        <th scope="col">Brands</th>
+        <th scope="col">Colors</th>
+        <th scope="col">Size</th>
+        <th scope="col">Sold</th>
         <th scope="col">Status</th>
         <th scope="col">Actions</th>
 
@@ -66,6 +72,7 @@
             </td>
 
             <td>{{ $product->name }}</td>
+            <td>{{ $product->slug }}</td>
             <td>{{ $product->description }}</td>
 
             <td align="center">
@@ -81,6 +88,23 @@
             </td>
             <td>{{ $product->quantity }}</td>
             <td>{{ $product->price }}</td>
+            <td>{{ $product->old_price }}</td>
+
+            {{-- <td align="center">
+                @if ($product->category)
+                    <a href="{{ route('categories.show', $product->category_id) }}"
+                        class="btn btn-link">
+                        <span class="badge bg-secondary text-dark">
+                            {{ $product->brands }}
+                        </span>
+                    </a>
+                @endif
+            </td> --}}
+
+            <td>{{ $product->brands }}</td>
+            <td>{{ $product->colors }}</td>
+            <td>{{ $product->size }}</td>
+            <td>{{ $product->sold }}</td>
 
             <td align="center">
                 {{-- Category BelongsTo Relationship --}}

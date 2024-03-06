@@ -189,10 +189,10 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal"
+                                            <a href="#" aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal"
                                                 data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
                                             <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                                href="wishlist.php"><i class="fi-rs-heart"></i></a>
+                                                href="/checkout"><i class="fi-rs-heart"></i></a>
                                             {{-- <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i
                                                     class="fi-rs-shuffle"></i></a> --}}
                                         </div>
@@ -215,7 +215,7 @@
                                             <span class="old-price">$245.8</span>
                                         </div>
                                         <div class="product-action-1 show">
-                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="cart.html"><i
+                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="/cart"><i
                                                     class="fi-rs-shopping-bag-add"></i></a>
                                         </div>
                                     </div>

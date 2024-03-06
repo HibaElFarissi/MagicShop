@@ -57,8 +57,61 @@
               <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
             </div>
 
+
+
+            {{-- ex --}}
+            <form action="{{ route('contacts.store') }}" class="contact100-form validate-form" method="post">
+                @csrf
+                <br>
+                <br>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                     @csrf
+                        @if(session()->has('message'))
+                                <div class="alert alert-success">
+                                     {{ session()->get('message') }}
+                                </div>
+                        @endif
+                    <input type="text" name="name"  type="text" class="form-control" name="name"  placeholder="Your Name" data-validate = "Name is required">
+                </div>
+
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                   @error('name')
+                        <span class="text-danger"> {{ $message }} </span>
+                    @enderror
+                </div>
+
+              </div>
+
+              <div class="form-group mt-3">
+                <input type="text" class="form-control "  name="subject" placeholder="Subject"  data-validate = "Subject is required">
+                            @error('subject')
+                                 <span class="text-danger"> {{ $message }} </span>
+                            @enderror
+              </div>
+
+              <div class="form-group mt-3">
+               <textarea class="form-control" name="content" rows="5" placeholder="Message"  data-validate = "Message is required"></textarea>
+
+
+                        @error('content')
+                           <span class="text-danger"> {{ $message }} </span>
+                        @enderror
+
+              </div>
+
+              <div class="my-3">
+
+              </div>
+
+              <div class="php-email-form">
+                <button type="submit">Send Message</button>
+            </div>
+
+            </form>
             {{-- Contact  Us --}}
-            <div class="col-lg-6">
+            {{-- <div class="col-lg-6">
               <form action="" method="post" role="form" class="php-email-form">
                 @csrf
                 <div class="row">
@@ -78,7 +131,7 @@
 
               <div class="text-center"><button type="submit">Send Message</button></div>
               {{-- <input type="submit" value="Send Message"> --}}
-              </form>
+              </form> --}}
             </div>
 
           </div>

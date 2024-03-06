@@ -38,7 +38,7 @@ class ProductController extends Controller
             'quantity' => 0,
         ]);
         $isUpdate = false;
-        return view('products.create', compact('product', 'isUpdate', 'categories','brands','colors','sizes'));
+        return view('products.form', compact('product', 'isUpdate', 'categories','brands','colors','sizes'));
 
 
     }
