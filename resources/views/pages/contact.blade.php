@@ -60,7 +60,7 @@
 
 
             {{-- ex --}}
-            <form action="{{ route('contacts.store') }}" class="contact100-form validate-form" method="post">
+            <form action="{{ route('contact.store') }}" class="contact100-form validate-form" method="post">
                 @csrf
                 <br>
                 <br>
@@ -91,14 +91,14 @@
                             @enderror
               </div>
 
+
+              {{-- <input type="text" name="message"> --}}
+
               <div class="form-group mt-3">
-               <textarea class="form-control" name="content" rows="5" placeholder="Message"  data-validate = "Message is required"></textarea>
-
-
-                        @error('content')
+               <textarea class="form-control" name="message" rows="5" placeholder="Message"  data-validate = "Message is required"></textarea>
+                        @error('message')
                            <span class="text-danger"> {{ $message }} </span>
                         @enderror
-
               </div>
 
               <div class="my-3">
@@ -131,7 +131,7 @@
 
               <div class="text-center"><button type="submit">Send Message</button></div>
               {{-- <input type="submit" value="Send Message"> --}}
-              </form> --}}
+              </form>
             </div>
 
           </div>

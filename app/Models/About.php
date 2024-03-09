@@ -24,7 +24,6 @@ class About extends Model
         'description2',
         'image1',
         'image2',
-        // 'image3',
         'TitleQuotes',
         'SlugQuotes',
         'TitleCategory',

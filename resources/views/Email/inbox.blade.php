@@ -50,8 +50,8 @@
         <tr>
             <td>{{ $contact->name }}</td>
             <td>{{ $contact->email }}</td>
-            <td>{{ $product->subject }}</td>
-            <td>{{ $product->message }}</td>
+            <td>{{ $contact->subject }}</td>
+            <td>{{ $contact->message }}</td>
 
 
         <td>
@@ -63,7 +63,7 @@
 
 
                 <li>
-                <form class="dropdown-item"  action="{{ route('contacts.destroy', $contact) }}" method="POST">
+                <form class="dropdown-item"  action="{{ route('contact.destroy', $contact) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <i data-feather="trash-2"></i>

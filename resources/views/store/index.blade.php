@@ -184,8 +184,8 @@
                                 <div class="product-cart-wrap mb-30">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="product-details.html">
-                                                <img class="default-img" src="storage/{{ $product->image }}" alt="">
+                                            <a href="{{ route('products.show',$product) }}">
+                                                <img class="default-img" src="{{ asset('images/' . json_decode($product->images)[0]) }}"  alt="product_image">
                                             </a>
                                         </div>
                                         <div class="product-action-1">
@@ -202,17 +202,17 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="{{ route('shop') }}">Clothing</a>
+                                            <a href="{{ route('shop') }}">{{  $product->category->name }}</a>
                                         </div>
-                                        <h2><a href="product-details.html"> {{ $product->name }}</a></h2>
+                                        <h2><a href="{{ route('products.show',$product) }}"> {{ $product->name }}</a></h2>
                                         <div class="rating-result" title="90%">
                                             <span>
-                                                <span>90%</span>
+                                                <span>{{ $product->sold }} %</span>
                                             </span>
                                         </div>
                                         <div class="product-price">
                                             <span>${{ $product->price }} </span>
-                                            <span class="old-price">$245.8</span>
+                                            <span class="old-price">{{  $product->old_price }}</span>
                                         </div>
                                         <div class="product-action-1 show">
                                             <a aria-label="Add To Cart" class="action-btn hover-up" href="/cart"><i
@@ -259,8 +259,8 @@
                     <div class="product-cart-wrap small hover-up">
                         <div class="product-img-action-wrap">
                             <div class="product-img product-img-zoom">
-                                <a href="product-details.html">
-                                    <img class="default-img" src="storage/{{ $product->image }}" alt="">
+                                <a href="{{ route('products.show',$product) }}">
+                                    <img class="default-img" src="{{ asset('images/' . json_decode($product->images)[0]) }}" alt="image_products">
                                 </a>
                             </div>
                             <div class="product-action-1">
@@ -274,7 +274,7 @@
                             </div>
                         </div>
                         <div class="product-content-wrap">
-                            <h2><a href="product-details.html">{{ $product->name }}</a></h2>
+                            <h2><a href="{{ route('products.show',$product) }}">{{ $product->name }}</a></h2>
                             <div class="rating-result" title="90%">
                                 <span>
                                     <span>-50%</span>
@@ -332,6 +332,7 @@
             </div>
         </div>
     </section>
+
     {{-- Brands --}}
     <section class="section-padding">
         <div class="container">
@@ -339,27 +340,15 @@
             <div class="carausel-6-columns-cover position-relative wow fadeIn animated">
                 <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-3-arrows"></div>
                 <div class="carausel-6-columns text-center" id="carausel-6-columns-3">
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="frontEnd/imgs/banner/brand-1.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="frontEnd/imgs/banner/brand-2.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="frontEnd/imgs/banner/brand-3.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="frontEnd/imgs/banner/brand-4.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="frontEnd/imgs/banner/brand-5.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="frontEnd/imgs/banner/brand-6.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="frontEnd/imgs/banner/brand-3.png" alt="">
-                    </div>
+
+                    @forelse ($brands as $brand)
+                        <div class="brand-logo">
+                            <img class="img-grey-hover" src="{{ asset('storage/'. $brand->image) }}" alt="brand-image">
+                        </div>
+                    @empty
+                    <h1>There is no brand here !</h1>
+                    @endforelse
+
                 </div>
             </div>
         </div>

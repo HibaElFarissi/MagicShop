@@ -21,8 +21,8 @@ class ContactController extends Controller
 
     public function create(){
         $categories = Category::all();
-        // $contact = new Contact();
-        return view('pages.contact',compact('categories'));
+        $contact = new Contact();
+        return view('pages.contact',compact('categories','contact'));
 
 
 
@@ -31,7 +31,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         Contact::create($request->all());
-        return redirect()->route('Email.inbox');
+        return redirect()->back();
     }
 
 
@@ -67,7 +67,7 @@ class ContactController extends Controller
         $contact=Contact::findOrFail($id);
         $contact->delete();
         Alert::success('Successfully Deleted!', "The Email has been Deleted");
-        return to_route('Email.inbox');
+        return redirect()->back();
     }
 }
 

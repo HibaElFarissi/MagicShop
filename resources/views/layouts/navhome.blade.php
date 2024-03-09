@@ -18,7 +18,6 @@
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
     <!-- Template Main CSS File -->
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <!-- Vendor CSS Files -->
     {{-- <link href="assets/vendor/aos/aos.css" rel="stylesheet"> --}}
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +29,7 @@
     {{-- for cards  shopping --}}
     <link rel="stylesheet" href="{{ asset('frontEnd/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('frontEnd/css/custom.css') }}">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 </head>
 
 
@@ -68,7 +68,8 @@
             </div>
         </div>
     </div> --}}
-    <section id="topbar" class="d-flex align-items-center">
+    <div class="TopRsponsive">
+    <section id="topbar"  class="d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
                 <i class="bi bi-envelope d-flex align-items-center"><a
@@ -76,6 +77,7 @@
                 <i class="bi bi-phone d-flex align-items-center ms-4"><a href="tel:0615256198">+212 615 256 198</a></i>
             </div>
         </div>
+
 
         {{-- auhentification --}}
         @guest
@@ -96,8 +98,8 @@
             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
         </div> --}}
-
     </section>
+</div>
 
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
@@ -110,8 +112,8 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="/">Home</a></li>
-                    <li><a class="nav-link scrollto" href="/abouts">About</a></li>
-                    <li><a class="nav-link scrollto" href="/shop">Shop</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('about') }}">About</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('shop') }}">Shop</a></li>
                     {{-- <li><a class="nav-link scrollto" href="{{ route('products.index') }}">Product</a></li> --}}
                     {{-- <li><a  href="/login">Login</a></li> --}}
 
@@ -124,8 +126,8 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li><a class="nav-link scrollto" href="/blog">Blog</a></li>
-                    <li><a class="nav-link scrollto" href="/contact">Contact</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('blog') }}">Blog</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('contact.create') }}">Contact</a></li>
 
 
                     {{-- Guest authentification:   if condition --}}
@@ -153,60 +155,119 @@
 
                 {{-- @endguest --}}
 
-
-                    <div class="header-action-right">
-                        <div class="header-action-2">
-                            <div class="header-action-icon-2">
-                                <a href="shop-wishlist.php">
-                                    <img class="svgInject" alt="Surfside Media" src="{{ asset('frontEnd/imgs/theme/icons/icon-heart.svg') }}">
-                                    <span class="pro-count blue">4</span>
-                                </a>
-                            </div>
-                            <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="cart.html">
-                                    <img alt="Surfside Media" src="{{ asset('frontEnd/imgs/theme/icons/icon-cart.svg') }}">
-                                    <span class="pro-count blue">2</span>
-                                </a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                    <ul>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="product-details.html"><img alt="Surfside Media" src="{{ asset('frontEnd/imgs/shop/thumbnail-3.jpg') }}"></a>
+                    {{-- Auto --}}
+                    <div class="IconRespo">
+                        <div class="header-action">
+                            <div class="header-action-2">
+                                <div class="header-action-icon-2">
+                                    <a href="shop-wishlist.php">
+                                        <img class="svgInject" alt="Surfside Media" src="{{ asset('frontEnd/imgs/theme/icons/icon-heart.svg') }}">
+                                        <span class="pro-count blue">4</span>
+                                    </a>
+                                </div>
+                                <div class="header-action-icon-2">
+                                    <a class="mini-cart-icon" href="cart.html">
+                                        <img alt="Surfside Media" src="{{ asset('frontEnd/imgs/theme/icons/icon-cart.svg') }}">
+                                        <span class="pro-count blue">2</span>
+                                    </a>
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2">
+                                        <ul>
+                                            <li>
+                                                <div class="shopping-cart-img">
+                                                    <a href="product-details.html"><img alt="Surfside Media" src="{{ asset('frontEnd/imgs/shop/thumbnail-3.jpg') }}"></a>
+                                                </div>
+                                                <div class="shopping-cart-title">
+                                                    <h4><a href="product-details.html">Daisy Casual Bag</a></h4>
+                                                    <h4><span>1 × </span>$800.00</h4>
+                                                </div>
+                                                <div class="shopping-cart-delete">
+                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="shopping-cart-img">
+                                                    <a href="product-details.html"><img alt="Surfside Media" src="{{ asset('frontEnd/imgs/shop/thumbnail-2.jpg') }}"></a>
+                                                </div>
+                                                <div class="shopping-cart-title">
+                                                    <h4><a href="product-details.html">Corduroy Shirts</a></h4>
+                                                    <h4><span>1 × </span>$3200.00</h4>
+                                                </div>
+                                                <div class="shopping-cart-delete">
+                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="shopping-cart-footer">
+                                            <div class="shopping-cart-total">
+                                                <h4>Total <span>$4000.00</span></h4>
                                             </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="product-details.html">Daisy Casual Bag</a></h4>
-                                                <h4><span>1 × </span>$800.00</h4>
+                                            <div class="shopping-cart-button">
+                                                <a href="/cart" class="outline">View cart</a>
+                                                <a href="/checkout">Checkout</a>
                                             </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="product-details.html"><img alt="Surfside Media" src="{{ asset('frontEnd/imgs/shop/thumbnail-2.jpg') }}"></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="product-details.html">Corduroy Shirts</a></h4>
-                                                <h4><span>1 × </span>$3200.00</h4>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="shopping-cart-footer">
-                                        <div class="shopping-cart-total">
-                                            <h4>Total <span>$4000.00</span></h4>
-                                        </div>
-                                        <div class="shopping-cart-button">
-                                            <a href="/cart" class="outline">View cart</a>
-                                            <a href="/checkout">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {{-- Mobile Friendly --}}
+
+                    {{-- <div class="IconMobile">
+                        <div class="header-action">
+                            <div class="header-action-2">
+                                <div class="header-action-icon-2">
+                                    <a href="shop-wishlist.php">
+                                        <h3>Wishlist</h3>
+                                        <span class="pro-count blue">4</span>
+                                    </a>
+                                </div>
+                                <div class="header-action-icon-2">
+                                    <a class="mini-cart-icon" href="cart.html">
+                                        <h3 class="oo">My Cart</h3>
+                                        <span class="pro-count blue">2</span>
+                                    </a>
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2">
+                                        <ul>
+                                            <li>
+                                                <div class="shopping-cart-img">
+                                                    <a href="product-details.html"><img alt="Surfside Media" src="{{ asset('frontEnd/imgs/shop/thumbnail-3.jpg') }}"></a>
+                                                </div>
+                                                <div class="shopping-cart-title">
+                                                    <h4><a href="product-details.html">Daisy Casual Bag</a></h4>
+                                                    <h4><span>1 × </span>$800.00</h4>
+                                                </div>
+                                                <div class="shopping-cart-delete">
+                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="shopping-cart-img">
+                                                    <a href="product-details.html"><img alt="Surfside Media" src="{{ asset('frontEnd/imgs/shop/thumbnail-2.jpg') }}"></a>
+                                                </div>
+                                                <div class="shopping-cart-title">
+                                                    <h4><a href="product-details.html">Corduroy Shirts</a></h4>
+                                                    <h4><span>1 × </span>$3200.00</h4>
+                                                </div>
+                                                <div class="shopping-cart-delete">
+                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="shopping-cart-footer">
+                                            <div class="shopping-cart-total">
+                                                <h4>Total <span>$4000.00</span></h4>
+                                            </div>
+                                            <div class="shopping-cart-button">
+                                                <a href="/cart" class="outline">View cart</a>
+                                                <a href="/checkout">Checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
 
 
                 </ul>
@@ -247,36 +308,5 @@
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
     class="bi bi-arrow-up-short"></i></a>
-
-
-<!-- Template Main JS File -->
-<script src="{{ asset('assets/js/main.js') }}"></script>
-
-
-<!-- Template Main JS File -->
-<!-- Vendor JS-->
-<script src="frontEnd/js/vendor/modernizr-3.6.0.min.js"></script>
-<script src="frontEnd/js/vendor/jquery-3.6.0.min.js"></script>
-<script src="frontEnd/js/vendor/jquery-migrate-3.3.0.min.js"></script>
-<script src="frontEnd/js/vendor/bootstrap.bundle.min.js"></script>
-<script src="frontEnd/js/plugins/slick.js"></script>
-<script src="frontEnd/js/plugins/jquery.syotimer.min.js"></script>
-<script src="frontEnd/js/plugins/wow.js"></script>
-<script src="frontEnd/js/plugins/jquery-ui.js"></script>
-<script src="frontEnd/js/plugins/perfect-scrollbar.js"></script>
-<script src="frontEnd/js/plugins/magnific-popup.js"></script>
-<script src="frontEnd/js/plugins/select2.min.js"></script>
-<script src="frontEnd/js/plugins/waypoints.js"></script>
-<script src="frontEnd/js/plugins/counterup.js"></script>
-<script src="frontEnd/js/plugins/jquery.countdown.min.js"></script>
-<script src="frontEnd/js/plugins/images-loaded.js"></script>
-<script src="frontEnd/js/plugins/isotope.js"></script>
-<script src="frontEnd/js/plugins/scrollup.js"></script>
-<script src="frontEnd/js/plugins/jquery.vticker-min.js"></script>
-<script src="frontEnd/js/plugins/jquery.theia.sticky.js"></script>
-<script src="frontEnd/js/plugins/jquery.elevatezoom.js"></script>
-<!-- Template  JS -->
-<script src="frontEnd/js/main.js?v=3.3"></script>
-{{-- <script src="frontEnd/js/shop.js?v=3.3"></script> --}}
 
 </html>

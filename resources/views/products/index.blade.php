@@ -52,8 +52,8 @@
         <th scope="col">Price</th>
         <th scope="col">Old Price</th>
         <th scope="col">Brands</th>
-        <th scope="col">Colors</th>
-        <th scope="col">Size</th>
+        {{-- <th scope="col">Colors</th>
+        <th scope="col">Size</th> --}}
         <th scope="col">Sold</th>
         <th scope="col">Status</th>
         <th scope="col">Actions</th>
@@ -66,7 +66,7 @@
             <td>
                 <div class="form-check p-0 d-flex align-items-center">
                     <a href="#" class="d-flex align-items-center ms-4">
-                        <img src="storage/{{ $product->image }}" class="wh-44 rounded"  alt="product">
+                        <img src="{{ asset('images/' . json_decode($product->images)[0]) }}"  class="wh-44 rounded"  alt="product">
                     </a>
                 </div>
             </td>
@@ -101,9 +101,9 @@
                 @endif
             </td> --}}
 
-            <td>{{ $product->brands }}</td>
-            <td>{{ $product->colors }}</td>
-            <td>{{ $product->size }}</td>
+            <td>{{ $product->brand->name }}</td>
+            {{-- <td>{{ $product->colors }}</td>
+            <td>{{ $product->size }}</td> --}}
             <td>{{ $product->sold }}</td>
 
             <td align="center">
@@ -148,8 +148,11 @@
 
                 </ul>
                 </div>
+        </td>
             </tr>
+
         {{-- ila kant empty kteb message --}}
+
     @empty
         <tr>
             <td colspan="9" align="center">

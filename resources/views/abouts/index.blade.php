@@ -1,5 +1,5 @@
 @extends('layouts.DashAdmin_nav')
-@section('title', 'Brands')
+@section('title', 'About')
 @section('content')
     @include('sweetalert::alert')
     @include('layouts.errors-notif')
@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li>
-                <span class="fw-semibold fs-14 heading-font text-dark dot ms-2">Brands</span>
+                <span class="fw-semibold fs-14 heading-font text-dark dot ms-2">About</span>
             </li>
         </ul>
     </div>
@@ -22,11 +22,11 @@
     <div class="card bg-white border-0 rounded-10 mb-4">
         <div class="card-body p-4">
             <div class="d-sm-flex justify-content-between align-items-center border-bottom pb-20 mb-20">
-                <h4 class="fw-bold fs-18 mb-0 text-center">Brands</h4>
+                <h4 class="fw-bold fs-18 mb-0 text-center">About</h4>
                 <div class="d-sm-flex align-items-center gap-3 mt-3 mt-sm-0 justify-content-center">
 
 
-            <a href="{{ route('Brands.create') }}"
+            <a href="{{ route('abouts.create') }}"
                 class="btn btn-primary text-white fw-semibold py-2 px-3 w-sm-100 mt-3 mt-sm-0">
                 <span class="py-1 d-block">
                     <i class="ri-add-line"></i>
@@ -41,42 +41,20 @@
             <table class="table align-middle">
             <thead>
             <tr>
-            <th scope="col" class="text-primary">
+            {{-- <th scope="col" class="text-primary">
                 <div class="form-check p-0 d-flex align-items-center">
-                    <span class="ms-4">Brand</span>
-            </div>
-            {{-- <th scope="col">ID</th> --}}
-            <th scope="col">Name</th>
-            <th scope="col">Slug</th>
+                    <span class="ms-4">About</span>
+            </div> --}}
+            <th scope="col">Date (Update at)</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
 
-
-    {{-- <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Slug</th>
-                <th>Status</th>
-                <th>Images</th>
-
-            </tr>
-        </thead> --}}
         <tbody>
-            @foreach ($brands as $brand)
+            @foreach ($abouts as $about)
             <tr>
 
-                <td>
-                    <div class="form-check p-0 d-flex align-items-center">
-                        <a href="#" class="d-flex align-items-center ms-4">
-                            <img src="{{ asset('storage/' . $brand->image) }}"  class="wh-44 rounded"  alt="{{ $brand->image }}">
-                        </a>
-                    </div>
-                </td>
-                <td>{{$brand->name}}</td>
-                <td>{{$brand->slug}}</td>
+                <td>{{$about->updated_at}}</td>
                 <td>
                     <div class="dropdown action-opt">
                         <button class="btn bg p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -87,7 +65,7 @@
                         <ul class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
 
                         <li>
-                        <a class="dropdown-item" href="{{ route('Brands.edit', $brand) }}">
+                        <a class="dropdown-item" href="{{ route('abouts.edit', $about) }}">
                         <i data-feather="edit-3"></i>
                         Rename
                         </a>
@@ -96,7 +74,7 @@
 
 
                         <li>
-                        <form class="dropdown-item"  action="{{ route('Brands.destroy', $brand) }}" method="POST">
+                        <form class="dropdown-item"  action="{{ route('abouts.destroy', $about) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <i data-feather="trash-2"></i>

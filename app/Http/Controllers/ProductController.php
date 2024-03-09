@@ -159,7 +159,7 @@ class ProductController extends Controller
             'price' => 'nullable',
             'description' => 'nullable',
             'old_price' => 'required',
-            'sold' => 'required',
+            'sold' => 'required|number|max:100',
             'quantity' => 'required',
             'status' => 'required',
             'category_id' => 'required',
@@ -185,8 +185,6 @@ class ProductController extends Controller
 
 
         $product = Product::findOrFail($id);
-
-
         $product->update($validatedData);
 
         if ($request->filled('colors')) {

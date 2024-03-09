@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AboutRequest;
 use App\Models\About;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Feedback;
@@ -17,22 +18,30 @@ class AboutController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
+
+        $abouts = About::paginate(1);
+        return view('abouts.index', compact('abouts'));
+    }
+
+    public function about(){
         $categories = Category::all();
+        $brands = Brand::all();
         $abouts = About::paginate(1);
         $Faqs = Faq::all();
         $Quotes = Quotes::paginate(6);
         $feedbacks = Feedback::paginate(6);
-        return view('pages.about',compact('categories', 'Faqs','abouts','Quotes','feedbacks'));
+        return view('pages.about',compact('categories', 'Faqs','abouts','Quotes','feedbacks','brands'));
     }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
-        $abouts = new About();
+
+        // $abouts = new About();
+        $about = new About();
         $isUpdate = false;
-        return view('abouts.form', compact('abouts', 'isUpdate'));
+        return view('abouts.form', compact('about', 'isUpdate'));
     }
 
     /**
@@ -40,47 +49,50 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-
-        //   About::create($request->all());
-        //   return to_route('abouts.index');
-
-
-        $file=$request->file('image1');
-        $image1=$request->filE('image1')->getClientOriginalName();
-        $file->storeAs('public',$image1);
-
-        $file=$request->file('image2');
-        $image2=$request->filE('image2')->getClientOriginalName();
-        $file->storeAs('public',$image2);
-
-        // $file=$request->file('image3');
-        // $image3=$request->filE('image3')->getClientOriginalName();
-        // $file->storeAs('public',$image3);
-
-
-        // Validation
-        $about = About::create([
-            'Title_Globale' => $request-> Title_Globale,
-            'description_Globale' => $request-> description_Globale,
-            'Title1' => $request-> Title1,
-            'description1' => $request-> description1,
-            'Mini_Title1' => $request-> Mini_Title1,
-            'Slug1' => $request-> Slug1,
-            'Mini_Title2' => $request-> Mini_Title2,
-            'Slug2' => $request-> Slug2,
-            'Title2' => $request-> Title2,
-            'description2' => $request-> description2,
-            'TitleQuotes' => $request-> TitleQuotes,
-            'SlugQuotes' => $request-> SlugQuotes,
-            'TitleCategory' => $request-> TitleCategory,
-            'SlugCategory' => $request-> SlugCategory,
-            'TitleFaq' => $request-> TitleFaq,
-            'SlugFaq' => $request-> SlugFaq,
-            'image1' => $image1,
-            'image2' => $image2 ,
-            // 'image3' => $image3 ,
+        $validatedData = $request->validate([
+            'Title_Globale' => 'required',
+            'description_Globale' => 'required',
+            'Title1' => 'required',
+            'description1' => 'required',
+            'Mini_Title1' => 'required',
+            'Slug1' => 'required',
+            'Mini_Title2' => 'required',
+            'Slug2' => 'required',
+            'Title2' => 'required',
+            'description2' => 'required',
+            'image1' => 'nullable',
+            'image2' => 'nullable',
+            'TitleQuotes' => 'required',
+            'SlugQuotes' => 'required',
+            'TitleCategory' => 'required',
+            'SlugCategory' => 'required',
+            'TitleFaq' => 'required',
+            'SlugFaq' => 'required',
 
         ]);
+
+        // Method 1:
+
+        // $file=$request->file('image1');
+        // $image1=$request->filE('image1')->getClientOriginalName();
+        // $file->storeAs('public',$image1);
+
+        // $file=$request->file('image2');
+        // $image2=$request->filE('image2')->getClientOriginalName();
+        // $file->storeAs('public',$image2);
+
+        // Method 2:
+        if ($request->hasFile('image1')) {
+            $image1 = $request->file('image1')->store('About_photos', 'public');
+            $validatedData['image1'] = $image1;
+        }
+
+        if ($request->hasFile('image2')) {
+            $image2 = $request->file('image2')->store('About_photos', 'public');
+            $validatedData['image2'] = $image2;
+        }
+
+        $about = About::create($validatedData);
 
 
         Alert::success('succes', 'About has been added successfully');
@@ -100,11 +112,11 @@ class AboutController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(About $about)
+    public function edit(string $id)
     {
-        $abouts=About::all();
+        $about = About::findOrFail($id);
         $isUpdate = true;
-        return view('abouts.form', compact('isUpdate', 'abouts'));
+        return view('abouts.form', compact('isUpdate','about'));
     }
 
     /**
@@ -114,6 +126,56 @@ class AboutController extends Controller
     {
         //
 
+        $validatedData = $request->validate([
+            'Title_Globale' => 'required',
+            'description_Globale' => 'required',
+            'Title1' => 'required',
+            'description1' => 'required',
+            'Mini_Title1' => 'required',
+            'Slug1' => 'required',
+            'Mini_Title2' => 'required',
+            'Slug2' => 'required',
+            'Title2' => 'required',
+            'description2' => 'required',
+            'image1' => 'nullable',
+            'image2' => 'nullable',
+            'TitleQuotes' => 'required',
+            'SlugQuotes' => 'required',
+            'TitleCategory' => 'required',
+            'SlugCategory' => 'required',
+            'TitleFaq' => 'required',
+            'SlugFaq' => 'required',
+
+        ]);
+
+        // Method 1:
+
+        // $file=$request->file('image1');
+        // $image1=$request->filE('image1')->getClientOriginalName();
+        // $file->storeAs('public',$image1);
+
+        // $file=$request->file('image2');
+        // $image2=$request->filE('image2')->getClientOriginalName();
+        // $file->storeAs('public',$image2);
+
+        // Method 2:
+        if ($request->hasFile('image1')) {
+            $image1 = $request->file('image1')->store('About_photos', 'public');
+            $validatedData['image1'] = $image1;
+        }
+
+        if ($request->hasFile('image2')) {
+            $image2 = $request->file('image2')->store('About_photos', 'public');
+            $validatedData['image2'] = $image2;
+        }
+
+        $About->update($validatedData);
+
+
+        Alert::success('succes', 'About has been updated successfully');
+        return to_route('abouts.index');
+
+
     }
 
     /**
@@ -121,6 +183,11 @@ class AboutController extends Controller
      */
     public function destroy(string $id)
     {
+        $About=About::findOrFail($id);
+        $About->delete();
+        Alert::success('succes', 'About has been Deleted successfully');
+        return to_route('abouts.index', compact('About'));
+
 
     }
 }

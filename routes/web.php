@@ -40,6 +40,7 @@ Route::get('/',[StoreController::class,'index']);
 Route::resource('products',ProductController::class);
 Route::resource('categories',CategoryController::class);
 Route::resource('abouts',AboutController::class);
+Route::get('about',[AboutController::class, 'about'])->name('about');
 Route::resource('quotes',QuotesController::class);
 Route::resource('feedback',FeedbackController::class);
 
@@ -60,7 +61,7 @@ Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/blog-details',[BlogDetailsController::class,'index'])->name('blog-details');
 Route::get('/shop',[ShopController::class,'index'])->name('shop');
 //Email - contact :
- Route::get('/contact', [ContactController::class, 'create'])->name('contact');
+ Route::resource('/contact', ContactController::class);
 //  Route::post('/contact', [ContactController::class, 'sendEmail'])->name('send.email');
 
 Route::get('/dashboard', function () {

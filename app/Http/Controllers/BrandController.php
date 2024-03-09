@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BrandController extends Controller
 {
@@ -19,11 +20,14 @@ class BrandController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
+
+    public function create(){
+
         $isUpdate = false;
-        return view('Brands.form');
+        $brand = new Brand(); // Create a new empty Brand instance
+        return view('Brands.create', compact('isUpdate', 'brand'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -41,6 +45,7 @@ class BrandController extends Controller
         }
         $validatedData['image']=$imagePath;
         Brand::create($validatedData);
+        Alert::success('succes', 'Brand has been added successfully');
         return to_route('Brands.index');
     }
 
@@ -55,12 +60,13 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Brand $brand)
     {
         $isUpdate = true;
-        $brand = Brand::findOrFail($id);
-        return view('Brands.edit', compact('brand'));
+        // $brand = Brand::findOrFail($id);
+        return view('Brands.create', compact('brand','isUpdate'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -78,15 +84,18 @@ class BrandController extends Controller
             $validatedData['image']=$imagePath;
         }
         $brand->update($validatedData);
+        Alert::success('Successfully Updated!', "The Brand has been updated");
         return to_route('Brands.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Brand $brand)
     {
-        Brand::findOrFail($id)->delete();
+        //
+        $brand->delete();
+        Alert::success('Successfully Deleted!', "The Brand has been Deleted");
         return to_route('Brands.index');
     }
 }

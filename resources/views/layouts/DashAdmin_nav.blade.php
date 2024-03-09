@@ -4,7 +4,6 @@
 <!-- Mirrored from templates.hibootstrap.com/Magic Shop/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 11 Feb 2024 15:48:34 GMT -->
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -169,21 +168,15 @@
                     </a>
                     <ul class="menu-sub">
 
-                        {{-- <li class="menu-item">
-                                @foreach ($abouts as $about)
-                                <a href="{{ route('abouts.edit', $about) }}" class="menu-link">
+                        {{-- About:  --}}
+
+                        <li class="menu-item">
+                                <a href="{{ route('abouts.index') }}" class="menu-link">
                                     About Content
                                 </a>
-                                @endforeach
-                        </li> --}}
+                        </li>
 
-
-                        {{-- <li class="menu-item">
-                            <a href="{{ route('faqs.index') }}" class="menu-link">
-                                Home Slide
-                            </a>
-                        </li> --}}
-
+                        {{-- Faq:  --}}
                         <li class="menu-item">
                             <a href="{{ route('faqs.index') }}" class="menu-link">
                                 FAQ
@@ -278,6 +271,86 @@
                 </li>
                 <li class="menu-item">
                     <a href="#" class="menu-link">
+                    Create
+                    </a>
+                </li>
+            </ul>
+
+
+                {{-- Brands --}}
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+                    <span class="title">Brands</span>
+                </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('Brands.index') }}" class="menu-link">
+                        All Brands
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('Brands.create') }}" class="menu-link">
+                    Create
+                    </a>
+                </li>
+            </ul>
+
+
+                {{-- Tags --}}
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+                    <span class="title">Tags</span>
+                </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        All Tags
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                    Create
+                    </a>
+                </li>
+            </ul>
+
+
+                {{-- Colors --}}
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+                    <span class="title">Colors</span>
+                </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('Color.index') }}" class="menu-link">
+                        All Colors
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('Color.create') }}" class="menu-link">
+                    Create
+                    </a>
+                </li>
+            </ul>
+
+
+                {{-- Sizes --}}
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+                    <span class="title">Sizes</span>
+                </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('sizes.index') }}" class="menu-link">
+                        All Sizes
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('sizes.create') }}" class="menu-link">
                     Create
                     </a>
                 </li>

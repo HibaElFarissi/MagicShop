@@ -49,8 +49,8 @@
           <ul>
             <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="/shop">Shop</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="/about">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="/contact">Contact</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('about') }}">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('contact.create') }}">Contact</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="/privacy">Privacy policy</a></li>
           </ul>
         </div>
