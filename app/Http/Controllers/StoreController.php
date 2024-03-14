@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Infos;
 use App\Models\Product;
 use App\Models\Slide;
 use Illuminate\Http\Request;
@@ -21,8 +22,9 @@ class StoreController extends Controller
         $banners = Banner::paginate(1);
         $slides = Slide::all();
         $categories = Category::all();
+        $infos = Infos::paginate(1);
         $products = Product::query()->orderBy('created_at', 'desc')->limit(8)->get();
-        return view('store.index', compact('products', 'categories','brands','banners','slides'));
+        return view('store.index', compact('products', 'categories','brands','banners','slides','infos'));
     }
 
     public function create()

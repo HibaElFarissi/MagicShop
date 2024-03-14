@@ -13,7 +13,6 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-
         'name',
         'slug',
         'images',
@@ -49,5 +48,33 @@ class Product extends Model
     public  function brand(){
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+
+
+    public function Review()
+    {
+        return $this->hasMany(Review::class);
+    }
+    // app/Models/Product.php
+    
+    public function wishlistItems()
+    {
+        return $this->hasMany(wishlist::class);
+    }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+    
 
 }

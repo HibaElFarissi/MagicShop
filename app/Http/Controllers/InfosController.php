@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
+use App\Models\Infos;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class InfosController extends Controller
 {
@@ -12,6 +15,9 @@ class InfosController extends Controller
     public function index()
     {
         //
+        $infos = Infos::paginate(1);
+        $contacts = Contact::get();
+        return view('infos.index', compact('infos','contacts'));
     }
 
     /**
@@ -20,6 +26,9 @@ class InfosController extends Controller
     public function create()
     {
         //
+        $info = new Infos();
+        $isUpdate = false;
+        return view('infos.form', compact('info', 'isUpdate'));
     }
 
     /**
@@ -28,6 +37,17 @@ class InfosController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData=$request->validate([
+            'title'=>'required',
+            'adresse'=>'required',
+            'email'=>'required',
+            'phoneNumber'=>'required',
+            'LinkIframeMap' => 'required',
+        ]);
+
+        Infos::create($validatedData);
+        Alert::success('succes', 'the Informations have been added successfully');
+        return to_route('infos.index');
     }
 
     /**
@@ -44,6 +64,9 @@ class InfosController extends Controller
     public function edit(string $id)
     {
         //
+        $info=Infos::findOrFail($id);
+        $isUpdate = true;
+        return view('infos.form', compact('info', 'isUpdate'));
     }
 
     /**
@@ -52,6 +75,19 @@ class InfosController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validatedData=$request->validate([
+            'title'=>'required',
+            'adresse'=>'required',
+            'email'=>'required',
+            'phoneNumber'=>'required',
+            'LinkIframeMap' => 'required',
+        ]);
+
+        $info=Infos::findOrFail($id);
+        $info->update($validatedData);
+        Alert::success('succes', 'the Informations have been updated successfully');
+        return to_route('infos.index');
+
     }
 
     /**
@@ -60,5 +96,9 @@ class InfosController extends Controller
     public function destroy(string $id)
     {
         //
+        $info=Infos::findOrFail($id);
+        $info->delete();
+        Alert::success('Successfully Deleted!', "The informations have been Deleted");
+        return to_route('infos.index');
     }
 }

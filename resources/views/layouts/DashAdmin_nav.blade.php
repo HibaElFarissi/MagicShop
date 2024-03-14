@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<!-- Mirrored from templates.hibootstrap.com/Magic Shop/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 11 Feb 2024 15:48:34 GMT -->
 
 <head>
     <meta charset="utf-8">

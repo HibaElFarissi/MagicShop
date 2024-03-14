@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('Facebook')->nullable();
+            $table->string('Twitter')->nullable();
+            $table->string('instagram')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

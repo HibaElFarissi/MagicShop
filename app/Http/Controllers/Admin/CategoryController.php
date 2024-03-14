@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Infos;
 use App\Models\Product;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class CategoryController extends Controller
     {
         //
         $categories = Category::query()->paginate(4);
-        return view('categories.index', compact('categories'));
+        $infos = Infos::paginate(1);
+        return view('categories.index', compact('categories','infos'));
     }
 
     /**
@@ -31,7 +33,7 @@ class CategoryController extends Controller
         $isUpdate = false;
         return view('categories.form', compact('category', 'isUpdate'));
     }
-
+    
     /**
      * Store a newly created resource in storage:
      */
@@ -62,7 +64,8 @@ class CategoryController extends Controller
     {
         //
        $products =  $category->products()->get();
-       return view('categories.show', compact('category', 'products'));
+       $infos = Infos::paginate(1);
+       return view('categories.show', compact('category', 'products','infos'));
     }
 
 

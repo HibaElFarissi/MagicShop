@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Infos;
 use Illuminate\Http\Request;
 
 class MoreCategoryController extends Controller
@@ -13,8 +14,9 @@ class MoreCategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $infos = Infos::paginate(1);
         $last_categories = Category::paginate(6);
-        return view('categories.more-Category',compact('categories','last_categories'));
+        return view('categories.more-Category',compact('categories','last_categories','infos'));
     }
 
     /**

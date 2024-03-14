@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Infos;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,7 +23,8 @@ class ContactController extends Controller
     public function create(){
         $categories = Category::all();
         $contact = new Contact();
-        return view('pages.contact',compact('categories','contact'));
+        $infos = Infos::get();
+        return view('pages.contact',compact('categories','contact','infos'));
 
 
 

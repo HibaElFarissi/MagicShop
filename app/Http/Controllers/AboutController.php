@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Feedback;
+use App\Models\Infos;
 use App\Models\Quotes;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,17 +21,19 @@ class AboutController extends Controller
     public function index(){
 
         $abouts = About::paginate(1);
-        return view('abouts.index', compact('abouts'));
+        $infos = Infos::paginate(1);
+        return view('abouts.index', compact('abouts','infos'));
     }
-
+    
     public function about(){
         $categories = Category::all();
+        $infos = Infos::paginate(1);
         $brands = Brand::all();
         $abouts = About::paginate(1);
         $Faqs = Faq::all();
         $Quotes = Quotes::paginate(6);
         $feedbacks = Feedback::paginate(6);
-        return view('pages.about',compact('categories', 'Faqs','abouts','Quotes','feedbacks','brands'));
+        return view('pages.about',compact('categories', 'Faqs','abouts','Quotes','feedbacks','brands','infos'));
     }
     /**
      * Show the form for creating a new resource.

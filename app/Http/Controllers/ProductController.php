@@ -6,8 +6,11 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
+use App\Models\Infos;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\Size;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -18,8 +21,9 @@ class ProductController extends Controller
     {
         //
         $categories = Category::all();
+        $infos = Infos::paginate(1);
         $products = Product::query()->with('category')->paginate(6);
-        return view('products.index', compact('products', 'categories'));
+        return view('products.index', compact('products', 'categories','infos'));
     }
 
 
@@ -31,13 +35,14 @@ class ProductController extends Controller
         $brands = Brand::all();
         $colors=Color::all();
         $sizes=Size::all();
+        $tags=Tag::all();
 
         $product->fill([
             'quantity' => 0,
         ]);
 
         $isUpdate = false;
-        return view('products.form', compact('product', 'isUpdate', 'categories','brands','colors','sizes'));
+        return view('products.form', compact('product', 'isUpdate', 'categories','brands','colors','sizes','tags'));
 
     }
 
@@ -61,6 +66,7 @@ class ProductController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'colors.*' => 'nullable|string|max:255',
             'sizes.*' => 'nullable|string|max:255',
+            'tags.*' => 'nullable|string|max:255',
 
         ]);
 
@@ -90,6 +96,11 @@ class ProductController extends Controller
             $Product->sizes()->attach($sizes);
         }
 
+        if ($request->filled('tags')) {
+            $tags = $request->input('tags');
+            $Product->tags()->attach($tags);
+        }
+
         Alert::success('succes', 'Product has been added successfully');
         return to_route('products.index');
 
@@ -116,9 +127,13 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->load('colors'); // BOUCLE
         $product->load('sizes');
+        $infos = Infos::paginate(1);
         $categories = Category::all();
+        $product->load('tags');
+        $Reviews=Review::all();
+        $productsWithReviewCount = Product::withCount('review')->limit(1)->get();
 
-        return view('products.show', compact('product','categories'));
+        return view('products.show', compact('product','categories','infos','Reviews','productsWithReviewCount'));
     }
 
 
@@ -165,6 +180,7 @@ class ProductController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'colors.*' => 'nullable|string|max:255',
             'sizes.*' => 'nullable|string|max:255',
+            'tags.*' => 'nullable|string|max:255',
 
         ]);
 
@@ -193,6 +209,11 @@ class ProductController extends Controller
         if ($request->filled('sizes')) {
             $sizes = $request->input('sizes');
             $product->sizes()->sync($sizes);
+        }
+
+        if ($request->filled('tags')) {
+            $tags = $request->input('tags');
+            $product->tags()->attach($tags);
         }
 
         Alert::success('Successfully Updated!', "The product {$product->name} has been updated");

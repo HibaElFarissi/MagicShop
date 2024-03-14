@@ -71,6 +71,17 @@
 
                 </select>
             </div>
+            
+            {{-- tag:  --}}
+            <div class="form-group">
+                <label for="tags" class="form-label">Tag</label>
+                <select name="tags[]" id="tags" class="form-select form-control h-58" aria-label="Default select example" multiple='multiple'>
+                    <option value="1" selected disabled class="text-dark">Choose Your Tag</option>
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
             <div class="form-group">
                 <label for="color" class="form-label">Size</label>

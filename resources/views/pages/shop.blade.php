@@ -107,7 +107,9 @@
 
                                         </div>
                                     </div>
+                                    
                                 </div>
+                                <!--Widget Tags-->
                         </section>
 
                         <!--pagination-->
@@ -169,6 +171,9 @@
                                 <p>No Product found !</p>
                             @endforelse
                         </div>
+                       
+
+                        
                         {{-- <div class="banner-img wow fadeIn mb-45 animated d-lg-block d-none">
                             <img src="frontEnd/imgs/banner/banner-11.jpg" alt="">
                             <div class="banner-text">
@@ -177,8 +182,22 @@
                                 <a href="shop.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
                             </div>
                         </div> --}}
+                       
                     </div>
+                    <div class="sidebar-widget widget_tags mb-50">
+                        <div class="widget-header position-relative mb-20 pb-10">
+                            <h5 class="widget-title">Popular tags </h5>
+                        </div>
+                        <div class="tagcloud">
+                            @forelse ( $Tags as $Tag )
+                                <a class=" text-black tag-cloud-link" href="{{ route('blog-details') }}">{{ $Tag->name }}</a>
+                            @empty
+                                <h4>no tag here !!</h4>
+                            @endforelse
+                        </div>
+                   
                 </div>
+                
             </div>
         </section>
     </main>

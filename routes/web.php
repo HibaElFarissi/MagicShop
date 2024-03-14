@@ -22,6 +22,12 @@ use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\slideController;
+use App\Http\Controllers\DropDownController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\TagsController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,11 +77,6 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
     Route::middleware(['auth', 'role:admin'])->group(function(){
         Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     });
@@ -87,6 +88,7 @@ Route::resource('faqs',FaqController::class);
 Route::resource('Brands' , BrandController::class);
 Route::resource('Color', ColorController::class);
 Route::resource('sizes', SizeController::class);
+Route::resource('Articles', ArticleController::class);
 
 // slide:
 Route::resource('slides',slideController::class);
@@ -97,10 +99,58 @@ Route::resource('banners', BannerController::class);
 // Informations:
 Route::resource('infos', InfosController::class);
 
+// Review: 
+Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')->name('reviews.store');
+
+
+// WishList: 
+Route::post('/wishlist/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+
+Route::delete('/wishlist/{Wishlist}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+
+Route::post('/cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::delete('/cart/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
+Route::patch('/cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+// Define routes for other cart operations
+
+// Tag: 
+Route::resource('Tags', TagsController::class);
+
+// Checkout - payment part
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
+Route::get('/thank-you', [CheckoutController::class, 'thankYou'])->name('thank-you');
+
+
+// OrderList: 
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
+// Dropdown: 
+Route::get('dropdown',[DropDownController::class,'index']);
+Route::post('api/fetch-state',[DropDownController::class,'fatchState']);
+Route::post('api/fetch-cities',[DropDownController::class,'fatchCity']);
+
+
+
 
 
 // Newsletter :
 Route::get('/email', [App\Http\Controllers\EmailController::class, 'create']);
 Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('send.email');
 
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/delete-user', [ProfileController::class, 'delete_user'])->name('delete_user');
+    Route::get('/update-password', [ProfileController::class, 'update_password'])->name('update_password');
+    Route::get('/profile-details', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/My_Orders', [ProfileController::class, 'My_Orders'])->name('My_Orders');
+    // Route::get('/Wish_List', [ProfileController::class, 'Wish_List'])->name('Wish_List');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 require __DIR__.'/auth.php';

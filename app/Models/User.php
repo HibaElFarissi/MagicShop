@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'photo',
+        'instagram',
+        'Twitter',
+        'Facebook',
     ];
 
     /**
@@ -42,4 +46,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function Review()
+    {
+        return $this->hasMany(Review::class);
+    }
+    // app/Models/User.php
+
+    public function wishlistItems()
+    {
+        return $this->hasMany(wishlist::class);
+    }
+
+    public function cartItems()
+    {
+    return $this->hasMany(CartItem::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
+
 }

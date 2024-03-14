@@ -35,13 +35,14 @@
 
         <div class="col-lg-3 col-md-6 footer-contact">
           <h3 class="whlogo">MagicShop<span>.</span></h3>
+          @foreach ($infos as $info)
           <p>
-            A108 Mounal Street <br>
-            Taroudant, NY 535022<br>
-            Morocco , Taroudant <br><br>
-            <strong>Phone:</strong><a href="tel:0615256198"> &nbsp;  <br>+212 615 256 198</a><br>
-            <strong>Email:</strong><a href="mailto:magicshop.contact1@gmail.com">&nbsp; <br> magicshop.contact1@gmail.com</a>
+            {{ $info->adresse }}
+            <br><br>
+            <strong>Phone:</strong><a href="tel:{{ $info->phoneNumber }}"> &nbsp;  <br>{{ $info->phoneNumber }}</a><br>
+            <strong>Email:</strong><a href="mailto:{{ $info->email }}">&nbsp; <br> {{ $info->email }}</a>
           </p>
+          @endforeach
         </div>
 
         <div class="col-lg-3 col-md-6 footer-links">
@@ -66,7 +67,7 @@
 
         <div class="col-lg-3 col-md-6 footer-links">
           <h4>Our Social Networks</h4>
-          <p>Discover the magic beyond our products – follow us on social networks for daily enchantment and exclusive updates – </p>
+          <p class="">Discover the magic beyond our products – follow us on social networks for daily enchantment and exclusive updates – </p>
           <div class="social-links mt-3">
             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
             <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>

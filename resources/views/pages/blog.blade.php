@@ -342,13 +342,11 @@
                             <h5 class="widget-title">Popular tags </h5>
                         </div>
                         <div class="tagcloud">
-                            <a class="tag-cloud-link" href="{{ route('blog-details') }}">beautiful</a>
-                            <a class="tag-cloud-link" href="{{ route('blog-details') }}">New York</a>
-                            <a class="tag-cloud-link" href="{{ route('blog-details') }}">droll</a>
-                            <a class="tag-cloud-link" href="{{ route('blog-details') }}">intimate</a>
-                            <a class="tag-cloud-link" href="{{ route('blog-details') }}">loving</a>
-                            <a class="tag-cloud-link" href="{{ route('blog-details') }}">travel</a>
-                            <a class="tag-cloud-link" href="{{ route('blog-details') }}">fighting </a>
+                            @forelse ( $Tags as $Tag )
+                                <a class=" text-black tag-cloud-link" href="{{ route('blog-details') }}">{{ $Tag->name }}</a>
+                            @empty
+                                <h4>no tag here !!</h4>
+                            @endforelse
                         </div>
                     </div>
                 </div>
