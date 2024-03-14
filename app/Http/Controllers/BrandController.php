@@ -24,8 +24,8 @@ class BrandController extends Controller
     public function create(){
 
         $isUpdate = false;
-        $brand = new Brand(); // Create a new empty Brand instance
-        return view('Brands.create', compact('isUpdate', 'brand'));
+        $brand = new Brand();
+        return view('Brands.form', compact('isUpdate', 'brand'));
     }
 
 
@@ -60,11 +60,11 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Brand $brand)
+    public function edit(string $id)
     {
         $isUpdate = true;
-        // $brand = Brand::findOrFail($id);
-        return view('Brands.create', compact('brand','isUpdate'));
+        $brand = Brand::findOrFail($id);
+        return view('Brands.form', compact('brand','isUpdate'));
     }
 
 
@@ -91,11 +91,16 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Brand $brand)
+    public function destroy(string $id)
     {
-        //
+
+        $brand=Brand::findOrFail($id);
         $brand->delete();
-        Alert::success('Successfully Deleted!', "The Brand has been Deleted");
-        return to_route('Brands.index');
+        Alert::error('Successfully Deleted!', "The brand has been deleted.");
+        return to_route('Brands.index',compact('brand'));
+
+        // $brand->delete();
+        // Alert::success('Successfully Deleted!', "The Brand has been Deleted");
+        // return to_route('Brands.index', compact('brand'));
     }
 }

@@ -35,38 +35,14 @@ class ContactController extends Controller
     }
 
 
-    // public function sendEmail(Request $request)
-    // {
-    //     $request->validate([
-    //       'email' => 'required|email',
-    //       'subject' => 'required',
-    //       'name' => 'required',
-    //       'content' => 'required',
-    //     ]);
 
-    //     $data = [
-    //       'subject' => $request->subject,
-    //       'name' => $request->name,
-    //       'email' => $request->email,
-    //       'content' => $request->content
-    //     ];
-
-    //     Mail::send('email-template', $data, function($message) use ($data) {
-    //       $message->to($data['email'])
-    //       ->subject($data['subject']);
-    //     });
-
-    //     Alert::success('message','Email successfully sent!');
-    //     return back();
-
-    // }
 
     public function destroy(string $id)
     {
         //
         $contact=Contact::findOrFail($id);
         $contact->delete();
-        Alert::success('Successfully Deleted!', "The Email has been Deleted");
+        Alert::error('Successfully Deleted!', "The Email has been Deleted");
         return redirect()->back();
     }
 }

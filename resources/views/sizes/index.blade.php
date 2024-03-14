@@ -48,6 +48,7 @@
             {{-- <th>ID</th> --}}
             <th>Name</th>
             <th>Status</th>
+            <th>Actions</th>
         </tr>
         </thead>
 
@@ -56,8 +57,39 @@
             <tr>
                 <td>{{$Size->id}}</td>
                 <td>{{$Size->name}}</td>
-
                 <td>{{$Size->status}}</td>
+
+                <td>
+                    <div class="dropdown action-opt">
+                        <button class="btn bg p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i data-feather="more-horizontal"></i>
+                        </button>
+
+
+                        <ul class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
+
+                        <li>
+                        <a class="dropdown-item" href="{{ route('sizes.edit', $Size) }}">
+                        <i data-feather="edit-3"></i>
+                        Rename
+                        </a>
+                        </li>
+
+
+
+                        <li>
+                        <form class="dropdown-item"  action="{{ route('sizes.destroy', $Size) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <i data-feather="trash-2"></i>
+                            <input type="submit" value="Delete" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(0, 0, 0, 0.1)'" onmouseout="this.style.backgroundColor='transparent'" />
+
+                        </form>
+                        </li>
+
+                        </ul>
+                        </div>
+                </td>
 
             </tr>
             @endforeach

@@ -4,24 +4,24 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
-use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogDetailsController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ColorController;
-use App\Http\Controllers\DashAdmin_navController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\InfosController;
 use App\Http\Controllers\MoreCategoryController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SizeController;
+use App\Http\Controllers\slideController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,7 +61,7 @@ Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/blog-details',[BlogDetailsController::class,'index'])->name('blog-details');
 Route::get('/shop',[ShopController::class,'index'])->name('shop');
 //Email - contact :
- Route::resource('/contact', ContactController::class);
+Route::resource('/contact', ContactController::class);
 //  Route::post('/contact', [ContactController::class, 'sendEmail'])->name('send.email');
 
 Route::get('/dashboard', function () {
@@ -87,6 +87,16 @@ Route::resource('faqs',FaqController::class);
 Route::resource('Brands' , BrandController::class);
 Route::resource('Color', ColorController::class);
 Route::resource('sizes', SizeController::class);
+
+// slide:
+Route::resource('slides',slideController::class);
+
+// Banners:
+Route::resource('banners', BannerController::class);
+
+// Informations:
+Route::resource('infos', InfosController::class);
+
 
 
 // Newsletter :

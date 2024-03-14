@@ -64,6 +64,8 @@ class AboutController extends Controller
             'image2' => 'nullable',
             'TitleQuotes' => 'required',
             'SlugQuotes' => 'required',
+            'TitleFacts' => 'required',
+            'SlugFacts' => 'required',
             'TitleCategory' => 'required',
             'SlugCategory' => 'required',
             'TitleFaq' => 'required',
@@ -92,7 +94,7 @@ class AboutController extends Controller
             $validatedData['image2'] = $image2;
         }
 
-        $about = About::create($validatedData);
+        About::create($validatedData);
 
 
         Alert::success('succes', 'About has been added successfully');
@@ -141,6 +143,8 @@ class AboutController extends Controller
             'image2' => 'nullable',
             'TitleQuotes' => 'required',
             'SlugQuotes' => 'required',
+            'TitleFacts' => 'required',
+            'SlugFacts' => 'required',
             'TitleCategory' => 'required',
             'SlugCategory' => 'required',
             'TitleFaq' => 'required',

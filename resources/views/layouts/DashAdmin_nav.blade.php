@@ -238,24 +238,26 @@
             </ul>
 
 
+
+
                 {{-- Slide Home --}}
                 <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <i data-feather="message-square" class="menu-icon tf-icons"></i>
                     <span class="title">Slide Home</span>
                 </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('inbox') }}" class="menu-link">
-                        SlideShow
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('inbox') }}" class="menu-link">
-                    Create
-                    </a>
-                </li>
-            </ul>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('slides.index') }}" class="menu-link">
+                            SlideShow
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('slides.create') }}" class="menu-link">
+                        Create
+                        </a>
+                    </li>
+                </ul>
 
                 {{-- Banner --}}
                 <li class="menu-item">
@@ -263,18 +265,18 @@
                     <i data-feather="message-square" class="menu-icon tf-icons"></i>
                     <span class="title">Banners</span>
                 </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        Banner Show
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                    Create
-                    </a>
-                </li>
-            </ul>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('banners.index') }}" class="menu-link">
+                            Banner Show
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('banners.create') }}" class="menu-link">
+                        Create
+                        </a>
+                    </li>
+                </ul>
 
 
                 {{-- Brands --}}
@@ -357,39 +359,65 @@
             </ul>
 
 
-                <!-- Auth -->
-                <li class="menu-title small text-uppercase">
-                    <span class="menu-title-text">Settings & Others</span>
-                </li>
-                <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                        <i data-feather="settings" class="menu-icon tf-icons"></i>
-                        <span class="title">Settings</span>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                Profile
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                Account
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                Security
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                Delete
-                            </a>
-                        </li>
+              
 
-                    </ul>
-                </li>
+                    <!-- Informations -->
+                    <li class="menu-title small text-uppercase">
+                        <span class="menu-title-text"> All Information</span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                            <i data-feather="settings" class="menu-icon tf-icons"></i>
+                            <span class="title">Infos</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    All infos
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    Create an info
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+              <!-- Auth -->
+              <li class="menu-title small text-uppercase">
+                <span class="menu-title-text">Settings & Others</span>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="settings" class="menu-icon tf-icons"></i>
+                    <span class="title">Settings</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            Profile
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            Account
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            Security
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            Delete 
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
             </ul>
         </aside>
         <div class="bg-white z-1 admin">

@@ -23,10 +23,8 @@ class ProductController extends Controller
     }
 
 
-
     public function create()
     {
-        //
 
         $product = new Product();
         $categories = Category::all();
@@ -37,9 +35,9 @@ class ProductController extends Controller
         $product->fill([
             'quantity' => 0,
         ]);
+
         $isUpdate = false;
         return view('products.form', compact('product', 'isUpdate', 'categories','brands','colors','sizes'));
-
 
     }
 
@@ -159,7 +157,7 @@ class ProductController extends Controller
             'price' => 'nullable',
             'description' => 'nullable',
             'old_price' => 'required',
-            'sold' => 'required|number|max:100',
+            'sold' => 'required',
             'quantity' => 'required',
             'status' => 'required',
             'category_id' => 'required',
@@ -167,6 +165,7 @@ class ProductController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'colors.*' => 'nullable|string|max:255',
             'sizes.*' => 'nullable|string|max:255',
+
         ]);
 
         if ($request->hasFile('images')) {
@@ -181,8 +180,6 @@ class ProductController extends Controller
 
             $validatedData['images'] = json_encode($imagePaths);
         }
-
-
 
         $product = Product::findOrFail($id);
         $product->update($validatedData);
@@ -200,7 +197,6 @@ class ProductController extends Controller
 
         Alert::success('Successfully Updated!', "The product {$product->name} has been updated");
         return to_route('products.index');
-
     }
 
     /**
@@ -210,7 +206,10 @@ class ProductController extends Controller
     {
         //
         $product->delete();
-        Alert::success('Successfully Deleted!', "The product {$product->name} has been Deleted");
+        Alert::error('Deleted!', "The product {$product->name} has been deleted");
         return to_route('products.index');
     }
 }
+
+
+

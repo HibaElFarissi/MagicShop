@@ -35,17 +35,17 @@
 
             <div class="col-lg-3 col-md-6">
               <div class="info-box  mb-4">
-                <i class="bx bx-envelope"></i>
-                <h3>Email Us</h3>
-                <p>contact@example.com</p>
+                <a href="mailto:magicshop.contact1@gmail.com"><i class="bx bx-envelope"></i></a>
+                <a href="mailto:magicshop.contact1@gmail.com"><h3>Email Us</h3></a>
+                <a href="mailto:magicshop.contact1@gmail.com"><p>magicshop.contact1@gmail.com</p></a>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
               <div class="info-box  mb-4">
-                <i class="bx bx-phone-call"></i>
-                <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
+                <a href="tel:0615256198"><i class="bx bx-phone-call"></i></a>
+                <a href="tel:0615256198"><h3>Call Us</h3></a>
+                <a href="tel:0615256198"><p>+212 615 256 198</p></a>
               </div>
             </div>
 
@@ -60,6 +60,7 @@
 
 
             {{-- ex --}}
+            <div class="col-lg-6">
             <form action="{{ route('contact.store') }}" class="contact100-form validate-form" method="post">
                 @csrf
                 <br>
@@ -109,7 +110,8 @@
                 <button type="submit">Send Message</button>
             </div>
 
-            </form>
+        </form>
+    </div>
             {{-- Contact  Us --}}
             {{-- <div class="col-lg-6">
               <form action="" method="post" role="form" class="php-email-form">

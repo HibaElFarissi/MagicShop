@@ -89,6 +89,7 @@
             <input type="file" multiple name="images[]">
         </div>
 
+        
             {{-- <div class="form-group">
                 <label for="formFile" class="form-label">File Upload</label>
                 <div class="form-control h-100 text-center position-relative p-4 p-lg-5">
@@ -150,23 +151,11 @@
                 </select>
             </div>
 
-            <br>
-
-            {{-- <div class="form-group mb-4">
-                <label for="category_id" class="form-label">Status</label>
-                <div class="form-group position-relative">
-                    <select class="form-select form-control h-58" name="condition" aria-label="Default select example"
-                         value="{{ old('condition', $product->condition) }}">
-                        <option disabled selected class="text-dark">Choose Status</option>
-                        <option @selected(old('condition', $product->condition)) value="1" class="text-dark">In Stock</option>
-                        <option @selected(old('condition', $product->condition)) value="2" class="text-dark">Out of Stock</option>
-                    </select>
-                </div>
-            </div> --}}
 
             <div class="form-group">
                 <label for="status" class="form-label">status</label>
-                <input type="text" class="form-control" id="status" placeholder="status" name="status">
+                <input type="text" class="form-control" id="status" placeholder="status" name="status"
+                    value="{{ old('status', $product->status) }}">
             </div>
 
             <br>

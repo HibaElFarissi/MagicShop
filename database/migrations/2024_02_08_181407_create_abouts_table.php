@@ -25,9 +25,10 @@ return new class extends Migration
             $table->longText('description2');
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();
-            // $table->string('image3')->nullable();
             $table->string('TitleQuotes');
             $table->string('SlugQuotes');
+            $table->string('TitleFacts');
+            $table->string('SlugFacts');
             $table->string('TitleCategory');
             $table->string('SlugCategory');
             $table->string('TitleFaq');

@@ -27,12 +27,23 @@
   <link rel="stylesheet" href="css/slider.css">
   <!-- Vendor CSS Files -->
   {{-- <link href="assets/vendor/aos/aos.css" rel="stylesheet"> --}}
+  <link rel="stylesheet" href="{{  asset('slide/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css') }}">
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+
+  {{-- <link rel="stylesheet" href="{{ asset('slide/css/style.css') }}"> --}}
+  <link rel="stylesheet" href="{{ asset('slide/css/skins/skin-demo-3.css') }}">
+  <link rel="stylesheet" href="{{ asset('slide/css/demos/demo-3.css') }}">
+   <!-- Plugins CSS File -->
+   <link rel="stylesheet" href="{{ asset('slide/css/bootstrap.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('slide/css/plugins/owl-carousel/owl.carousel.css') }}">
+   <link rel="stylesheet" href="{{ asset('slide/css/plugins/magnific-popup/magnific-popup.css') }}">
+   <link rel="stylesheet" href="{{ asset('slide/css/plugins/jquery.countdown.css') }}">
 </head>
 
 <body>
@@ -102,5 +113,19 @@
 
 
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<!-- Plugins JS File -->
+<script src="{{ asset('slide/js/jquery.min.js') }}"></script>
+<script src="{{ asset('slide/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('slide/js/jquery.hoverIntent.min.js') }}"></script>
+<script src="{{ asset('slide/js/jquery.waypoints.min.js') }}"></script>
+<script src="{{ asset('slide/js/superfish.min.js') }}"></script>
+<script src="{{ asset('slide/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('slide/js/bootstrap-input-spinner.js') }}"></script>
+<script src="{{ asset('slide/js/jquery.plugin.min.js') }}"></script>
+<script src="{{ asset('slide/js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('slide/js/jquery.countdown.min.js') }}"></script>
+ <!-- Main JS File -->
+ <script src="{{ asset('slide/js/main.js') }}"></script>
+ <script src="{{ asset('slide/js/demos/demo-3.js') }}"></script>
 </body>
 </html>

@@ -15,12 +15,21 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="single-header mb-50">
-                        <h1 class="font-xxl text-brand">Our Shop</h1>
+                        {{-- <h1 class="font-xxl text-brand">Our Shop</h1> --}}
                     </div>
                 </div>
             </div>
         </div>
 
+
+        <div class="cover">
+            <form  class="flex-form" method="get" action="/search_Article">
+              <label for="from">
+              </label>
+              <input type="search" name="search" placeholder="Search here..." value="{{isset($search)? $search : ''}}">
+              <input type="submit" value="Search">
+            </form>
+        </div>
 
         <section class="mt-50 mb-50">
             <div class="container">
@@ -93,7 +102,7 @@
                                                 </div>
 
                                             @empty
-                                                <h1>No Products !!</h1>
+                                                <h4>No Products !!</h4>
                                             @endforelse
 
                                         </div>
@@ -125,14 +134,16 @@
                             <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
                             <ul class="categories">
 
-                                @foreach ($last_categories as $last )
+                                @forelse ($last_categories as $last )
                                     <li><a href="{{ route('shop') }}">{{ $last->name }}</a></li>
-                                @endforeach
+                                @empty
+                                <p>no categories yet.</
+                                @endforelse
 
                             </ul>
                         </div>
                         <!-- Fillter By Price -->
-                       
+
                         <!-- Product sidebar Widget -->
                         <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
                             <div class="widget-header position-relative mb-20 pb-10">
@@ -143,10 +154,10 @@
                                 @forelse ($new_products as $new )
 
                                 <div class="image">
-                                    <img  src="{{ asset('images/' . json_decode($product->images)[0]) }}"  alt="new product">
+                                    <img  src="{{ asset('images/' . json_decode($new->images)[0]) }}"  alt="new product">
                                 </div>
                                 <div class="content pt-10">
-                                    <h5><a href="{{ route('products.show', $product) }}">{{ $new->name }}</a></h5>
+                                    <h5><a href="{{ route('products.show', $new) }}">{{ $new->name }}</a></h5>
                                     <p class="price mb-0 mt-5">${{ $new->price }}</p>
                                     <div class="product-rate">
                                         <div class="product-rating" style="width:90%"></div>

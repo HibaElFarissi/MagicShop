@@ -39,8 +39,8 @@
             A108 Mounal Street <br>
             Taroudant, NY 535022<br>
             Morocco , Taroudant <br><br>
-            <strong>Phone:</strong> +212 615 256 198<br>
-            <strong>Email:</strong> magicshop@gmail.com<br>
+            <strong>Phone:</strong><a href="tel:0615256198"> &nbsp;  <br>+212 615 256 198</a><br>
+            <strong>Email:</strong><a href="mailto:magicshop.contact1@gmail.com">&nbsp; <br> magicshop.contact1@gmail.com</a>
           </p>
         </div>
 

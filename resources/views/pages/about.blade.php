@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     @empty
-                        <h4>There is no feedback</h4>
+                        <h4 class="text-white">There is no feedback</h4>
                     @endforelse
 
 
@@ -163,14 +163,15 @@
         <section id="testimonials" class="section-padding">
             <div class="container pt-25">
                 <div class="row mb-50">
-                    <div class="col-lg-12 col-md-12 text-center">
-                        <h6 class="mt-0 mb-10 text-uppercase  text-brand font-sm wow fadeIn animated">some facts</h6>
-                        <h2 class="mb-15 text-grey-1 wow fadeIn animated">Take a look what<br> our clients say about us
-                        </h2>
-                        <p class="w-50 m-auto text-grey-3 wow fadeIn animated">Dive into the enchanting realm of customer
-                            experiences! Discover the magic through the eyes of our cherished patrons. Explore the wonder,
-                            joy, and astonishment they've encountered on their magical journeys with us. </p>
-                    </div>
+                    @foreach ($abouts as $about )
+                        <div class="col-lg-12 col-md-12 text-center">
+                            <h6 class="mt-0 mb-10 text-uppercase  text-brand font-sm wow fadeIn animated">some facts</h6>
+                            <h2 class="mb-15 text-grey-1 wow fadeIn animated">
+                                {{ $about->TitleFacts }}
+                            </h2>
+                            <p class="w-50 m-auto text-grey-3 wow fadeIn animated">{{ $about->SlugFacts }}</p>
+                        </div>
+                    @endforeach
                 </div>
                 {{-- Foreach of the  Quotes  --}}
                 <div class="row align-items-center">
@@ -286,7 +287,7 @@
                                 <img class="img-grey-hover" src="{{ asset('storage/'. $brand->image) }}" alt="brand-image">
                             </div>
                         @empty
-                        <h1>There is no brand here !</h1>
+                        <h4>No brand here !</h4>
                         @endforelse
 
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Color;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ColorController extends Controller
 {
@@ -20,8 +21,12 @@ class ColorController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
+
     {
-        return view('Color.create');
+        $isUpdate = false;
+        $Color = new Color();
+        Alert::success('Successfully Deleted!', "The Color has been Added");
+        return view('Color.form', compact('isUpdate', 'Color'));
     }
 
     /**
@@ -54,8 +59,9 @@ class ColorController extends Controller
      */
     public function edit(string $id)
     {
+        $isUpdate = true;
         $Color = Color::findOrFail($id);
-        return view('Color.edit', compact('Color'));
+        return view('Color.form', compact('Color', 'isUpdate'));
     }
 
     /**
@@ -70,6 +76,8 @@ class ColorController extends Controller
         ]);
         $Color=Color::findOrFail($id);
         $Color->update($validatedData);
+
+        Alert::success('Successfully Updated!', "The Color has been updated");
         return to_route('Color.index');
     }
 
@@ -79,6 +87,7 @@ class ColorController extends Controller
     public function destroy(string $id)
     {
         Color::findOrFail($id)->delete();
+        Alert::success('Successfully Deleted!', "The Color has been Deleted");
         return to_route('Color.index');
     }
 }

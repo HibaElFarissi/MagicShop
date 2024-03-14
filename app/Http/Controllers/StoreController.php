@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -16,22 +18,22 @@ class StoreController extends Controller
     {
         //
         $brands = Brand::all();
+        $banners = Banner::paginate(1);
+        $slides = Slide::all();
         $categories = Category::all();
         $products = Product::query()->orderBy('created_at', 'desc')->limit(8)->get();
-        return view('store.index', compact('products', 'categories','brands'));
+        return view('store.index', compact('products', 'categories','brands','banners','slides'));
     }
 
     public function create()
     {
         //
-
         $product = new Product();
         $product->fill([
             'quantity' => 0,
         ]);
         $isUpdate = false;
         return view('products.form', compact('product', 'isUpdate'));
-
 
     }
 

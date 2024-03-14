@@ -9,16 +9,16 @@
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body " >
-                    <form method="POST" action="{{ route('password.update') }}">
+                    <form method="POST" action="{{ route('password.store') }}">
                         @csrf
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}"  required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <img src="{{ asset('frontend/img/login.png') }}">
+            <img src="{{ asset('frontEnd/imgs/login.png') }}">
          </div>
     </div>
 </div>

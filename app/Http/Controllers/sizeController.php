@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Size;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SizeController extends Controller
 {
@@ -13,7 +14,9 @@ class SizeController extends Controller
     public function index()
     {
         $Sizes=Size::all();
-        return view('sizes.index',compact('Sizes'));
+        $isUpdate = false;
+        Alert::success('Successfully Deleted!', "The Size has been Added");
+        return view('sizes.index',compact('Sizes', 'isUpdate'));
     }
 
     /**
@@ -21,7 +24,7 @@ class SizeController extends Controller
      */
     public function create()
     {
-        return view('sizes.create');
+        return view('sizes.form');
     }
 
     /**
@@ -54,8 +57,9 @@ class SizeController extends Controller
      */
     public function edit(string $id)
     {
+        $isUpdate = true;
         $Size = Size::findOrFail($id);
-        return view('sizes.edit', compact('Size'));
+        return view('sizes.form', compact('Size', 'isUpdate'));
     }
 
     /**
@@ -76,9 +80,13 @@ class SizeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Size $size)
     {
-        Size::findOrFail($id)->delete();
+        // Size::findOrFail($id)->delete();
+        // return redirect('sizes.index');
+
+        $size->delete();
+        Alert::success('Successfully Deleted!', "The Size has been Deleted");
         return to_route('sizes.index');
     }
 }

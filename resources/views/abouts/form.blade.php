@@ -95,29 +95,31 @@
                 <label for="image1" class="form-label">File Upload 1</label>
                 <div class="form-control h-100 text-center position-relative p-4 p-lg-5">
                     <div class="product-upload">
-                        <label for="file-upload" class="file-upload mb-0">
+                        <label for="image1" class="file-upload mb-0">
                             <i class="ri-upload-cloud-2-line fs-2 text-gray-light"></i>
                             <span class="d-block fw-semibold text-body">Drop files here or click to upload.</span>
                         </label>
-                        <input name="image1" id="file-upload" type="file">
+                        <input name="image1" id="image1" type="file">
                     </div>
                 </div>
             </div>
             <br>
 
+           
             <div class="form-group">
                 <label for="image2" class="form-label">File Upload 2</label>
                 <div class="form-control h-100 text-center position-relative p-4 p-lg-5">
                     <div class="product-upload">
-                        <label for="file-upload" class="file-upload mb-0">
+                        <label for="image2" class="file-upload mb-0">
                             <i class="ri-upload-cloud-2-line fs-2 text-gray-light"></i>
                             <span class="d-block fw-semibold text-body">Drop files here or click to upload.</span>
                         </label>
-                        <input name="image2" id="file-upload" type="file">
+                        <input name="image2" id="image2" type="file">
                     </div>
                 </div>
             </div>
-
+            <br>
+            {{-- <input type="file" name="image2"> --}}
 
             <br>
             <div class="form-group">
@@ -131,6 +133,21 @@
                 <label for="SlugQuotes" class="form-label">Slug Quotes</label>
                 <input type="text" name="SlugQuotes" id="SlugQuotes" class="form-control"
                     value="{{ old('SlugQuotes',  $about->SlugQuotes) }}">
+            </div>
+            <br>
+            
+            
+            <div class="form-group">
+                <label for="TitleFacts" class="form-label">Title Facts</label>
+                <input type="text" name="TitleFacts" id="TitleFacts" class="form-control"
+                    value="{{ old('TitleFacts',  $about->TitleFacts) }}">
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="SlugFacts" class="form-label">Slug Facts</label>
+                <input type="text" name="SlugFacts" id="SlugFacts" class="form-control"
+                    value="{{ old('SlugFacts',  $about->SlugFacts) }}">
             </div>
             <br>
 

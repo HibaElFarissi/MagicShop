@@ -52,9 +52,10 @@
                 </div>
 
                  {{-- Afficher old image :  --}}
-                 @if ($feedback->image)
+            @if ($feedback->image)
                  <img width="100px" src="/storage/{{ $feedback->image }}" alt="">
-             @endif
+            @endif
+            
             </div>
             <br>
 

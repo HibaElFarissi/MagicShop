@@ -26,6 +26,8 @@ class About extends Model
         'image2',
         'TitleQuotes',
         'SlugQuotes',
+        'TitleFacts',
+        'SlugFacts',
         'TitleCategory',
         'SlugCategory',
         'TitleFaq',

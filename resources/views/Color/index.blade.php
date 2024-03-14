@@ -4,7 +4,8 @@
     @include('sweetalert::alert')
     @include('layouts.errors-notif')
 
-    <div class="d-sm-flex text-center justify-content-between align-items-center mb-4">
+
+<div class="d-sm-flex text-center justify-content-between align-items-center mb-4">
         <h3 class="mb-sm-0 mb-1 fs-18"></h3>
         <ul class="ps-0 mb-0 list-unstyled d-flex justify-content-center">
             <li>
@@ -36,8 +37,6 @@
         </div>
     </div>
 
-
-
     <div class="default-table-area recent-orders">
         <div class="table-responsive">
             <table class="table align-middle">
@@ -51,6 +50,7 @@
             <th>Name</th>
             <th>code Color</th>
             <th>Status</th>
+            <th>Actions</th>
         </tr>
         </thead>
 
@@ -62,11 +62,40 @@
                 <td>{{$Color->code}}</td>
                 <td>{{$Color->status}}</td>
 
+                <td>
+                    <div class="dropdown action-opt">
+                        <button class="btn bg p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i data-feather="more-horizontal"></i>
+                        </button>
+
+
+                        <ul class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
+
+                        <li>
+                        <a class="dropdown-item" href="{{ route('Color.edit', $Color) }}">
+                        <i data-feather="edit-3"></i>
+                        Rename
+                        </a>
+                        </li>
+
+
+                        <li>
+                        <form class="dropdown-item"  action="{{ route('Color.destroy', $Color) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <i data-feather="trash-2"></i>
+                            <input type="submit" value="Delete" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(0, 0, 0, 0.1)'" onmouseout="this.style.backgroundColor='transparent'" />
+                        </form>
+                        </li>
+
+                        </ul>
+                        </div>
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
     <br>
-    
+
 
 @endsection

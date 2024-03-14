@@ -68,12 +68,13 @@
             </div>
         </div>
     </div> --}}
+
     <div class="TopRsponsive">
     <section id="topbar"  class="d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
                 <i class="bi bi-envelope d-flex align-items-center"><a
-                        href="mailto:magicShop@gmail.com">magicShop@gmail.com</a></i>
+                        href="mailto:magicshop.contact1@gmail.com">magicshop.contact1@gmail.com</a></i>
                 <i class="bi bi-phone d-flex align-items-center ms-4"><a href="tel:0615256198">+212 615 256 198</a></i>
             </div>
         </div>

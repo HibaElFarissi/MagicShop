@@ -5,88 +5,82 @@
 @include('sweetalert::alert')
 
 
-    {{-- Slider --}}
-    {{-- <section>
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="assets/img/banner-fashion.svg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <div class="custom-carousel-content">
+{{-- search --}}
+
+<div class="cover">
+    <form  class="flex-form" method="get" action="/search_Article">
+      <label for="from">
+      </label>
+      <input type="search" name="search" placeholder="Search here..." value="{{isset($search)? $search : ''}}">
+      <input type="submit" value="Search">
+    </form>
+</div>
+
+    {{-- Slide --}}
+        <div class="intro-section pt-3 pb-3 mb-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="intro-slider-container slider-container-ratio mb-2 mb-lg-0">
+                            <div class="intro-slider owl-carousel owl-simple owl-dark owl-nav-inside" data-toggle="owl" data-owl-options='{
+                                    "nav": false,
+                                    "dots": true,
+                                    "responsive": {
+                                        "768": {
+                                            "nav": true,
+                                            "dots": false
+                                        }
+                                    }
+                                }'>
+                            @forelse ($slides as $slide)
+                                    @foreach(json_decode($slide->images) as $image)
+                                <div class="intro-slide">
+                                    <figure class="slide-image">
+                                        <picture>
+                                            <source media="(max-width: 480px)" srcset="{{ asset('images/' . $image) }}">
+                                            <img src="{{ asset('images/' . $image) }}" alt="Slide_image">
+                                    </figure>
+                                </div>
+                                @endforeach
+                            @empty
+                                <h3 class="text-center">No Image Here!</h3>
+                            @endforelse
+                            </div>
+                            <span class="slider-loader"></span>
                         </div>
                     </div>
-                </div>
-                </div>
 
+                    <div class="col-lg-4">
+                        <div class="intro-banners">
+                            @forelse ($banners as $banner)
+                            <div class="banner mb-lg-1 mb-xl-2">
+                                <a href="">
+                                    <img src="storage/{{ $banner->image1 }}" alt="Banner-image">
+                                    {{-- <img src="slide/images/demos/demo-3/banners/banner-1.jpg" alt="Banner"> --}}
+                                </a>
+                            </div>
 
-                <div class="carousel-item">
-                    <img src="assets/img/banner-fashion.svg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <div class="custom-carousel-content">
+                            <div class="banner mb-lg-1 mb-xl-2">
+                                <a href="">
+                                    <img src="storage/{{ $banner->image2 }}" alt="Banner-image">
+                                    {{-- <img src="slide/images/demos/demo-3/banners/banner-2.jpg" alt="Banner"> --}}
+                                </a>
+                            </div>
+
+                            <div class="banner mb-0">
+                                <a href="">
+                                    <img src="storage/{{ $banner->image3 }}" alt="Banner-image">
+                                    {{-- <img src="slide/images/demos/demo-3/banners/banner-3.jpg" alt="Banner"> --}}
+                                </a>
+                            </div>
                         </div>
+                        @empty
+                            <p>There is no Banner here !!</p>
+                        @endforelse
                     </div>
                 </div>
             </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-    </section> --}}
-
-    <main class="main">
-        <section class="home-slider position-relative pt-50">
-            <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
-                <div class="single-hero-slider single-animation-wrap">
-                    <div class="container">
-                        <div class="row align-items-center slider-animated-1">
-                            <div class="col-lg-5 col-md-6">
-                                <div class="hero-slider-content-2">
-                                    <h4 class="animated">New promotions</h4>
-                                    <h2 class="animated fw-900">Fashion Trending</h2>
-                                    <h1 class="animated fw-900 text-brand">On All Products</h1>
-                                    <p class="animated">Save more with coupons & up to 70% off</p>
-                                    <a class="animated btn btn-brush btn-brush-2" href="/shop"> Shop Now </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-7 col-md-6">
-                                <div class="single-slider-img single-slider-img-1">
-                                    <img class="animated slider-1-1" src="frontEnd/imgs/slider/slider-1.png" alt=" image de slide">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-hero-slider single-animation-wrap">
-                    <div class="container">
-                        <div class="row align-items-center slider-animated-1">
-                            <div class="col-lg-5 col-md-6">
-                                <div class="hero-slider-content-2">
-                                    <h4 class="animated">Hot promotions</h4>
-                                    <h2 class="animated fw-900">Fashion Trending</h2>
-                                    <h1 class="animated fw-900 text-brand">Great Collection</h1>
-                                    <p class="animated">Save more with coupons & up to 20% off</p>
-                                    <a class="animated btn btn-brush btn-brush-2" href="/shop"> Discover Now </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-7 col-md-6">
-                                <div class="single-slider-img single-slider-img-1">
-                                    <img class="animated slider-1-2" src="frontEnd/imgs/slider/slider-2.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-arrow hero-slider-1-arrow"></div>
-        </section>
 
 
     <br><br>
@@ -146,15 +140,16 @@
                     <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
                     <div class="carausel-6-columns" id="carausel-6-columns">
 
-                        @foreach ($categories as $category)
+                        @forelse($categories as $category)
                             <div class="card-1">
                                 <figure class=" img-hover-scale overflow-hidden">
                                     <a href="{{ route('MoreCategory') }}"><img src="storage/{{ $category->image }}" alt="Category-image"></a>
                                 </figure>
                                 <h5><a href="{{ route('MoreCategory') }}">{{ $category->name }}</a></h5>
                             </div>
-                        @endforeach
-
+                        @empty
+                        <h3>There is no Category here !!</h3>
+                        @endforelse
                     </div>
                 </div>
         </div>
@@ -179,7 +174,7 @@
             <div class="tab-content wow fadeIn animated" id="myTabContent">
                 <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                     <div class="row product-grid-4">
-                        @foreach ($products as $product)
+                        @forelse ($products as $product)
                             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
                                 <div class="product-cart-wrap mb-30">
                                     <div class="product-img-action-wrap">
@@ -221,7 +216,9 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                        <h3>There is no Product here !!</h3>
+                        @endforelse
                 </div>
             </div>
     </div>
@@ -233,14 +230,19 @@
     {{-- <img src="/assets/img/banner-iphone.svg" alt="Xiaomi Smartphones" class="w-full h-auto object-cover object-center rounded-lg"> --}}
     <section class="banner-2 section-padding pb-0">
         <div class="container">
+            @forelse ($banners as $banner)
             <div class="banner-img banner-big wow fadeIn animated f-none">
-                <img src="frontEnd/imgs/banner/banner-4.png" alt="">
+                {{-- <img src="frontEnd/imgs/banner/banner-4.png" alt=""> --}}
+                <img src="storage/{{ $banner->image4 }}" alt="Banner-image">
                 <div class="banner-text d-md-block d-none">
-                    <h4 class="mb-15 mt-40 text-brand">Repair Services</h4>
-                    <h1 class="fw-600 mb-20">We're an Apple <br>Authorised Service Provider</h1>
+                    <h4 class="mb-15 mt-40 text-brand">{{ $banner->Title1 }}</h4>
+                    <h1 class="fw-600 mb-20">{{ $banner->Slug1 }}</h1>
                     <a href="{{ route('shop') }}" class="btn">Learn More <i class="fi-rs-arrow-right"></i></a>
                 </div>
             </div>
+            @empty
+            <h3>There is no Banner here !!</h3>
+            @endforelse
         </div>
     </section>
 
@@ -249,13 +251,13 @@
 
     <section class="section-padding">
         <div class="container wow fadeIn animated">
-            <h3 class="section-title mb-20"><span>New</span> Arrivals</h3>
+            <h3 class="section-title mb-20"><span>New</span>Arrivals</h3>
             <marquee  class="section-title mb-20" direction="center"><h1>All The <span>New Products</span></h1></marquee>
             <br>
             <div class="carausel-6-columns-cover position-relative">
                 <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-2-arrows"></div>
                 <div class="carausel-6-columns carausel-arrow-center" id="carausel-6-columns-2">
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                     <div class="product-cart-wrap small hover-up">
                         <div class="product-img-action-wrap">
                             <div class="product-img product-img-zoom">
@@ -287,7 +289,9 @@
                         </div>
                     </div>
                     <!--End product-cart -->
-                    @endforeach
+                    @empty
+                    <h3>There is no product here !!</h3>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -300,37 +304,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6">
+                    @forelse ($banners as $banner)
                     <div class="banner-img wow fadeIn animated">
-                        <img src="frontEnd/imgs/banner/banner-1.png" alt="">
+                        {{-- <img src="frontEnd/imgs/banner/banner-1.png" alt=""> --}}
+                        <img src="storage/{{ $banner->image5 }}" alt="Banner-image">
                         <div class="banner-text">
-                            <span>Smart Offer</span>
-                            <h4>Save 20% on <br>Woman Bag</h4>
+                            <span>{{ $banner->Title2 }}</span>
+                            <h4>{{ $banner->Slug2 }}</h4>
                             <a href="{{ route('shop') }}">Shop Now <i class="fi-rs-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="banner-img wow fadeIn animated">
-                        <img src="frontEnd/imgs/banner/banner-2.png" alt="">
+                        {{-- <img src="frontEnd/imgs/banner/banner-2.png" alt=""> --}}
+                        <img src="storage/{{ $banner->image6 }}" alt="Banner-image">
                         <div class="banner-text">
-                            <span>Sale off</span>
-                            <h4>Great Summer <br>Collection</h4>
+                            <span>{{ $banner->Title3 }}</span>
+                            <h4>{{ $banner->Slug3 }}</h4>
                             <a href="{{ route('shop') }}">Shop Now <i class="fi-rs-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 d-md-none d-lg-flex">
                     <div class="banner-img wow fadeIn animated  mb-sm-0">
-                        <img src="frontEnd/imgs/banner/banner-3.png" alt="">
+                        {{-- <img src="frontEnd/imgs/banner/banner-3.png" alt=""> --}}
+                        <img src="storage/{{ $banner->image7 }}" alt="Banner-image">
                         <div class="banner-text">
-                            <span>New Arrivals</span>
-                            <h4>Shop Today’s <br>Deals & Offers</h4>
+                            <span>{{ $banner->Title4 }}</span>
+                            <h4>{{ $banner->Slug4 }}</h4>
                             <a href="{{ route('shop') }}">Shop Now <i class="fi-rs-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @empty
+        <h3>There is no banner here !!</h3>
+        @endforelse
     </section>
 
     {{-- Brands --}}
@@ -346,7 +357,7 @@
                             <img class="img-grey-hover" src="{{ asset('storage/'. $brand->image) }}" alt="brand-image">
                         </div>
                     @empty
-                    <h1>There is no brand here !</h1>
+                    <h3>There is no brand here !</h3>
                     @endforelse
 
                 </div>
@@ -358,5 +369,11 @@
 
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     <div class="elfsight-app-e180f630-013d-456d-9e9c-159256b03185" data-elfsight-app-lazy></div>
+
+    <script>
+        $(document).ready(function(){
+            $('#carouselExampleControls').carousel();
+        });
+    </script>
 
 @endsection

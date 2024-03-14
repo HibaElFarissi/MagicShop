@@ -324,14 +324,18 @@
                         </div>
                     </div>
                     <!--Widget ads-->
-                    <div class="banner-img wow fadeIn mb-45 animated d-lg-block d-none animated">
-                        <img src="frontEnd/imgs/banner/banner-11.jpg" alt="">
-                        <div class="banner-text">
-                            <span>Women Zone</span>
-                            <h4>Save 17% on <br>Office Dress</h4>
-                            <a href="{{ route('shop') }}">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                    @foreach ($banners as $banner)
+                        <div class="banner-img wow fadeIn mb-45 animated d-lg-block d-none animated">
+                            {{-- <img src="frontEnd/imgs/banner/banner-11.jpg" alt=""> --}}
+                            <img src="storage/{{ $banner->image8 }}" alt="Banner-image">
+                            <div class="banner-text">
+                                <span>{{ $banner->Title5 }}</span>
+                                <h4>{{ $banner->Slug5 }}</h4>
+                                <a href="{{ route('shop') }}">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
+
                     <!--Widget Tags-->
                     <div class="sidebar-widget widget_tags mb-50">
                         <div class="widget-header position-relative mb-20 pb-10">
