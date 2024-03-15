@@ -150,9 +150,9 @@
                                     </div>
                                     <ul class="product-meta font-xs color-grey mt-50">
                                         {{-- <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li> --}}
-                                        @foreach ($Tags as $Tag)
+                                        {{-- @foreach ($Tags as $Tag)
                                         <li class="mb-5">Tags: <a href="#" rel="tag">{{ $Tag->name }},</a></li>
-                                        @endforeach
+                                        @endforeach --}}
                                         <li>Availability:<span class="in-stock text-success ml-5">{{ $product->status }}</span></li>
                                     </ul>
                                 </div>
