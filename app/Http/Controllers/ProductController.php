@@ -125,15 +125,18 @@ class ProductController extends Controller
     {
 
         $product = Product::findOrFail($id);
+        $Tag = Tag::all();
+        $products = Product::all();
         $product->load('colors'); // BOUCLE
         $product->load('sizes');
+        $new_products = Product::paginate(2);
         $infos = Infos::paginate(1);
         $categories = Category::all();
         $product->load('tags');
         $Reviews=Review::all();
         $productsWithReviewCount = Product::withCount('review')->limit(1)->get();
 
-        return view('products.show', compact('product','categories','infos','Reviews','productsWithReviewCount'));
+        return view('products.show', compact('product','categories','infos','Reviews','productsWithReviewCount','new_products','Tag','products'));
     }
 
 

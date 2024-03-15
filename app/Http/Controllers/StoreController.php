@@ -15,6 +15,21 @@ use RealRashid\SweetAlert\Facades\Alert;
 class StoreController extends Controller
 {
 
+
+    public function search(Request $request){
+        $search =  $request->input('search');
+        $brands = Brand::all();
+        $banners = Banner::paginate(1);
+        $slides = Slide::all();
+        $categories = Category::all();
+        $infos = Infos::paginate(1);
+        $products = Product::query()->orderBy('created_at', 'desc')->limit(8)->get();
+        $Products= Product::where(function($query) use($search){
+            $query->where('name', 'like', "%$search%");
+        })->get();
+        return view('store.index', compact('Products','search','slides','brands','banners','categories','infos','products'));
+    }
+
     public function index()
     {
         //

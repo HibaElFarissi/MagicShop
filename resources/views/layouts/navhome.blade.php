@@ -72,13 +72,15 @@
     <div class="TopRsponsive">
     <section id="topbar"  class="d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
-            @foreach ($infos as $info)
+            @forelse ($infos as $info)
                 <div class="contact-info d-flex align-items-center">
                     <i class="bi bi-envelope d-flex align-items-center"><a
                             href="mailto:{{ $info->email }}">{{ $info->email }}</a></i>
                     <i class="bi bi-phone d-flex align-items-center ms-4"><a href="tel:{{ $info->phoneNumber }}">{{ $info->phoneNumber }}</a></i>
                 </div>
-            @endforeach
+            @empty
+                <p class="text-white">There is no Data here yet...</p>
+            @endforelse
         </div>
 
 
@@ -141,8 +143,16 @@
                             <a href="{{ route('login') }}"><span>{{ auth()->user()->name }}</span> <i
                                     class="fa fa-user"></i></a>
                             <ul>
-                                <li><a href="{{ route('profile.edit') }}"><span>Profile</span><i
-                                            class="fa fa-user"></i></a>
+                                <li><a href="{{ route('profile') }}"><span>Profile</span><i
+                                        class="fa fa-user"></i></a>
+                                </li>
+
+                                <li><a href="{{ route('wishlist.index') }}"><span>WishList</span><i
+                                        class="fa fa-user"></i></a>
+                                </li>
+
+                                <li><a href="{{ route('My_Orders') }}"><span>Orders</span><i
+                                        class="fa fa-user"></i></a>
                                 </li>
                                 <li><a href="#"
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -162,15 +172,11 @@
                     <div class="IconRespo">
                         <div class="header-action">
                             <div class="header-action-2">
-                                <div class="header-action-icon-2">
-                                    <a href="shop-wishlist.php">
-                                        <img class="svgInject" alt="Surfside Media" src="{{ asset('frontEnd/imgs/theme/icons/icon-heart.svg') }}">
-                                        <span class="pro-count blue">4</span>
-                                    </a>
-                                </div>
+                               
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="cart.html">
-                                        <img alt="Surfside Media" src="{{ asset('frontEnd/imgs/theme/icons/icon-cart.svg') }}">
+                                        {{-- <img alt="Surfside Media" src="{{ asset('frontEnd/imgs/theme/icons/icon-cart.svg') }}"> --}}
+                                        <img alt="Surfside Media" src="{{ asset('frontEnd/imgs/addoda.png') }}">
                                         <span class="pro-count blue">2</span>
                                     </a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">

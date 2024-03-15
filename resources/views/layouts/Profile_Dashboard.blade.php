@@ -104,7 +104,6 @@
 
     <div class="container-fluid">
         <div class="main-content d-flex flex-column">
-
             <header class="header-area bg-white mb-4 rounded-bottom-10" id="header-area">
                 <div class="row align-items-center">
                     <div class="col-lg-4 col-sm-6 col-md-4">
@@ -163,6 +162,9 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        
+                                        <!-- Profile dropdown -->
                                         <ul class="dropdown-menu border-0 bg-white w-100 admin-link">
                                             <li>
                                                 <a class="dropdown-item d-flex align-items-center text-body"

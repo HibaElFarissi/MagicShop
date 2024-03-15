@@ -70,9 +70,9 @@ Route::get('/shop',[ShopController::class,'index'])->name('shop');
 Route::resource('/contact', ContactController::class);
 //  Route::post('/contact', [ContactController::class, 'sendEmail'])->name('send.email');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
@@ -90,6 +90,9 @@ Route::resource('Color', ColorController::class);
 Route::resource('sizes', SizeController::class);
 Route::resource('Articles', ArticleController::class);
 
+
+// Search: 
+Route::get('/search_Home',[StoreController::class,'search']);
 // slide:
 Route::resource('slides',slideController::class);
 

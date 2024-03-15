@@ -27,6 +27,7 @@ class ArticleController extends Controller
     //     })->get();
     //     return view('pages.Article', compact('Articles','search'));
     // }
+
     public function index()
     {
         $Articles=Article::all();

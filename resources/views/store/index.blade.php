@@ -8,7 +8,7 @@
 {{-- search --}}
 
 <div class="cover">
-    <form  class="flex-form" method="get" action="/search_Article">
+    <form  class="flex-form" method="get" action="/search_Home">
       <label for="from">
       </label>
       <input type="search" name="search" placeholder="Search here..." value="{{isset($search)? $search : ''}}">
@@ -184,10 +184,22 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a href="#" aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                                            <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                                href="/checkout"><i class="fi-rs-heart"></i></a>
+                                            <a href="{{ route('products.show',$product) }}" aria-label="Quick view" class="action-btn hover-up" >
+                                                <i class="fi-rs-eye"></i></a>
+                                            {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up"
+                                                href="/checkout"><i class="fi-rs-heart"></i></a> --}}
+                                                <a aria-label="Add To Wishlist" style="display: none;" 
+                                                > <i class="fi-rs-heart"></i>
+                                                <form id="wishlistForm_{{ $product->id }}" method="POST" action="{{ route('wishlist.add', $product) }}">
+                                                    @csrf
+                                                    <button type="submit" style="display: none;"></button> <!-- Hide the submit button -->
+                                                </form>
+                                                
+                                                <a href="#" aria-label="Add To WishList" onclick="event.preventDefault(); document.getElementById('wishlistForm_{{ $product->id }}').submit();" class="action-btn hover-up" >
+                                                    <i class="fi-rs-heart"></i>
+                                                </a>
+                                                
+                                                </a>
                                             {{-- <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i
                                                     class="fi-rs-shuffle"></i></a> --}}
                                         </div>
@@ -213,6 +225,7 @@
                                             <a aria-label="Add To Cart" class="action-btn hover-up" href="/cart"><i
                                                     class="fi-rs-shopping-bag-add"></i></a>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -266,9 +279,27 @@
                                 </a>
                             </div>
                             <div class="product-action-1">
-                                <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                    <i class="fi-rs-eye"></i></a>
-                                <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a>
+                                <a href="{{ route('products.show',$product) }}" aria-label="Quick view"  class="action-btn small hover-up">
+                                    <i class="fi-rs-eye"></i>
+                                </a>
+
+                               
+                                
+                                
+                                    
+                                {{-- <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a> --}}
+                                    <a aria-label="Add To Wishlist" style="display: none;" 
+                                    > <i class="fi-rs-heart"></i>
+                                    <form id="wishlistForm_{{ $product->id }}" method="POST" action="{{ route('wishlist.add', $product) }}">
+                                        @csrf
+                                        <button type="submit" style="display: none;"></button> <!-- Hide the submit button -->
+                                    </form>
+                                    
+                                    <a href="#" aria-label="Add To WishList" onclick="event.preventDefault(); document.getElementById('wishlistForm_{{ $product->id }}').submit();" class="action-btn hover-up" >
+                                        <i class="fi-rs-heart"></i>
+                                    </a>
+                                    
+                                    </a>
                                 {{-- <a aria-label="Compare" class="action-btn small hover-up" href="compare.php" tabindex="0"><i class="fi-rs-shuffle"></i></a> --}}
                             </div>
                             <div class="product-badges product-badges-position product-badges-mrg">

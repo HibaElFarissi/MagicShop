@@ -17,10 +17,9 @@
 
       <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
-        @foreach ($infos as $info)
-          <div class="section-title">
-
-            <h3><span>Contact Us</span></h3>
+            <div class="section-title">
+                <h3><span>Contact Us</span></h3>
+            @forelse ($infos as $info)
             <p>{{ $info->title }}</p>
           </div>
 
@@ -42,23 +41,22 @@
             </div>
 
             <div class="col-lg-3 col-md-6">
-              <div class="info-box  mb-4">
-                <a href="tel:{{ $info->phoneNumber }}"><i class="bx bx-phone-call"></i></a>
-                <a href="tel:{{ $info->phoneNumber }}"><h3>Call Us</h3></a>
-                <a href="tel:{{ $info->phoneNumber }}"><p>{{ $info->phoneNumber }}</p></a>
-              </div>
+                <div class="info-box  mb-4">
+                    <a href="tel:{{ $info->phoneNumber }}"><i class="bx bx-phone-call"></i></a>
+                    <a href="tel:{{ $info->phoneNumber }}"><h3>Call Us</h3></a>
+                    <a href="tel:{{ $info->phoneNumber }}"><p>{{ $info->phoneNumber }}</p></a>
+                </div>
             </div>
-
           </div>
 
           <div class="row" data-aos="fade-up" data-aos-delay="100">
 
             <div class="col-lg-6 ">
-                {{-- For balise --}}
-                {{-- {!! $info->LinkIframeMap !!} --}}
-              <iframe class="mb-4 mb-lg-0" src="{{ $info->LinkIframeMap }}" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+                <iframe class="mb-4 mb-lg-0" src="{{ $info->LinkIframeMap }}" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
             </div>
-        @endforeach
+        @empty
+            <h3 class="text-black">There is no Data here yet...</h3>
+        @endforelse
 
 
             {{-- ex --}}

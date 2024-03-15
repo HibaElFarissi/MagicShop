@@ -14,9 +14,8 @@ class SizeController extends Controller
     public function index()
     {
         $Sizes=Size::all();
-        $isUpdate = false;
         Alert::success('Successfully Deleted!', "The Size has been Added");
-        return view('sizes.index',compact('Sizes', 'isUpdate'));
+        return view('sizes.index',compact('Sizes'));
     }
 
     /**
@@ -24,7 +23,9 @@ class SizeController extends Controller
      */
     public function create()
     {
-        return view('sizes.form');
+        $isUpdate = false;
+        $Size = new Size();
+        return view('sizes.form',compact('isUpdate','Size'));
     }
 
     /**
@@ -35,8 +36,6 @@ class SizeController extends Controller
         $validatedData=$request->validate([
             'name'=>'required',
             'status'=>'required',
-
-
         ]);
 
 

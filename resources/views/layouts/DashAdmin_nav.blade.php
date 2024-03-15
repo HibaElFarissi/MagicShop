@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
+    
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="{{ asset('dash/css/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('dash/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('dash/css/sidebar-menu.css') }}">
@@ -116,48 +117,12 @@
                                 Create Category
                             </a>
                         </li>
-                    <li class="menu-item">
-                        <a href="product-details.html" class="menu-link">
-                        Product Details
-                        </a>
-                    </li>
-
                      <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{ route('orders.index') }}" class="menu-link">
                         Orders List
                         </a>
                     </li>
 
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                        Order Details
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                        Customers
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                        Cart
-                        </a>
-
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                        Checkout
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                        Sellers
-                        </a>
-                    </li>
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -166,7 +131,6 @@
                         <span class="title">Pages</span>
                     </a>
                     <ul class="menu-sub">
-
                         {{-- About:  --}}
 
                         <li class="menu-item">
@@ -221,6 +185,26 @@
                     </ul>
                 </li>
 
+
+                {{-- Blog --}}
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="mail" class="menu-icon tf-icons"></i>
+                    <span class="title">Blog</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('Articles.index') }}" class="menu-link">
+                        All Articles
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="{{ route('Articles.create') }}" class="menu-link">
+                        Create An Article
+                        </a>
+                    </li>
+                </ul>
 
                 {{-- Email --}}
                 <li class="menu-item">
@@ -306,13 +290,8 @@
                 </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="{{ route('Tags.index') }}" class="menu-link">
                         All Tags
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                    Create
                     </a>
                 </li>
             </ul>
@@ -371,12 +350,12 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('infos.index') }}" class="menu-link">
                                     All infos
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('infos.create') }}" class="menu-link">
                                     Create an info
                                 </a>
                             </li>
@@ -394,22 +373,22 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{ route('profile') }}" class="menu-link">
                             Profile
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{ route('profile.edit') }}" class="menu-link">
                             Account
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{ route('update_password') }}" class="menu-link">
                             Security
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{ route('delete_user') }}" class="menu-link">
                             Delete 
                         </a>
                     </li>
@@ -423,7 +402,12 @@
             <div class="d-flex align-items-center admin-info border-top">
                 <div class="flex-shrink-0">
                     <a href="profile.html" class="d-block">
-                        <img src="{{ asset('dash/images/admin.jpg') }}" class="rounded-circle wh-54" alt="admin">
+                        {{-- <img src="{{ asset('dash/images/admin.jpg') }}" class="rounded-circle wh-54" alt="admin"> --}}
+                        @if(auth()->user()->photo === null)
+                            <img src="{{ asset('BackEnd/images/userAuto.jpeg') }}" class="rounded-circle wh-54" alt="">
+                        @else
+                            <img src="{{ asset('storage/profile_pictures/' . auth()->user()->photo) }}" class="rounded-circle wh-54" alt="admin">
+                        @endif
                     </a>
                 </div>
                 <div class="flex-grow-1 ms-3 info">
@@ -487,15 +471,20 @@
                                         <div class="d-xxl-flex align-items-center bg-transparent border-0 text-start p-0 cursor"
                                             data-bs-toggle="dropdown">
                                             <div class="flex-shrink-0">
-                                                <img class="rounded-circle wh-54"
-                                                    src="{{ asset('dash/images/admin.jpg') }}" alt="admin">
+                                                {{-- <img class="rounded-circle wh-54"
+                                                    src="{{ asset('dash/images/admin.jpg') }}" alt="admin"> --}}
+                                                @if(auth()->user()->photo === null)
+                                                    <img src="{{ asset('BackEnd/images/userAuto.jpeg') }}" class="rounded-circle wh-54" alt="">
+                                                @else
+                                                    <img src="{{ asset('storage/profile_pictures/' . auth()->user()->photo) }}" class="rounded-circle wh-54" alt="admin">
+                                                @endif
                                             </div>
                                             <div class="flex-grow-1 ms-3">
                                                 <div class="d-flex align-items-center justify-content-between">
                                                     <div class="d-none d-xxl-block">
-                                                        <span class="degeneration">Admin</span>
+                                                        <span class="degeneration">{{ auth()->user()->role }}</span>
                                                         <div class="d-flex align-content-center">
-                                                            <h3>Adison Jeck</h3>
+                                                            <h3>{{ auth()->user()->name }}</h3>
                                                             <div class="down">
                                                                 <i data-feather="chevron-down"></i>
                                                             </div>

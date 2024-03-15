@@ -1,72 +1,6 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-   
-</head>
-<body>
-    
+@extends('layouts.base')
 
-
-    <div class="wrapper">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10 col-md-1 product">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="product-image">
-                    @foreach ($Images as $Image)
-                      <img class="img-fluid" src="{{ asset($Image->image) }}" alt="" /> 
-                    @endforeach
-                    <div class="image"></div>
-                  </div>
-                  <div class="row product-thumbnails">
-                    @foreach ($productImages as $prodImg)
-                    <img src="{{ asset($prodImg->image) }}" alt="" class="img-thumbnail col-md-3" />
-                    @endforeach
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="product-details">
-                    <h2>{{$product->name}}</h2> <br>
-                    <h2>{{$product->price}}</h2>
-                    <p>{{$product->description}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-</body>
-</html> --}}
-
-
-
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>Surfside Media</title>
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/imgs/theme/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-</head>
-
-<body>
+@section('content')
     <section class="mt-50 mb-50">
         <div class="container">
             <div class="row">
@@ -211,16 +145,15 @@
                                                 
                                                 </a>
                                             <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i
-                                                    class="fi-rs-shuffle"></i></a>
+                                                class="fi-rs-shuffle"></i></a>
                                         </div>
                                     </div>
                                     <ul class="product-meta font-xs color-grey mt-50">
-                                        <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
-                                        <li class="mb-5">Tags: <a href="#" rel="tag">Cloth</a>, <a
-                                                href="#" rel="tag">Women</a>, <a href="#"
-                                                rel="tag">Dress</a> </li>
-                                        <li>Availability:<span class="in-stock text-success ml-5">8 Items In
-                                                Stock</span></li>
+                                        {{-- <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li> --}}
+                                        @foreach ($Tags as $Tag)
+                                        <li class="mb-5">Tags: <a href="#" rel="tag">{{ $Tag->name }},</a></li>
+                                        @endforeach
+                                        <li>Availability:<span class="in-stock text-success ml-5">{{ $product->status }}</span></li>
                                     </ul>
                                 </div>
                                 <!-- Detail Info -->
@@ -507,291 +440,48 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-60">
-                            <div class="col-12">
-                                <h3 class="section-title style-1 mb-30">Related products</h3>
-                            </div>
-                            <div class="col-12">
-                                <div class="row related-products">
-                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                        <div class="product-cart-wrap small hover-up">
-                                            <div class="product-img-action-wrap">
-                                                <div class="product-img product-img-zoom">
-                                                    <a href="product-details.html" tabindex="0">
-                                                        <img class="default-img"
-                                                            src="assets/imgs/shop/product-2-1.jpg" alt="">
-                                                        <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg"
-                                                            alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up"
-                                                        data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                            class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                        href="wishlist.php" tabindex="0"><i
-                                                            class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up"
-                                                        href="compare.php" tabindex="0"><i
-                                                            class="fi-rs-shuffle"></i></a>
-                                                </div>
-                                                <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="hot">Hot</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap">
-                                                <h2><a href="product-details.html" tabindex="0">Ulstra Bass
-                                                        Headphone</a></h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span>
-                                                    </span>
-                                                </div>
-                                                <div class="product-price">
-                                                    <span>$238.85 </span>
-                                                    <span class="old-price">$245.8</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                        <div class="product-cart-wrap small hover-up">
-                                            <div class="product-img-action-wrap">
-                                                <div class="product-img product-img-zoom">
-                                                    <a href="product-details.html" tabindex="0">
-                                                        <img class="default-img"
-                                                            src="assets/imgs/shop/product-3-1.jpg" alt="">
-                                                        <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg"
-                                                            alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up"
-                                                        data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                            class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                        href="wishlist.php" tabindex="0"><i
-                                                            class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up"
-                                                        href="compare.php" tabindex="0"><i
-                                                            class="fi-rs-shuffle"></i></a>
-                                                </div>
-                                                <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="sale">-12%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap">
-                                                <h2><a href="product-details.html" tabindex="0">Smart Bluetooth
-                                                        Speaker</a></h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span>
-                                                    </span>
-                                                </div>
-                                                <div class="product-price">
-                                                    <span>$138.85 </span>
-                                                    <span class="old-price">$145.8</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                        <div class="product-cart-wrap small hover-up">
-                                            <div class="product-img-action-wrap">
-                                                <div class="product-img product-img-zoom">
-                                                    <a href="product-details.html" tabindex="0">
-                                                        <img class="default-img"
-                                                            src="assets/imgs/shop/product-4-1.jpg" alt="">
-                                                        <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg"
-                                                            alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up"
-                                                        data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                            class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                        href="wishlist.php" tabindex="0"><i
-                                                            class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up"
-                                                        href="compare.php" tabindex="0"><i
-                                                            class="fi-rs-shuffle"></i></a>
-                                                </div>
-                                                <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="new">New</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap">
-                                                <h2><a href="product-details.html" tabindex="0">HomeSpeak 12UEA
-                                                        Goole</a></h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span>
-                                                    </span>
-                                                </div>
-                                                <div class="product-price">
-                                                    <span>$738.85 </span>
-                                                    <span class="old-price">$1245.8</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                        <div class="product-cart-wrap small hover-up mb-0">
-                                            <div class="product-img-action-wrap">
-                                                <div class="product-img product-img-zoom">
-                                                    <a href="product-details.html" tabindex="0">
-                                                        <img class="default-img"
-                                                            src="assets/imgs/shop/product-5-1.jpg" alt="">
-                                                        <img class="hover-img" src="assets/imgs/shop/product-3-2.jpg"
-                                                            alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up"
-                                                        data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                            class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                        href="wishlist.php" tabindex="0"><i
-                                                            class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up"
-                                                        href="compare.php" tabindex="0"><i
-                                                            class="fi-rs-shuffle"></i></a>
-                                                </div>
-                                                <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="hot">Hot</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap">
-                                                <h2><a href="product-details.html" tabindex="0">Dadua Camera 4K
-                                                        2022EF</a></h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span>
-                                                    </span>
-                                                </div>
-                                                <div class="product-price">
-                                                    <span>$89.8 </span>
-                                                    <span class="old-price">$98.8</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
+
                 <div class="col-lg-3 primary-sidebar sticky-sidebar">
                     <div class="widget-category mb-30">
                         <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
                         <ul class="categories">
-                            <li><a href="shop.html">Shoes & Bags</a></li>
-                            <li><a href="shop.html">Blouses & Shirts</a></li>
-                            <li><a href="shop.html">Dresses</a></li>
-                            <li><a href="shop.html">Swimwear</a></li>
-                            <li><a href="shop.html">Beauty</a></li>
-                            <li><a href="shop.html">Jewelry & Watch</a></li>
-                            <li><a href="shop.html">Accessories</a></li>
+                            @forelse ($categories as $category)
+                                <li><a href="#">{{ $category->name }}</a></li>
+                            @empty
+                                <p>No Category here!</p>
+                            @endforelse
+                            
                         </ul>
                     </div>
-                    <!-- Fillter By Price -->
-                    <div class="sidebar-widget price_range range mb-30">
-                        <div class="widget-header position-relative mb-20 pb-10">
-                            <h5 class="widget-title mb-10">Fill by price</h5>
-                            <div class="bt-1 border-color-1"></div>
-                        </div>
-                        <div class="price-filter">
-                            <div class="price-filter-inner">
-                                <div id="slider-range"></div>
-                                <div class="price_slider_amount">
-                                    <div class="label-input">
-                                        <span>Range:</span><input type="text" id="amount" name="price"
-                                            placeholder="Add Your Price">
+                   
+                     <!-- Product sidebar Widget -->
+                        <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
+                            <div class="widget-header position-relative mb-20 pb-10">
+                                <h5 class="widget-title mb-10">New products</h5>
+                                <div class="bt-1 border-color-1"></div>
+                            </div>
+                            <div class="single-post clearfix">
+                                @forelse ($new_products as $new )
+                                <div class="image">
+                                    <img  src="{{ asset('images/' . json_decode($new->images)[0]) }}"  alt="new product">
+                                </div>
+                                <div class="content pt-10">
+                                    <h5><a href="{{ route('products.show', $new) }}">{{ $new->name }}</a></h5>
+                                    <p class="price mb-0 mt-5">${{ $new->price }}</p>
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width:90%"></div>
                                     </div>
                                 </div>
                             </div>
+
+                            @empty
+                                <p>No Product found !</p>
+                            @endforelse
                         </div>
-                        <div class="list-group">
-                            <div class="list-group-item mb-10 mt-10">
-                                <label class="fw-900">Color</label>
-                                <div class="custome-checkbox">
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox1" value="">
-                                    <label class="form-check-label" for="exampleCheckbox1"><span>Red
-                                            (56)</span></label>
-                                    <br>
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox2" value="">
-                                    <label class="form-check-label" for="exampleCheckbox2"><span>Green
-                                            (78)</span></label>
-                                    <br>
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox3" value="">
-                                    <label class="form-check-label" for="exampleCheckbox3"><span>Blue
-                                            (54)</span></label>
-                                </div>
-                                <label class="fw-900 mt-15">Item Condition</label>
-                                <div class="custome-checkbox">
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox11" value="">
-                                    <label class="form-check-label" for="exampleCheckbox11"><span>New
-                                            (1506)</span></label>
-                                    <br>
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox21" value="">
-                                    <label class="form-check-label" for="exampleCheckbox21"><span>Refurbished
-                                            (27)</span></label>
-                                    <br>
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox31" value="">
-                                    <label class="form-check-label" for="exampleCheckbox31"><span>Used
-                                            (45)</span></label>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="shop.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
-                            Fillter</a>
-                    </div>
-                    <!-- Product sidebar Widget -->
-                    <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
-                        <div class="widget-header position-relative mb-20 pb-10">
-                            <h5 class="widget-title mb-10">New products</h5>
-                            <div class="bt-1 border-color-1"></div>
-                        </div>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets/imgs/shop/thumbnail-3.jpg" alt="#">
-                            </div>
-                            <div class="content pt-10">
-                                <h5><a href="product-details.html">Chen Cardigan</a></h5>
-                                <p class="price mb-0 mt-5">$99.50</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width:90%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets/imgs/shop/thumbnail-4.jpg" alt="#">
-                            </div>
-                            <div class="content pt-10">
-                                <h6><a href="product-details.html">Chen Sweater</a></h6>
-                                <p class="price mb-0 mt-5">$89.50</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width:80%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets/imgs/shop/thumbnail-5.jpg" alt="#">
-                            </div>
-                            <div class="content pt-10">
-                                <h6><a href="product-details.html">Colorful Jacket</a></h6>
-                                <p class="price mb-0 mt-5">$25</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width:60%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                       
                 </div>
             </div>
         </div>
@@ -986,29 +676,29 @@
 
 
     <!-- Vendor JS-->
-    <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/slick.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery.syotimer.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/wow.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery-ui.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/magnific-popup.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/waypoints.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/counterup.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery.countdown.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/images-loaded.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/isotope.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/scrollup.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery.vticker-min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery.theia.sticky.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery.elevatezoom.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/vendor/modernizr-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/vendor/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/slick.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/jquery.syotimer.min.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/wow.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/jquery-ui.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/magnific-popup.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/select2.min.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/waypoints.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/counterup.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/images-loaded.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/isotope.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/scrollup.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/jquery.vticker-min.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/jquery.theia.sticky.js') }}"></script>
+    <script src="{{ asset('frontEnd/js/plugins/jquery.elevatezoom.js') }}"></script> 
     <!-- Template  JS -->
-    <script src="{{ asset('assets/js/main.js?v=3.3') }}"></script>
-    <script src="{{ asset('assets/js/shop.js?v=3.3') }}"></script>
+     <script src="{{ asset('frontEnd/js/main.js?v=3.3') }}"></script>
+    <script src="{{ asset('frontEnd/js/shop.js?v=3.3') }}"></script>
     <script>
         // JavaScript to capture selected color
         document.querySelectorAll('.color-filter a').forEach(function(link) {
@@ -1028,6 +718,4 @@
             });
         });
     </script>
-</body>
-
-</html>
+@endsection

@@ -1,23 +1,22 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="zxx">
 
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="{{ asset('dash/css/remixicon.css') }}">
-    <link rel="stylesheet" href="{{ asset('dash/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('dash/css/sidebar-menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('dash/css/simplebar.css') }}">
-    <link rel="stylesheet" href="{{ asset('dash/css/apexcharts.css') }}">
-    <link rel="stylesheet" href="{{ asset('dash/css/prism.css') }}">
-    <link rel="stylesheet" href="{{ asset('dash/css/rangeslider.css') }}">
-    <link rel="stylesheet" href="{{ asset('dash/css/sweetalert.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dash/css/quill.snow.css') }}">
-    <link rel="stylesheet" href="{{ asset('dash/css/style.css') }}">
+<link rel="stylesheet" href="BackEnd/css/remixicon.css">
+<link rel="stylesheet" href="BackEnd/css/flaticon.css">
+<link rel="stylesheet" href="BackEnd/css/sidebar-menu.css">
+<link rel="stylesheet" href="BackEnd/css/simplebar.css">
+<link rel="stylesheet" href="BackEnd/css/apexcharts.css">
+<link rel="stylesheet" href="BackEnd/css/prism.css">
+<link rel="stylesheet" href="BackEnd/css/rangeslider.css">
+<link rel="stylesheet" href="BackEnd/css/sweetalert.min.css">
+<link rel="stylesheet" href="BackEnd/css/quill.snow.css">
+<link rel="stylesheet" href="BackEnd/css/style.css">
 
-    <link href="{{ asset('images/logob.svg') }}" rel="icon">
+<link rel="icon" type="image/png" href="BackEnd/images/favicon.png">
 
     <title>MagicShop - Dashboard_Profile</title>
 </head>
@@ -171,7 +170,7 @@
                                             data-bs-toggle="dropdown">
                                             <div class="flex-shrink-0">
                                                 <img class="rounded-circle wh-54"
-                                                    src="{{ asset('dash/images/admin.jpg') }}" alt="admin">
+                                                    src="{{ asset('BackEnd/images/admin.jpg') }}" alt="admin">
                                             </div>
                                             <div class="flex-grow-1 ms-3">
                                                 <div class="d-flex align-items-center justify-content-between">
@@ -291,24 +290,22 @@
     </div>
 
 
-    <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="{{ asset('dash/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('dash/js/sidebar-menu.js') }}"></script>
-    <script src="{{ asset('dash/js/dragdrop.js') }}"></script>
-    <script src="{{ asset('dash/js/rangeslider.min.js') }}"></script>
-    <script src="{{ asset('dash/js/sweetalert.js') }}"></script>
-    <script src="{{ asset('dash/js/quill.min.js') }}"></script>
-    <script src="{{ asset('dash/js/data-table.js') }}"></script>
-    <script src="{{ asset('dash/js/prism.js') }}"></script>
-    <script src="{{ asset('dash/js/clipboard.min.js') }}"></script>
-    <script src="{{ asset('dash/js/feather.min.js') }}"></script>
-    <script src="{{ asset('dash/js/simplebar.min.js') }}"></script>
-    <script src="{{ asset('dash/js/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('dash/js/amcharts.js') }}"></script>
-    <script src="{{ asset('dash/js/custom/ecommerce-chart.js') }}"></script>
-    <script src="{{ asset('dash/js/custom/custom.js') }}"></script>
-</body>
-
-<!-- Mirrored from templates.hibootstrap.com/Magic Shop/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 11 Feb 2024 15:49:17 GMT -->
-
-</html>
+    <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="BackEnd/js/bootstrap.bundle.min.js"></script>
+    <script src="BackEnd/js/sidebar-menu.js"></script>
+    <script src="BackEnd/js/dragdrop.js"></script>
+    <script src="BackEnd/js/rangeslider.min.js"></script>
+    <script src="BackEnd/js/sweetalert.js"></script>
+    <script src="BackEnd/js/quill.min.js"></script>
+    <script src="BackEnd/js/data-table.js"></script>
+    <script src="BackEnd/js/prism.js"></script>
+    <script src="BackEnd/js/clipboard.min.js"></script>
+    <script src="BackEnd/js/feather.min.js"></script>
+    <script src="BackEnd/js/simplebar.min.js"></script>
+    <script src="BackEnd/js/apexcharts.min.js"></script>
+    <script src="BackEnd/js/amcharts.js"></script>
+    <script src="BackEnd/js/custom/ecommerce-chart.js"></script>
+    <script src="BackEnd/js/custom/custom.js"></script>
+    </body>
+    
+    <!-- Mirrored from templates.hibootstrap.com/Magic Shop/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 11 Feb 2024 15:49:17 GMT -->
+    </html>

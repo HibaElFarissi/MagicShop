@@ -1,4 +1,5 @@
-@extends('layouts.DashProfile')
+{{-- @extends('layouts.DashProfile') --}}
+@extends('layouts.DashTry')
 @section('content')
     <div class="d-sm-flex text-center justify-content-between align-items-center mb-4">
         <h3 class="mb-sm-0 mb-1 fs-18">My Orders</h3>

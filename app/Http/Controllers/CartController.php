@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\CartItem;
+use App\Models\Category;
+use App\Models\Infos;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -32,11 +34,13 @@ class CartController extends Controller
 
     public function index(Request $request)
     {
+        $infos = Infos::paginate(1);
+        $categories = Category::all();
         $cartItems = $request->user()->cartItems()->with('product')->get();
         $totalCost = $cartItems->sum(function ($cartItem) {
             return $cartItem->quantity * $cartItem->product->price;
         });
-        return view('cart.index', compact('cartItems', 'totalCost'));
+        return view('cart.index', compact('cartItems', 'totalCost','infos','categories'));
 
 
     }

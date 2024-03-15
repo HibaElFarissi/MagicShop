@@ -1,4 +1,5 @@
-@extends('layouts.DashProfile')
+{{-- @extends('layouts.DashProfile') --}}
+@extends('layouts.DashTry')
 @section('content')
     <div class="d-sm-flex text-center justify-content-between align-items-center mb-4">
         <h3 class="mb-sm-0 mb-1 fs-18">Wish List</h3>
@@ -80,7 +81,7 @@
                                           <tr>
                                             <td class="fs-15 fw-semibold">#{{ $item->id }}</td>
                                             <td>
-                                                 <a href="{{ route('PRO.show',$item ) }}" class="d-flex align-items-center"> 
+                                                 <a href="{{ route('products.show',$item ) }}" class="d-flex align-items-center"> 
                                                         <img src="{{ asset('images/' . json_decode($item->product->images)[0]) }}" class="wh-55 rounded-3" width="60" height="50" alt="Product Image">
                                                     <h6 class="fw-semibold">{{ $item->product->name}}</h6>
                                                 </a>
@@ -92,7 +93,7 @@
                                             <td> <form method="POST" action="{{ route('wishlist.remove', $item) }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit">Remove from Wishlist</button>
+                                                <button class="btn btn-danger btn-sm px-3 type="submit">Remove from Wishlist</button>
                                             </form></td>
                                             <td>{{$item->updated_at->format('d-m-y')}}</td>
 

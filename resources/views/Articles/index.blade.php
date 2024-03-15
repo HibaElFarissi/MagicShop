@@ -39,7 +39,7 @@
                                     <li>
                                         {{-- <i class="ri-user-line text-danger"></i> --}}
                                         <a  class="text-decoration-none text-gray-light ms-1" href="{{ route('Articles.edit', $Article->id) }}">
-                                            <button>edit</button>
+                                            <button class="btn btn-info btn-sm px-3">edit</button>
                                         </a>
                                     </li>
                                     <li>

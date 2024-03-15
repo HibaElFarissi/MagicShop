@@ -1,6 +1,9 @@
 @extends('layouts.DashAdmin_nav')
-
+@section('title', 'Tags')
 @section('content')
+    @include('sweetalert::alert')
+    @include('layouts.errors-notif')
+    
     <div class="d-sm-flex text-center justify-content-between align-items-center mb-4">
         <h3 class="mb-sm-0 mb-1 fs-18">Tags</h3> 
         <ul class="ps-0 mb-0 list-unstyled d-flex justify-content-center">
@@ -78,9 +81,8 @@
                                                             @csrf
                                                             @method('DELETE')
                                                           
-                                                            <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete?')) { this.closest('form').submit(); }">
-                                                                <i data-feather="trash-2"></i> Remove
-                                                            </a>
+                                                        <i data-feather="trash-2"></i>
+                                                           <input type="submit" value="Delete" style="background-color: transparent; border: none; color: inherit; cursor: pointer; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(0, 0, 0, 0.1)'" onmouseout="this.style.backgroundColor='transparent'" />
                                                         </form>
                                                     </li>
                                                 </ul>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TagsController extends Controller
 {
@@ -37,7 +38,8 @@ class TagsController extends Controller
 
   
         Tag::create($validatedData);
-    
+
+        Alert::success('success', 'The Tag has been added successfully');
         return redirect()->route('Tags.index');
     }
 
@@ -71,7 +73,8 @@ class TagsController extends Controller
         ]);
         $Tag=Tag::findOrFail($id);
         $Tag->update($validatedData);
-     
+        
+        Alert::success('success', 'The Tag has been Updated successfully');
         return to_route('Tags.index');
     }
 
@@ -81,6 +84,8 @@ class TagsController extends Controller
     public function destroy(string $id)
     {
         Tag::findOrFail($id)->delete();
+        Alert::error('Deleted!', "The Tag has been deleted");
         return to_route('Tags.index');
     }
+    
 }

@@ -63,14 +63,23 @@
                                                                 </a>
                                                             </div>
                                                             <div class="product-action-1">
-                                                                <a aria-label="Quick view" class="action-btn hover-up"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#quickViewModal"><i
+                                                                <a href="{{ route('products.show',$product) }}" aria-label="Quick view" class="action-btn hover-up"><i
                                                                         class="fi-rs-eye"></i></a>
-                                                                <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                                                    href="wishlist.php"><i class="fi-rs-heart"></i></a>
-                                                                <a aria-label="Compare" class="action-btn hover-up"
-                                                                    href="compare.php"><i class="fi-rs-shuffle"></i></a>
+                                                                {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up"
+                                                                    href="wishlist.php"><i class="fi-rs-heart"></i></a> --}}
+                                                                    <a aria-label="Add To Wishlist" style="display: none;" 
+                                                                    > <i class="fi-rs-heart"></i>
+                                                                    <form id="wishlistForm_{{ $product->id }}" method="POST" action="{{ route('wishlist.add', $product) }}">
+                                                                        @csrf
+                                                                        <button type="submit" style="display: none;"></button> <!-- Hide the submit button -->
+                                                                    </form>
+                                                                    
+                                                                    <a href="#" aria-label="Add To WishList" onclick="event.preventDefault(); document.getElementById('wishlistForm_{{ $product->id }}').submit();" class="action-btn hover-up" >
+                                                                        <i class="fi-rs-heart"></i>
+                                                                    </a>
+                                                                    
+                                                                    </a>
+                                                                
                                                             </div>
                                                             <div
                                                                 class="product-badges product-badges-position product-badges-mrg">
@@ -154,7 +163,6 @@
                             </div>
                             <div class="single-post clearfix">
                                 @forelse ($new_products as $new )
-
                                 <div class="image">
                                     <img  src="{{ asset('images/' . json_decode($new->images)[0]) }}"  alt="new product">
                                 </div>
@@ -184,8 +192,8 @@
                         </div> --}}
                        
                     </div>
-                    <div class="sidebar-widget widget_tags mb-50">
-                        <div class="widget-header position-relative mb-20 pb-10">
+                    {{-- <div class="sidebar-widget widget_tags mb-50"> --}}
+                        {{-- <div class="widget-header position-relative mb-20 pb-10"> --}}
                             <h5 class="widget-title">Popular tags </h5>
                         </div>
                         <div class="tagcloud">
