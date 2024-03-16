@@ -25,6 +25,9 @@ class ProfileController extends Controller
         ]);
     }
 
+
+
+
     public function update_password(Request $request): View
     {
         return view('profile.update-password', [
@@ -41,11 +44,11 @@ class ProfileController extends Controller
 
     public function My_Orders(Request $request): View
     {   $orders = Order::all();
-        $OrderItems =OrderItem::all();
-       
-        return view('profile.My_Orders', compact('orders','OrderItems'),[
-            'user' => $request->user(),
-        ]);
+        // $OrderItems =OrderItem::all();
+        $OrderItems = $request->user()->orderItems()->with('Order')->get();
+        return view('profile.My_Orders', compact('orders','OrderItems')
+
+    );
     }
     // public function Wish_List(Request $request): View
     // {
@@ -54,7 +57,7 @@ class ProfileController extends Controller
     //         'user' => $request->user(),
     //     ]);
     // }
-    
+
 
     public function edit(Request $request): View
     {
@@ -73,16 +76,16 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-       
+
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
-        
+
             // Generate a unique filename
             $imageName = time() . '.' . $photo->getClientOriginalExtension();
-        
+
             // Store the image in the public/storage directory
             $photo->storeAs('profile_pictures', $imageName, 'public');
-        
+
             // Update user record with the image path
             $request->user()->update(['photo' => $imageName]);
         }

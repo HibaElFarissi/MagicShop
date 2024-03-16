@@ -38,11 +38,13 @@ class CreateOrdersTable extends Migration
             $table->string('color')->nullable();
             $table->string('size')->nullable();
             $table->decimal('unit_price', 10, 2);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
-     
 
-     
+
+
     }
 
     /**
@@ -50,7 +52,7 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-      
+
         Schema::dropIfExists('orders');
     }
 }

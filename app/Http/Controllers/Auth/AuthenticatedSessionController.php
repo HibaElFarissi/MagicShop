@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Category;
 use App\Models\Infos;
+use App\Models\Product;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,9 +20,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        $cartIcon = Product::withCount('cartItems')->get();
+        $totalCartCount = $cartIcon->sum('cart_items_count');
         $categories= Category::all();
         $infos = Infos::paginate(1);
-        return view('auth.login',compact('categories','infos'));
+        return view('auth.login',compact('categories','infos','cartIcon','totalCartCount'));
     }
 
      /**

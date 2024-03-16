@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductRequest;
+use App\Models\Tag;
+use App\Models\Size;
 use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Color;
 use App\Models\Infos;
-use App\Models\Product;
+
 use App\Models\Review;
-use App\Models\Size;
-use App\Models\Tag;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
@@ -125,6 +126,8 @@ class ProductController extends Controller
     {
 
         $product = Product::findOrFail($id);
+        $cartIcon = Product::withCount('cartItems')->get();
+        $totalCartCount = $cartIcon->sum('cart_items_count');
         $Tag = Tag::all();
         $products = Product::all();
         $product->load('colors'); // BOUCLE
@@ -136,7 +139,7 @@ class ProductController extends Controller
         $Reviews=Review::all();
         $productsWithReviewCount = Product::withCount('review')->limit(1)->get();
 
-        return view('products.show', compact('product','categories','infos','Reviews','productsWithReviewCount','new_products','Tag','products'));
+        return view('products.show', compact('product','categories','infos','Reviews','productsWithReviewCount','new_products','Tag','products','totalCartCount','cartIcon'));
     }
 
 

@@ -72,12 +72,20 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
 
-                <li>
-                <a class="dropdown-item" href="{{ route('categories.edit', $category) }}">
-                <i data-feather="edit-3"></i>
-                Rename
-                </a>
-                </li>
+                {{-- Rename:  --}}
+                    <li>
+                    <a class="dropdown-item" href="{{ route('categories.edit', $category) }}">
+                    <i data-feather="edit-3"></i>
+                         Rename
+                    </a>
+                    </li>
+                {{-- Show:  --}}
+                    <li>
+                    <a class="dropdown-item" href="{{ route('categories.show', $category) }}">
+                    <i data-feather="eye"></i> <!-- Eye icon for Show -->
+                        Show
+                    </a>
+                    </li>
 
 
 

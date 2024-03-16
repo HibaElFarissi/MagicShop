@@ -11,6 +11,11 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 
+
+<h1 style="font-weight: bold"> Create an Article </h1>
+<br>
+
+<br>
     <form class="row g-3 needs-validation" action="{{ route('Articles.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col-md-6">
@@ -21,6 +26,18 @@
 
             </div>
             @error('title')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="col-md-6">
+            <label for="validationCustom10" class="form-label label">Slug</label>
+            <div class="position-relative">
+                <input type="text" class="form-control h-58 @error('slug') is-invalid @enderror" name="slug"
+                    id="validationCustom10" value="{{ old('slug') }}" required>
+
+            </div>
+            @error('slug')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -68,7 +85,7 @@
                     <select name="Categorie_id" id="Categorie_id" class="form-select form-control h-58" aria-label="Default select example">
                              @foreach ($Categories as $Categorie)
                              <option  value="{{$Categorie->id}}">{{ $Categorie->name}}</option>
-                             @endforeach 
+                             @endforeach
                     </select>
                 </div>
             </div>

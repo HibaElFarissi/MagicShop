@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Infos;
 use App\Models\Product;
 use App\Models\Slide;
+use App\Models\CartItem;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -31,16 +32,17 @@ class StoreController extends Controller
     }
 
     public function index()
-    {
-        //
-        $brands = Brand::all();
-        $banners = Banner::paginate(1);
-        $slides = Slide::all();
-        $categories = Category::all();
-        $infos = Infos::paginate(1);
-        $products = Product::query()->orderBy('created_at', 'desc')->limit(8)->get();
-        return view('store.index', compact('products', 'categories','brands','banners','slides','infos'));
-    }
+        {
+            $brands = Brand::all();
+            $cartIcon = Product::withCount('cartItems')->get();
+            $totalCartCount = $cartIcon->sum('cart_items_count'); // Sum up the cart counts of all products
+            $banners = Banner::paginate(1);
+            $slides = Slide::all();
+            $categories = Category::all();
+            $infos = Infos::paginate(1);
+            $products = Product::query()->orderBy('created_at', 'desc')->limit(8)->get();
+            return view('store.index', compact('products', 'categories','brands','banners','slides','infos','totalCartCount'));
+        }
 
     public function create()
     {

@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 
 class WishlistController extends Controller
 {
-    public function index()
-{
-    $wishlistItems = Wishlist::with('product')->get();
-    return view('profile.Wish_List', compact('wishlistItems'));
-}
+    public function index(Request $request)
+    {
+        // $wishlistItems = Wishlist::with('product')->get();
+        $wishlistItems =$request->user()->wishlistItems()->with('product')->get();
+        return view('profile.Wish_List', compact('wishlistItems'));
+    }
+
     public function addToWishlist(Product $product)
     {
         // Create a new WishlistItem for the authenticated user (if applicable)

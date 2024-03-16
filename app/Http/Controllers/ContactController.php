@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\Contact;
 use App\Models\Infos;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Contact;
+use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
     //
     public function index(){
+
         $categories = Category::all();
         $contacts = Contact::get();
         return view('Email.inbox', compact('contacts', 'categories'));
@@ -21,10 +23,12 @@ class ContactController extends Controller
 
 
     public function create(){
+        $cartIcon = Product::withCount('cartItems')->get();
+        $totalCartCount = $cartIcon->sum('cart_items_count');
         $categories = Category::all();
         $contact = new Contact();
         $infos = Infos::get();
-        return view('pages.contact',compact('categories','contact','infos'));
+        return view('pages.contact',compact('categories','contact','infos','cartIcon','totalCartCount'));
 
 
 

@@ -10,6 +10,10 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 @section('content')
+
+<h1 style="font-weight: bold"> Update an Article </h1>
+<br>
+<br>
     <form class="row g-3 needs-validation" action="{{ route('Articles.update', $Article->id) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
@@ -22,6 +26,18 @@
 
             </div>
             @error('title')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="col-md-6">
+            <label for="validationCustom10" class="form-label label">Slug</label>
+            <div class="position-relative">
+                <input type="text" class="form-control h-58 @error('slug') is-invalid @enderror" name="slug"
+                    id="validationCustom10" value="{{ old('slug',$Article->slug) }}" required>
+
+            </div>
+            @error('slug')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -63,19 +79,19 @@
                 </div>
             </div>
         </div>
-        
-       
+
+
         <div class="col-lg-12">
             <div class="form-group mb-4">
                 <label class="label">Categories</label>
                 <div class="form-group position-relative">
                     <select name="Categorie_id" id="Categorie_id" class="form-select form-control h-58" aria-label="Default select example">
-                       
+
                              @foreach ($Categories as $Categorie)
                              <option  value="{{$Categorie->id}}">{{ $Categorie->name}}</option>
                              @endforeach
-                       
-                        
+
+
                     </select>
                 </div>
             </div>
@@ -87,12 +103,12 @@
     <br>
     <br>
     <script>
-     
+
         $('#text').summernote({
             placeholder: 'Notes',
             tabsize: 2,
             height: 100
         });
-       
+
     </script>
 @endsection

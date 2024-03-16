@@ -486,9 +486,9 @@
             </div>
         </div>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
         <style>
             .rate {
                 float: left;
@@ -697,7 +697,7 @@
     <script src="{{ asset('frontEnd/js/plugins/jquery.theia.sticky.js') }}"></script>
     <script src="{{ asset('frontEnd/js/plugins/jquery.elevatezoom.js') }}"></script> 
     <!-- Template  JS -->
-     <script src="{{ asset('frontEnd/js/main.js?v=3.3') }}"></script>
+    {{-- <script src="{{ asset('frontEnd/js/main.js?v=3.3') }}"></script> --}}
     <script src="{{ asset('frontEnd/js/shop.js?v=3.3') }}"></script>
     <script>
         // JavaScript to capture selected color

@@ -192,19 +192,19 @@
                         </div> --}}
                        
                     </div>
-                    {{-- <div class="sidebar-widget widget_tags mb-50"> --}}
-                        {{-- <div class="widget-header position-relative mb-20 pb-10"> --}}
+                    {{-- <div class="sidebar-widget widget_tags mb-50"> 
+                        <div class="widget-header position-relative mb-20 pb-10">
                             <h5 class="widget-title">Popular tags </h5>
                         </div>
                         <div class="tagcloud">
                             @forelse ( $Tags as $Tag )
-                                <a class=" text-black tag-cloud-link" href="{{ route('blog-details') }}">{{ $Tag->name }}</a>
+                                <a class=" text-black tag-cloud-link" href="{{ route('') }}">{{ $Tag->name }}</a>
                             @empty
                                 <h4>no tag here !!</h4>
                             @endforelse
                         </div>
                    
-                </div>
+                </div> --}}
                 
             </div>
         </section>

@@ -31,7 +31,6 @@ class ArticleController extends Controller
     public function index()
     {
         $Articles=Article::all();
-       
         return view('Articles.index' , compact('Articles'));
     }
 
@@ -52,11 +51,9 @@ class ArticleController extends Controller
     {
         $validatedData = $request->validate([
             'title'=> 'required',
-   
+            'slug'=> 'required',
             'text'=> 'required',
-           
             'photo'=> 'nullable|image|mimes:png,jpg|max:2048',
-          
             'Categorie_id'=>'required',
         ]);
 
@@ -68,12 +65,12 @@ class ArticleController extends Controller
             $photoPath = $request->file('photo')->store('Articles', 'public');
             $validatedData['photo'] = $photoPath;
         }
-       
+
         Article::create($validatedData);
-    
+
         return redirect()->route('Articles.index');
     }
-    
+
       /**
      * Display the specified resource.
       */
@@ -85,8 +82,8 @@ class ArticleController extends Controller
     //     $ARTICLES=Article::paginate(2);
     //     $Post=Article::paginate(4);
     //     $Article = Article::findOrFail($id);
-      
-    //     return view('Articles.show', compact('Article','ARTICLES','Post','Categories', 'Settings')); 
+
+    //     return view('Articles.show', compact('Article','ARTICLES','Post','Categories', 'Settings'));
     }
 
     /**
@@ -106,11 +103,9 @@ class ArticleController extends Controller
     {
          $validatedData=$request->validate([
             'title'=> 'required',
-   
+            'slug'=> 'required',
             'text'=> 'required',
-           
             'photo'=> 'nullable|image|mimes:png,jpg|max:2048',
-          
             'Categorie_id'=>'required'
         ]);
         $validatedData['user_id'] = Auth::id();
@@ -119,9 +114,9 @@ class ArticleController extends Controller
             $photoPath = $request->file('photo')->store('Articles','public');
             $validatedData['photo']=$photoPath;
         }
-       
+
         $Article->update($validatedData);
-     
+
         return to_route('Articles.index');
     }
 

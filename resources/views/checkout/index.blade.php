@@ -1,75 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
-    <!-- Add your CSS stylesheets and scripts -->
-</head>
-<body>
-    <h1>Checkout</h1>
+@extends('layouts.base')
 
-    <div>
-        <h2>Cart Items</h2>
-        <ul>
-            @foreach ($cartItems as $cartItem)
-                <li>{{ $cartItem->product->name }} - Quantity: {{ $cartItem->quantity }}</li>
-                <!-- Display other cart item details -->
-            @endforeach
-        </ul>
+@section('content')
+
+<main class="main">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" rel="nofollow">Home</a>
+                <span></span> Shop
+                <span></span> Checkout
+            </div>
+        </div>
     </div>
-
-    <div>
-        <h2>Shipping Information</h2>
-        <!-- Shipping information form -->
-        <form method="POST" action="{{ route('place-order') }}">
-            @csrf
-            <!-- Shipping address fields -->
-            <label for="Full_Name">Full Name</label>
-            <input type="text" id="Full_Name" name="Full_Name" required>
-            <label for="shipping_address">Shipping Address</label>
-            <input type="text" id="shipping_address" name="shipping_address" required>
-            <label for="email">email</label>
-            <input type="text" id="email" name="email" required>
-        
-            <label for="telephone_number">telephone number</label>
-            <input type="text" id="telephone_number" name="telephone_number" required>
-            <div class="form-group mb-3">
-                <label for="country_region">Country/Region</label>
-                <select id="country-dd"  name="country_region" class="form-control">
-                <option value="" id="country_region" required>Select Country</option>
-                @foreach($counteries as $data)
-                    <option  value="{{$data->id}}">{{$data->name}}</option>
-                @endforeach
-                </select>
-               
+    <section class="mt-50 mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-sm-15">
+                    <div class="toggle_info">
+                        <span><i class="fi-rs-user mr-10"></i><span class="text-muted">Already have an account?</span> <a href="#loginform" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">Click here to login</a></span>
+                    </div>
+                    <div class="panel-collapse collapse login_form" id="loginform">
+                        <div class="panel-body">
+                            <p class="mb-30 font-sm">If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing &amp; Shipping section.</p>
+                            <form method="post">
+                                <div class="form-group">
+                                    <input type="text" name="email" placeholder="Username Or Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="login_footer form-group">
+                                    <div class="chek-form">
+                                        <div class="custome-checkbox">
+                                            <input class="form-check-input" type="checkbox" name="checkbox" id="remember" value="">
+                                            <label class="form-check-label" for="remember"><span>Remember me</span></label>
+                                        </div>
+                                    </div>
+                                    <a href="#">Forgot password?</a>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-md" name="login">Log in</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="toggle_info">
+                        <span><i class="fi-rs-label mr-10"></i><span class="text-muted">Have a coupon?</span> <a href="#coupon" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">Click here to enter your code</a></span>
+                    </div>
+                    <div class="panel-collapse collapse coupon_form " id="coupon">
+                        <div class="panel-body">
+                            <p class="mb-30 font-sm">If you have a coupon code, please apply it below.</p>
+                            <form method="post">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Enter Coupon Code...">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn  btn-md" name="login">Apply Coupon</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group mb-3">
-                <label for="province">Province</label>
-                <select id="state-dd"  name="province" class="form-control" required></select>
-               
+            <div class="row">
+                <div class="col-12">
+                    <div class="divider mt-50 mb-50"></div>
+                </div>
             </div>
-            <div class="form-group mb-3">
-                <label for="city">City</label>
-                <select id="city-dd"  name="city" class="form-control" required></select>
-               
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-25">
+                        <h4>Billing Details</h4>
+                    </div>
+                    <form method="post" action="{{ route('place-order') }}">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" required="" name="Full_Name" placeholder="First name *">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            {{-- <label for="country_region">Country/Region</label> --}}
+                            <select id="country-dd"  name="country_region" class="form-control">
+                            <option value="" id="country_region" required>Select Country</option>
+                            @foreach($counteries as $data)
+                                <option  value="{{$data->id}}">{{$data->name}}</option>
+                            @endforeach
+                            </select>
+                           
+                        </div>
+                        <div class="form-group mb-3">
+                            {{-- <label for="province">State</label> --}}
+                            <select id="state-dd"  name="province" class="form-control" required>
+                                <option value="">Select State...</option>
+                            </select>
+                           
+                        </div>
+                        <div class="form-group mb-3">
+                            {{-- <label for="city">City</label> --}}
+                            <select id="city-dd"  name="city" class="form-control" required>
+                                <option value="">Select City...</option>
+                            </select>
+                           
+                        </div>
+                           
+                    
+                        <div class="form-group">
+                            <input type="text" name="shipping_address" required="" placeholder="Address *">
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <input required="" type="text" name="zip_code" placeholder="Postcode / ZIP *">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input required="" type="text" name="telephone_number"  placeholder="Phone *">
+                        </div>
+
+                        <div class="form-group">
+                            <input required="" type="text"  name="email" placeholder="Email address *">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <button type="submit">Proceed to Payment</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="order_review">
+                        <div class="mb-20">
+                            <h4>Your Orders</h4>
+                        </div>
+                        <div class="table-responsive order_table text-center">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Product</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($cartItems as $cartItem)
+                                            
+                                             <tr>
+                                                <td class="image product-thumbnail"><img src="{{ asset('images/' . json_decode($cartItem->product->images)[0]) }}"  alt="product_image"></td>
+                                                <td>
+                                                    <h5><a href="">{{ $cartItem->product->name }}</a></h5> <span class="product-qty">x {{ $cartItem->quantity }}</span>
+                                                </td>
+                                                <td>${{ $cartItem->product->price }}</td>
+                                            </tr>
+                                    @endforeach
+                                     
+                                    
+                                  
+                                    <tr>
+                                        <th>Total</th>
+                                        <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900">${{ $cartItems->sum(function ($cartItem) {
+                                            return $cartItem->quantity * $cartItem->product->price;
+                                            }) }}</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-               
-        
-            <label for="zip_code">Zip Code</label>
-            <input type="text" id="zip_code" name="zip_code" required>
-            <!-- Other shipping information fields -->
+        </div>
+    </section>
+</main>
 
-            <button type="submit">Proceed to Payment</button>
-        </form>
-    </div>
 
-    <!-- Payment information section -->
-    <!-- You can add payment information form here -->
-
-    <!-- Add your footer and other content -->
-</body>
-</html>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -109,3 +212,5 @@
     });
     });
 </script>
+
+@endsection

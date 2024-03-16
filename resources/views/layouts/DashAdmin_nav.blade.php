@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    
+
+
     <!-- FontAwesome -->
     <link rel="stylesheet" href="{{ asset('dash/css/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('dash/css/flaticon.css') }}">
@@ -189,7 +189,8 @@
                 {{-- Blog --}}
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <i data-feather="mail" class="menu-icon tf-icons"></i>
+
+                    <i data-feather="align-justify" class="menu-icon tf-icons"></i>
                     <span class="title">Blog</span>
                 </a>
                 <ul class="menu-sub">
@@ -226,7 +227,8 @@
                 {{-- Slide Home --}}
                 <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+
+                    <i data-feather="align-right" class="menu-icon tf-icons"></i>
                     <span class="title">Slide Home</span>
                 </a>
                 <ul class="menu-sub">
@@ -285,7 +287,8 @@
                 {{-- Tags --}}
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+
+                    <i data-feather="anchor" class="menu-icon tf-icons"></i>
                     <span class="title">Tags</span>
                 </a>
             <ul class="menu-sub">
@@ -300,7 +303,8 @@
                 {{-- Colors --}}
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+
+                    <i data-feather="aperture" class="menu-icon tf-icons"></i>
                     <span class="title">Colors</span>
                 </a>
             <ul class="menu-sub">
@@ -320,7 +324,8 @@
                 {{-- Sizes --}}
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+
+                    <i data-feather="activity" class="menu-icon tf-icons"></i>
                     <span class="title">Sizes</span>
                 </a>
             <ul class="menu-sub">
@@ -337,7 +342,7 @@
             </ul>
 
 
-              
+
 
                     <!-- Informations -->
                     <li class="menu-title small text-uppercase">
@@ -345,7 +350,8 @@
                     </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                            <i data-feather="settings" class="menu-icon tf-icons"></i>
+        
+                            <i data-feather="at-sign" class="menu-icon tf-icons"></i>
                             <span class="title">Infos</span>
                         </a>
                         <ul class="menu-sub">
@@ -389,7 +395,7 @@
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('delete_user') }}" class="menu-link">
-                            Delete 
+                            Delete
                         </a>
                     </li>
 

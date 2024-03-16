@@ -1,5 +1,3 @@
-{{-- @extends('layouts.base') --}}
-{{-- @extends('layouts.Dashboard_nav') --}}
 @extends('layouts.DashAdmin_nav')
 @section('title' , 'Categories')
 @section('content')

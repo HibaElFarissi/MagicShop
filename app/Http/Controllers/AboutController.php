@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AboutRequest;
+use App\Models\Faq;
 use App\Models\About;
 use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Faq;
-use App\Models\Feedback;
 use App\Models\Infos;
 use App\Models\Quotes;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
+use App\Http\Requests\AboutRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AboutController extends Controller
@@ -19,12 +20,13 @@ class AboutController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
-
+        $cartIcon = Product::withCount('cartItems')->get();
+        $totalCartCount = $cartIcon->sum('cart_items_count');
         $abouts = About::paginate(1);
         $infos = Infos::paginate(1);
-        return view('abouts.index', compact('abouts','infos'));
+        return view('abouts.index', compact('abouts','infos','cartIcon','totalCartCount'));
     }
-    
+
     public function about(){
         $categories = Category::all();
         $infos = Infos::paginate(1);

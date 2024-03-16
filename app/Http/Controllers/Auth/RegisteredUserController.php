@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Infos;
+use App\Models\Product;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -22,9 +23,11 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+        $cartIcon = Product::withCount('cartItems')->get();
+        $totalCartCount = $cartIcon->sum('cart_items_count');
         $categories= Category::all();
         $infos = Infos::paginate(1);
-        return view('auth.register',compact('categories','infos'));
+        return view('auth.register',compact('categories','infos','cartIcon','totalCartCount'));
     }
 
     /**

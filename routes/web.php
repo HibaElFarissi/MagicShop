@@ -125,7 +125,7 @@ Route::resource('Tags', TagsController::class);
 // Checkout - payment part
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
-Route::get('/thank-you', [CheckoutController::class, 'thankYou'])->name('thank-you');
+Route::get('/Factorys', [CheckoutController::class, 'Factory'])->name('Factory');
 
 
 // OrderList: 

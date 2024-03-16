@@ -1,7 +1,7 @@
 {{-- @extends('layouts.DashProfile') --}}
 @extends('layouts.DashTry')
 @section('content')
-    
+
     <div class="d-sm-flex text-center justify-content-between align-items-center mb-4">
         <h3 class="mb-sm-0 mb-1 fs-18">Profile</h3>
         <ul class="ps-0 mb-0 list-unstyled d-flex justify-content-center">
@@ -33,8 +33,11 @@
                 <div class="card-body p-4 pt-0">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="profile-img">
-                            <img src="{{ asset('storage/profile_pictures/' . auth()->user()->photo) }}"
-                                class="rounded-circle  border-2 border-white wh-57 mb-4" alt="{{ auth()->user()->photo }}">
+                            @if(auth()->user()->photo === null)
+                            <img src="{{ asset('BackEnd/images/userAuto.jpeg') }}" class="rounded-circle wh-54" alt="">
+                            @else
+                                <img src="{{ asset('storage/profile_pictures/' . auth()->user()->photo) }}" class="rounded-circle wh-54" alt="admin">
+                            @endif
                             <h4 class="fs-16 fw-semibold mb-1">{{ auth()->user()->name }}</h4>
                             <span class="fs-14">{{ auth()->user()->Experience }}</span>
                         </div>
@@ -78,7 +81,7 @@
                     </ul>
                 </div>
             </div>
-          
+
             <div class="col-xxl-8 col-sm-12">
                 <div class="row justify-content-center">
                     <div class="col-xxl-4 col-xl-6 col-md-6 col-lg-12 col-xxxl-6">

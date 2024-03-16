@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
 use auth;
+use App\Models\Infos;
 use App\Models\Order;
 use App\Models\Country;
+use App\Models\Product;
+use App\Models\Category;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,15 +15,23 @@ use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
-    public function thankYou()
+    public function Factory(Request $request)
     {
-        return view('checkout.thank-you');
+        $orders = Order::latest()->paginate(1);
+        $OrderItems =$request->user()->orderItems()->with('Order')->get();
+        // $orderItem =  $OrderItems->order()->get();
+        return view('checkout.Factory', compact('orders', 'OrderItems'));
     }
-    public function index()
+
+    public function index( Request $request)
     {
+        $cartIcon = Product::withCount('cartItems')->get();
+        $totalCartCount = $cartIcon->sum('cart_items_count');
+        $infos = Infos::paginate(1);
+        $categories = Category::all();
         $counteries = Country::get(['name','id']);
-        $cartItems = auth()->user()->cartItems()->with('product')->get();
-        return view('checkout.index', compact('cartItems', 'counteries'));
+        $cartItems = $request->user()->cartItems()->with('product')->get();
+        return view('checkout.index', compact('cartItems', 'counteries','infos','categories','totalCartCount','cartIcon'));
     }
 
     public function placeOrder(Request $request)
@@ -67,6 +77,7 @@ class CheckoutController extends Controller
             // Create order items for each cart item
             foreach ($cartItems as $cartItem) {
                 $orderItem = new OrderItem();
+                $orderItem->user_id = auth()->id();
                 $orderItem->order_id = $order->id;
                 $orderItem->product_id = $cartItem->product_id;
                 $orderItem->quantity = $cartItem->quantity;
@@ -83,7 +94,7 @@ class CheckoutController extends Controller
             DB::commit();
 
             // Redirect to the thank-you page with a success message
-            return redirect()->route('thank-you')->with('success', 'Your order has been placed successfully!');
+            return redirect()->route('Factory')->with('success', 'Your order has been placed successfully!');
         } catch (\Exception $e) {
             // Rollback the transaction in case of any error
             DB::rollBack();

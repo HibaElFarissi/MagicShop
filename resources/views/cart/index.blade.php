@@ -1,29 +1,3 @@
-@foreach ($cartItems as $cartItem)
-    <div>
-        <p>Product: </p>
-        <p>Price: </p>
-        <p>Size: </p>
-        <p>Color: </p>
-        <p>Quantity: 
-            <form id="update-form-{{ $cartItem->id }}" method="POST" action="{{ route('cart.update', $cartItem) }}">
-                @csrf
-                @method('PATCH')
-                <input type="number" name="quantity" value="{{ $cartItem->quantity }}" min="1" onchange="submitForm({{ $cartItem->id }})">
-                <button type="submit" style="display: none;">Update Quantity</button>
-            </form></p>
-        <p><form method="POST" action="{{ route('cart.remove', $cartItem) }}">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Remove</button>
-        </form></p>
-        <!-- Add other product details as needed -->
-    </div>
-@endforeach
-
-
-
-
-
 @extends('layouts.base')
 
 @section('content')
@@ -55,27 +29,44 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($cartItems as $cartItem)
+                                @forelse($cartItems as $cartItem)
                                 <tr>
-                                    <td class="image product-thumbnail"><img src="frontEnd/imgs/shop/product-1-2.jpg" alt="#"></td>
+                                    <td class="image product-thumbnail"><img class="default-img" src="{{ asset('images/' . json_decode($cartItem->product->images)[0]) }}"  alt="product_image"></td>
+                                    
                                     <td class="product-des product-name">
                                         <h5 class="product-name"><a>{{ $cartItem->product->name }}</a></h5>
                                         <p class="font-xs">Maboriosam in a tonto nesciung eget<br> distingy magndapibus.
                                         </p>
                                     </td>
                                     <td class="price" data-title="Price"><span>{{ $cartItem->product->price }} $ </span></td>
-                                    <td class="text-center" data-title="Stock">
-                                        {{-- <div class="detail-qty border radius  m-auto">
-                                            <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                            <span class="qty-val">1</span>
-                                            <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                        </div> --}}
-                                        <form id="update-form-{{ $cartItem->id }}" method="POST" action="{{ route('cart.update', $cartItem) }}">
-                                            @csrf
-                                            @method('PATCH')
-                                            <input type="number" name="quantity" value="{{ $cartItem->quantity }}" min="1" onchange="submitForm({{ $cartItem->id }})">
-                                            <button type="submit" style="display: none;">Update Quantity</button>
-                                        </form></p>
+
+
+                                    <td class="text-center" >
+                                        {{-- <select name="quantity">
+                                            @for ($i = 1; $i <= $product->quantity; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select> --}}
+                                       
+                                        
+                                        <div class="">
+                                            <form id="update-form-{{ $cartItem->id }}" method="POST" action="{{ route('cart.update', $cartItem) }}">
+                                                @csrf
+                                                @method('PATCH')
+                                                {{-- <input type="number" name="quantity" value="{{ $cartItem->quantity }}" > --}}
+                                                <select name="quantity" min="1" onchange="submitForm({{ $cartItem->id }})">
+                                                    <option selected disabled value="{{ $cartItem->quantity }}"> {{ $cartItem->quantity }}</option>
+                                                    @for ($i = 1; $i <= $cartItem->product->quantity; $i++)
+                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                    @endfor
+                                                </select>
+                                                <button type="submit" style="display: none;">Update Quantity</button>
+
+                                            </form>
+                                            
+                                        </div>
+                                        
+                                        
                                     </td>
                                     <td class="text-right" data-title="Cart">
                                         <span>{{ $cartItem->size }}</span>
@@ -83,20 +74,28 @@
                                     <td class="text-right" data-title="Cart">
                                         <span>{{ $cartItem->color }}</span>
                                     </td>
-                                    <td class="action" data-title="Remove"><a href="#" class="text-muted"><i class="fi-rs-trash"></i></a></td>
-                                </tr>
-                           
-                                <tr>
-                                    <td colspan="6" class="text-end">
-                                        <a href="#" class="text-muted"> <i class="fi-rs-cross-small"></i> Clear Cart</a>
+                                    
+                                    <td>
+                                        <form id="removeForm{{$cartItem->id}}"  action="{{ route('cart.remove', $cartItem) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            
+                                            <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete?')) { this.closest('form').submit(); }" style="color: inherit; cursor: pointer; text-decoration: none;">
+                                                <!-- Your icon or text for the remove link can go here -->
+                                                <i class="fi-rs-trash"></i>
+                                            </a>
+                                        </form>
                                     </td>
+                                    
                                 </tr>
-                            @endforeach
+
+                            @empty
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
                     <div class="cart-action text-end">
-                        <a class="btn "><i class="fi-rs-shopping-bag mr-10"></i>Continue Shopping</a>
+                        <a href="{{ route('shop') }}" class="btn"><i class="fi-rs-shopping-bag mr-10"></i>Continue Shopping</a>
                     </div>
                     <div class="divider center_icon mt-50 mb-50"><i class="fi-rs-fingerprint"></i></div>
                     <div class="row mb-50">

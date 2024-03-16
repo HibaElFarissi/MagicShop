@@ -1,0 +1,61 @@
+::WishlistController::
+   public function index(Request $request)
+{
+    // $wishlistItems = Wishlist::with('product')->get();
+    $wishlistItems =$request->user()->wishlistItems()->with('product')->get();
+    return view('profile.Wish_List', compact('wishlistItems'));
+}
+
+:: ProfileController ::
+
+  public function My_Orders(Request $request): View
+    {   $orders = Order::all();
+        // $OrderItems =OrderItem::all();
+        $OrderItems = $request->user()->orderItems()->with('Order')->get();
+        return view('profile.My_Orders', compact('orders','OrderItems')
+        
+    );
+    }
+::invok  ::
+$OrderItems =$request->user()->orderItems()->with('Order')->get();
+:: CheckoutController ::
+
+ foreach ($cartItems as $cartItem) {
+                $orderItem = new OrderItem();
+                $orderItem->order_id = $order->id;
+                $orderItem->user_id = auth()->id();
+                $orderItem->product_id = $cartItem->product_id;
+                $orderItem->quantity = $cartItem->quantity;
+                $orderItem->size = $cartItem->size;
+                $orderItem->color = $cartItem->color;
+                $orderItem->unit_price = $cartItem->product->price;
+                $orderItem->save();
+            }
+
+
+
+
+!!!!!!!!!!!!!!!
+
+  public function index(Request $request)
+    {
+        $counteries = Country::get(['name','id']);
+        $cartItems = $request->user()->cartItems()->with('product')->get();
+        return view('checkout.index', compact('cartItems', 'counteries'));
+    }
+
+::  User model ::
+
+ public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+:: ordeitem ::
+public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+::order_items migrations::
+
+$table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

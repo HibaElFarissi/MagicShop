@@ -18,10 +18,7 @@
                 <div class="single-header mb-50">
                     <h1 class="font-xxl text-brand">Our Blog</h1>
                     <div class="entry-meta meta-1 font-xs mt-15 mb-15">
-                        <span class="post-by">32 Sub Categories</span>
-                        <span class="post-on has-dot">1020k Article</span>
-                        <span class="time-reading has-dot">480 Authors</span>
-                        <span class="hit-count  has-dot">29M Views</span>
+
                     </div>
                 </div>
                 <div class="loop-grid pr-30">
@@ -31,179 +28,64 @@
                                 <div class="img-hover-slide position-relative overflow-hidden">
                                     <span class="top-right-icon bg-dark"><i class="fi-rs-bookmark"></i></span>
                                     <div class="post-thumb img-hover-scale">
-                                        <a href="{{ route('blog-details') }}">
-                                            <img src="frontEnd/imgs/blog/blog-6.jpg" alt="">
+                                        @foreach ($Articles as $Article)
+
+                                        <h2 class="post-title mb-20">
+                                         <a href="">{{ $Article->title }}</a>
+                                        </h2>
+                                        <a href="{{ route('Articles.show',$Article) }}">
+                                            <img src="storage/{{ $Article->photo }}"  alt="Blog_Image">
                                         </a>
+
                                     </div>
                                 </div>
                                 <div class="entry-content">
-                                    <div class="entry-meta meta-1 mb-30">
-                                        <a class="entry-meta meta-0" href="route('/blog')"><span class="post-in background4 text-brand font-xs">Mobile Phone</span></a>
-                                        <div class="font-sm">
-                                            <span><span class="mr-10 text-muted"><i class="fi-rs-eye"></i></span>23k</span>
-                                            <span class="ml-30"><span class="mr-10 text-muted"><i class="fi-rs-comment-alt"></i></span>17k</span>
-                                            <span class="ml-30"><span class="mr-10 text-muted"><i class="fi-rs-share"></i></span>18k</span>
-                                        </div>
-                                    </div>
-                                    <h2 class="post-title mb-20">
-                                        <a href="blog-details.html">Barcelona: marathan; south korean pulls away for a grueling surprise</a></h2>
-                                    <p class="post-exerpt font-medium text-muted mb-30">These people envy me for having a lifestyle they don’t have, but the truth is, sometimes I envy their lifestyle instead. Struggling to sell one multi-million dollar home currently.</p>
+
+                                    {{-- <h2 class="post-title mb-20"> --}}
+                                    <p class="post-exerpt font-medium text-muted mb-30">{{ $Article->slug }}</p><br>
                                     <div class="mb-20 entry-meta meta-2">
                                         <div class="font-xs ">
-                                            <span class="post-by">By <a href="{{ route('blog-details') }}">Azimeto</a></span>
-                                            <span class="post-on">12/07/2024 09:35 EST</span>
-                                            <span class="time-reading">8 mins read</span>
-                                            <p class="font-xs mt-5">Updated 18/08/2024 07:12 EST</p>
+                                            <span class="post-by">By <a href="{{ route('blog-details') }}">{{ $Article->user->name }}</a></span><br><br>
+                                            <span class="post-on">Create: {{ $Article->created_at }} EST</span>
+                                            <p class="font-xs mt-5">Update: {{ $Article->updated_at }} EST</p>
                                         </div>
                                         <a href="{{ route('blog-details') }}" class="btn btn-sm">Read more<i class="fi-rs-arrow-right ml-10"></i></a>
                                     </div>
                                 </div>
+                                @endforeach
                             </article>
                         </div>
+
+                        @foreach ($All_Articles as $item)
                         <div class="col-lg-6">
                             <article class="wow fadeIn animated hover-up mb-30">
                                 <div class="post-thumb img-hover-scale">
                                     <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-2.jpg" alt="">
+                                        <img src="storage/{{ $Article->photo }}" alt="">
                                     </a>
                                     <div class="entry-meta">
-                                        <a class="entry-meta meta-2" href="{{ route('blog-details') }}">Politic</a>
+                                        <a class="entry-meta meta-2" href="{{ route('blog-details') }}">{{ $item->categorie->name }}</a>
                                     </div>
                                 </div>
                                 <div class="entry-content-2">
                                     <h3 class="post-title mb-15">
-                                        <a href="{{ route('blog-details') }}">The litigants on the screen are not actors</a></h3>
-                                    <p class="post-exerpt mb-30">These people envy me for having a lifestyle they don’t have, but the truth is, sometimes I envy their lifestyle instead. Struggling to sell one multi.</p>
+                                        <a href="{{ route('blog-details') }}">{{ $item->title }}</a></h3>
+                                    <p class="post-exerpt mb-30">{{ $item->slug }}</p>
                                     <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
                                         <div>
-                                            <span class="post-on"> <i class="fi-rs-clock"></i> 25 April 2022</span>
-                                            <span class="hit-count has-dot">126k Views</span>
+                                            <span class="post-on"> <i class="fi-rs-clock"></i> Create:  {{ $item->created_at }}</span>
                                         </div>
-                                        <a href="{{ route('blog-details') }}" class="text-brand">Read more <i class="fi-rs-arrow-right"></i></a>
+                                        <a href="{{ route('Articles.show',$Article) }}" class="text-brand">Read more <i class="fi-rs-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </article>
                         </div>
-                        <div class="col-lg-6">
-                            <article class="wow fadeIn animated hover-up mb-30">
-                                <div class="post-thumb img-hover-scale">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-8.jpg" alt="">
-                                    </a>
-                                    <div class="entry-meta">
-                                        <a class="entry-meta meta-2" href="{{ route('blog-details') }}">Global</a>
-                                    </div>
-                                </div>
-                                <div class="entry-content-2">
-                                    <h3 class="post-title mb-15">
-                                        <a href="{{ route('blog-details') }}">Essential Qualities of Highly Successful Music</a></h3>
-                                    <p class="post-exerpt mb-30">Graduating from a top accelerator or incubator can be as career-defining for a startup founder as an elite university diploma. The intensive programmes, which</p>
-                                    <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
-                                        <div>
-                                            <span class="post-on"> <i class="fi-rs-clock"></i> 25 April 2022</span>
-                                            <span class="hit-count has-dot">126k Views</span>
-                                        </div>
-                                        <a href="{{ route('blog-details') }}" class="text-brand">Read more <i class="fi-rs-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-lg-6">
-                            <article class="wow fadeIn animated hover-up mb-30">
-                                <div class="post-thumb img-hover-scale">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-3.jpg" alt="">
-                                    </a>
-                                    <div class="entry-meta">
-                                        <a class="entry-meta meta-2" href="{{ route('blog-details') }}">Sport</a>
-                                    </div>
-                                </div>
-                                <div class="entry-content-2">
-                                    <h3 class="post-title mb-15">
-                                        <a href="{{ route('blog-details') }}">9 Things I Love About Shaving My Head</a></h3>
-                                    <p class="post-exerpt mb-30">At the Emmys, broadcast scripted shows created by people of color gained ground relative to those pitched by White show creators, while broadcast scripted shows.</p>
-                                    <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
-                                        <div>
-                                            <span class="post-on"> <i class="fi-rs-clock"></i> 25 April 2022</span>
-                                            <span class="hit-count has-dot">126k Views</span>
-                                        </div>
-                                        <a href="{{ route('blog-details') }}" class="text-brand">Read more <i class="fi-rs-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-lg-6">
-                            <article class="wow fadeIn animated hover-up mb-30">
-                                <div class="post-thumb img-hover-scale">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-4.jpg" alt="">
-                                    </a>
-                                    <div class="entry-meta">
-                                        <a class="entry-meta meta-2" href="{{ route('blog-details') }}">Technology</a>
-                                    </div>
-                                </div>
-                                <div class="entry-content-2">
-                                    <h3 class="post-title mb-15">
-                                        <a href="{{ route('blog-details') }}">Why Teamwork Really Makes The Dream Work</a></h3>
-                                    <p class="post-exerpt mb-30">We live in a world where disruption and dynamism reign supreme and businesses must be ready to adapt to the many unpredictable changes that come with this.</p>
-                                    <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
-                                        <div>
-                                            <span class="post-on"> <i class="fi-rs-clock"></i> 25 April 2022</span>
-                                            <span class="hit-count has-dot">126k Views</span>
-                                        </div>
-                                        <a href="{{ route('blog-details') }}" class="text-brand">Read more <i class="fi-rs-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-lg-6">
-                            <article class="wow fadeIn animated hover-up mb-30">
-                                <div class="post-thumb img-hover-scale">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-5.jpg" alt="">
-                                    </a>
-                                    <div class="entry-meta">
-                                        <a class="entry-meta meta-2" href="{{ route('blog-details') }}">Watch</a>
-                                    </div>
-                                </div>
-                                <div class="entry-content-2">
-                                    <h3 class="post-title mb-15">
-                                        <a href="{{ route('blog-details') }}">The World Caters to Average People</a></h3>
-                                    <p class="post-exerpt mb-30">These people envy me for having a lifestyle they don’t have, but the truth is, sometimes I envy their lifestyle instead. Struggling to sell oney.</p>
-                                    <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
-                                        <div>
-                                            <span class="post-on"> <i class="fi-rs-clock"></i> 25 April 2022</span>
-                                            <span class="hit-count has-dot">126k Views</span>
-                                        </div>
-                                        <a href="{{ route('blog-details') }}" class="text-brand">Read more <i class="fi-rs-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-lg-6">
-                            <article class="wow fadeIn animated hover-up mb-30">
-                                <div class="post-thumb img-hover-scale">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-9.jpg" alt="">
-                                    </a>
-                                    <div class="entry-meta">
-                                        <a class="entry-meta meta-2" href="{{ route('blog-details') }}">Politic</a>
-                                    </div>
-                                </div>
-                                <div class="entry-content-2">
-                                    <h3 class="post-title mb-15">
-                                        <a href="{{ route('blog-details') }}">Essential Qualities of Highly Successful Music</a></h3>
-                                    <p class="post-exerpt mb-30">Graduating from a top accelerator or incubator can be as career-defining for a startup founder as an elite university diploma. The intensive programmes, which...</p>
-                                    <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
-                                        <div>
-                                            <span class="post-on"> <i class="fi-rs-clock"></i> 25 April 2022</span>
-                                            <span class="hit-count has-dot">126k Views</span>
-                                        </div>
-                                        <a href="{{ route('blog-details') }}" class="text-brand">Read more <i class="fi-rs-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
+
+                        @endforeach
+
+
+
+
                     </div>
                 </div>
                 <!--post-grid-->
@@ -246,6 +128,7 @@
                         </div>
                     </div>
                     <!--Widget latest posts style 1-->
+                    @foreach ($Articles as $Article)
                     <div class="sidebar-widget widget_alitheme_lastpost mb-20">
                         <div class="widget-header position-relative mb-20 pb-10">
                             <h5 class="widget-title">Trending Now</h5>
@@ -253,76 +136,37 @@
                         <div class="row">
                             <div class="col-12 sm-grid-content mb-30">
                                 <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-1.jpg" alt="">
+                                    <a href="{{ route('Articles.show',$Article) }}">
+                                        <img src="storage/{{ $Article->photo }}" alt="">
                                     </a>
                                 </div>
+
                                 <div class="post-content media-body">
-                                    <h4 class="post-title mb-10 text-limit-2-row">The litigants on the screen are not actors </h4>
+                                    <h4 class="post-title mb-10 text-limit-2-row">{{ $Article->title }}</h4>
                                     <div class="entry-meta meta-13 font-xxs color-grey">
-                                        <span class="post-on mr-10">25 April</span>
-                                        <span class="hit-count has-dot ">126k Views</span>
+                                        <span class="post-on mr-10"> Create: {{ $Article->created_at }}</span>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
+
+                            @foreach ($All_Articles as $item)
                             <div class="col-md-6 col-sm-6 sm-grid-content mb-30">
                                 <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-3.jpg" alt="">
+                                    <a href="{{ route('Articles.show',$Article) }}">
+                                        <img src="storage/{{ $item->photo }}" alt="">
                                     </a>
                                 </div>
                                 <div class="post-content media-body">
-                                    <h6 class="post-title mb-10 text-limit-2-row">Water Partners With Rag &amp; Bone To Consume</h6>
+                                    <h6 class="post-title mb-10 text-limit-2-row">{{ $item->title }}</h6>
                                     <div class="entry-meta meta-13 font-xxs color-grey">
-                                        <span class="post-on mr-10">25 April</span>
-                                        <span class="hit-count has-dot ">126k Views</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 sm-grid-content mb-30">
-                                <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-4.jpg" alt="">
-                                    </a>
-                                </div>
-                                <div class="post-content media-body">
-                                    <h6 class="post-title mb-10 text-limit-2-row">The loss is not all that surprising</h6>
-                                    <div class="entry-meta meta-13 font-xxs color-grey">
-                                        <span class="post-on mr-10">25 April</span>
-                                        <span class="hit-count has-dot ">126k Views</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 sm-grid-content mb-30">
-                                <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-5.jpg" alt="">
-                                    </a>
-                                </div>
-                                <div class="post-content media-body">
-                                    <h6 class="post-title mb-10 text-limit-2-row">We got a right to pick a little fight, Bonanza </h6>
-                                    <div class="entry-meta meta-13 font-xxs color-grey">
-                                        <span class="post-on mr-10">25 April</span>
-                                        <span class="hit-count has-dot ">126k Views</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 sm-grid-content mb-30">
-                                <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="frontEnd/imgs/blog/blog-6.jpg" alt="">
-                                    </a>
-                                </div>
-                                <div class="post-content media-body">
-                                    <h6 class="post-title mb-10 text-limit-2-row">My entrance exam was on a book of matches </h6>
-                                    <div class="entry-meta meta-13 font-xxs color-grey">
-                                        <span class="post-on mr-10">25 April</span>
-                                        <span class="hit-count has-dot ">126k Views</span>
+                                        <span class="post-on mr-10">Create: {{ $item->created_at }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     <!--Widget ads-->
                     @foreach ($banners as $banner)
                         <div class="banner-img wow fadeIn mb-45 animated d-lg-block d-none animated">
@@ -343,7 +187,7 @@
                         </div>
                         <div class="tagcloud">
                             @forelse ( $Tags as $Tag )
-                                <a class=" text-black tag-cloud-link" href="{{ route('blog-details') }}">{{ $Tag->name }}</a>
+                                <a class=" text-black tag-cloud-link" href="{{ route('Articles.show',$Article) }}">{{ $Tag->name }}</a>
                             @empty
                                 <h4>no tag here !!</h4>
                             @endforelse
