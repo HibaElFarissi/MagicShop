@@ -11,6 +11,13 @@ class TagsController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+
+        $this->middleware(['auth','role:admin']);
+
+    }
+    
     public function index()
     {
         $Tags=Tag::all();
@@ -33,10 +40,10 @@ class TagsController extends Controller
         $validatedData = $request->validate([
             'name'=> 'required',
         ]);
-        
-        
 
-  
+
+
+
         Tag::create($validatedData);
 
         Alert::success('success', 'The Tag has been added successfully');
@@ -48,7 +55,7 @@ class TagsController extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**
@@ -67,13 +74,13 @@ class TagsController extends Controller
     {
         $validatedData=$request->validate([
             'name'=> 'required',
-            
-           
+
+
 
         ]);
         $Tag=Tag::findOrFail($id);
         $Tag->update($validatedData);
-        
+
         Alert::success('success', 'The Tag has been Updated successfully');
         return to_route('Tags.index');
     }
@@ -87,5 +94,5 @@ class TagsController extends Controller
         Alert::error('Deleted!', "The Tag has been deleted");
         return to_route('Tags.index');
     }
-    
+
 }

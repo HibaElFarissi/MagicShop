@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+
+    }
+
     public function addToCart(Request $request, Product $product)
     {
 
@@ -34,15 +41,14 @@ class CartController extends Controller
 
     public function index(Request $request)
     {
-        $cartIcon = Product::withCount('cartItems')->get();
-        $totalCartCount = $cartIcon->sum('cart_items_count');
+        $totalCartCount = $request->user()->cartItems()->count();
         $infos = Infos::paginate(1);
         $categories = Category::all();
         $cartItems = $request->user()->cartItems()->with('product')->get();
         $totalCost = $cartItems->sum(function ($cartItem) {
             return $cartItem->quantity * $cartItem->product->price;
         });
-        return view('cart.index', compact('cartItems', 'totalCost','infos','categories','cartIcon','totalCartCount'));
+        return view('cart.index', compact('cartItems', 'totalCost','infos','categories','totalCartCount'));
 
 
     }

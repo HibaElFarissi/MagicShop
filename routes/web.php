@@ -9,7 +9,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\BlogDetailsController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -52,6 +51,7 @@ Route::resource('feedback',FeedbackController::class);
 
 
 Route::get('/MoreCategory',[MoreCategoryController::class,'index'])->name('MoreCategory');
+Route::get('/product-category/{id}', [CategoryController::class, 'Afficher'])->name('product-category');
 Route::get('/cart',[CartController::class,'index'])->name('cart');
 Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout');
 
@@ -59,13 +59,19 @@ Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout');
 // page de contact:
 Route::get('/inbox',[ContactController::class,'index'])->name('inbox');
 
-
+// search:
+Route::get('/search_Shop',[ShopController::class, 'search']);
+Route::get('/search_Blog',[BlogController::class, 'search']);
 
 // Pages:
 // Route::get('/contact',[ContactController::class,'index']);
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
-Route::get('/blog-details',[BlogDetailsController::class,'index'])->name('blog-details');
 Route::get('/shop',[ShopController::class,'index'])->name('shop');
+
+// Delete all FAQ:
+Route::delete('/faq/delete-all', [FaqController::class, 'destroyAll'])->name('faq.destroy-all');
+Route::get('/faqs', [FaqController::class, 'index'])->name('Faq.index');
+
 //Email - contact :
 Route::resource('/contact', ContactController::class);
 //  Route::post('/contact', [ContactController::class, 'sendEmail'])->name('send.email');
@@ -91,7 +97,7 @@ Route::resource('sizes', SizeController::class);
 Route::resource('Articles', ArticleController::class);
 
 
-// Search: 
+// Search:
 Route::get('/search_Home',[StoreController::class,'search']);
 // slide:
 Route::resource('slides',slideController::class);
@@ -102,11 +108,11 @@ Route::resource('banners', BannerController::class);
 // Informations:
 Route::resource('infos', InfosController::class);
 
-// Review: 
+// Review:
 Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')->name('reviews.store');
 
 
-// WishList: 
+// WishList:
 Route::post('/wishlist/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
 
 Route::delete('/wishlist/{Wishlist}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
@@ -119,7 +125,7 @@ Route::patch('/cart/{cartItem}', [CartController::class, 'update'])->name('cart.
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 // Define routes for other cart operations
 
-// Tag: 
+// Tag:
 Route::resource('Tags', TagsController::class);
 
 // Checkout - payment part
@@ -128,10 +134,10 @@ Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('pl
 Route::get('/Factorys', [CheckoutController::class, 'Factory'])->name('Factory');
 
 
-// OrderList: 
+// OrderList:
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 
-// Dropdown: 
+// Dropdown:
 Route::get('dropdown',[DropDownController::class,'index']);
 Route::post('api/fetch-state',[DropDownController::class,'fatchState']);
 Route::post('api/fetch-cities',[DropDownController::class,'fatchCity']);

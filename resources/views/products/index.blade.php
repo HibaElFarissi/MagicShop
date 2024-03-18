@@ -46,7 +46,7 @@
         </div>
         <th scope="col">Name</th>
         <th scope="col">Slug</th>
-        <th scope="col">Description</th>
+        {{-- <th scope="col">Description</th> --}}
         <th scope="col">Category</th>
         <th scope="col">Quantity</th>
         <th scope="col">Price</th>
@@ -73,7 +73,7 @@
 
             <td>{{ $product->name }}</td>
             <td>{{ $product->slug }}</td>
-            <td>{{ $product->description }}</td>
+            {{-- <td>{{ $product->description }}</td> --}}
 
             <td align="center">
                 {{-- Category BelongsTo Relationship --}}

@@ -45,11 +45,11 @@
                                     <p class="post-exerpt font-medium text-muted mb-30">{{ $Article->slug }}</p><br>
                                     <div class="mb-20 entry-meta meta-2">
                                         <div class="font-xs ">
-                                            <span class="post-by">By <a href="{{ route('blog-details') }}">{{ $Article->user->name }}</a></span><br><br>
+                                            <span class="post-by">By <a href="{{ route('Articles.show', $Article) }}"> {{ $Article->user->name }}</a></span><br><br>
                                             <span class="post-on">Create: {{ $Article->created_at }} EST</span>
                                             <p class="font-xs mt-5">Update: {{ $Article->updated_at }} EST</p>
                                         </div>
-                                        <a href="{{ route('blog-details') }}" class="btn btn-sm">Read more<i class="fi-rs-arrow-right ml-10"></i></a>
+                                        <a href="{{ route('Articles.show', $Article) }}" class="btn btn-sm">Read more<i class="fi-rs-arrow-right ml-10"></i></a>
                                     </div>
                                 </div>
                                 @endforeach
@@ -60,16 +60,16 @@
                         <div class="col-lg-6">
                             <article class="wow fadeIn animated hover-up mb-30">
                                 <div class="post-thumb img-hover-scale">
-                                    <a href="{{ route('blog-details') }}">
-                                        <img src="storage/{{ $Article->photo }}" alt="">
+                                    <a href="{{ route('Articles.show',$item) }}">
+                                        <img src="storage/{{ $item->photo }}" alt="">
                                     </a>
                                     <div class="entry-meta">
-                                        <a class="entry-meta meta-2" href="{{ route('blog-details') }}">{{ $item->categorie->name }}</a>
+                                        <a class="entry-meta meta-2" href="{{ route('Articles.show',$item) }}">{{ $item->categorie->name }}</a>
                                     </div>
                                 </div>
                                 <div class="entry-content-2">
                                     <h3 class="post-title mb-15">
-                                        <a href="{{ route('blog-details') }}">{{ $item->title }}</a></h3>
+                                        <a href="{{ route('Articles.show',$item) }}">{{ $item->title }}</a></h3>
                                     <p class="post-exerpt mb-30">{{ $item->slug }}</p>
                                     <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
                                         <div>
@@ -80,10 +80,7 @@
                                 </div>
                             </article>
                         </div>
-
                         @endforeach
-
-
 
 
                     </div>
@@ -104,14 +101,25 @@
             </div>
             <div class="col-lg-3 primary-sidebar sticky-sidebar">
                 <div class="widget-area">
+
                     <div class="sidebar-widget widget_search mb-50">
                         <div class="search-form">
-                            <form action="#">
-                                <input type="text" placeholder="Search…">
-                                <button type="submit"> <i class="fi-rs-search"></i> </button>
+                            <form method="get"  action="/search_Blog">
+                                <input type="search" name="search" placeholder="Search here..." value="{{isset($search)? $search : ''}}">
+                                <button type="submit" value="Search"> <i class="fi-rs-search"></i> </button>
                             </form>
                         </div>
                     </div>
+
+                    {{-- <div class="cover">
+                        <form  class="flex-form" method="get" action="/search_Shop">
+                          <label for="from">
+                          </label>
+                          <input type="search" name="search" placeholder="Search here..." value="{{isset($search)? $search : ''}}">
+                          <input type="submit" value="Search">
+                        </form>
+                    </div> --}}
+
                     <!--Widget categories-->
                     <div class="sidebar-widget widget_categories mb-40">
                         <div class="widget-header position-relative mb-20 pb-10">
@@ -120,8 +128,8 @@
                         <div class="post-block-list post-module-1 post-module-5">
                             <ul>
                                 @forelse ($last_categories as $last)
-                                            <li class="cat-item cat-item-2"><a href="/">{{ $last->name }}</a>100%</li>
-                                        @empty
+                                            <li class="cat-item cat-item-2"><a href="{{ route('product-category',$last) }}">{{ $last->name }}</a>100%</li>
+                                            @empty
                                             <p>No Category found !</p>
                                 @endforelse
                             </ul>
@@ -150,7 +158,7 @@
                             </div>
                             @endforeach
 
-                            @foreach ($All_Articles as $item)
+                        @foreach ($All_Articles as $item)
                             <div class="col-md-6 col-sm-6 sm-grid-content mb-30">
                                 <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
                                     <a href="{{ route('Articles.show',$Article) }}">
@@ -164,9 +172,9 @@
                                     </div>
                                 </div>
                             </div>
+                        @endforeach
                         </div>
                     </div>
-                    @endforeach
                     <!--Widget ads-->
                     @foreach ($banners as $banner)
                         <div class="banner-img wow fadeIn mb-45 animated d-lg-block d-none animated">

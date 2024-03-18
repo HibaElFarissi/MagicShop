@@ -162,7 +162,28 @@ h6 {
     .TopRsponsive{
         display: none;
     }
+    .respo_user{
+        display: none;
+    }
+    .IconRespo{
+        display: none;
+    }
+
+
+
+
 }
+@media only screen and (min-width: 919px){
+
+    .cart_respo,
+    .login_respo {
+        display: none;
+    }
+
+}
+
+
+
 
 /*--------------------------------------------------------------
 # Header

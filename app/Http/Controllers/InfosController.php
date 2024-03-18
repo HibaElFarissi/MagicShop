@@ -12,6 +12,13 @@ class InfosController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+
+        $this->middleware(['auth','role:admin']);
+
+    }
+
     public function index()
     {
         //
@@ -43,6 +50,9 @@ class InfosController extends Controller
             'email'=>'required',
             'phoneNumber'=>'required',
             'LinkIframeMap' => 'required',
+            'instagram' => 'required',
+            'facebook' => 'required',
+            'twitter' => 'required',
         ]);
 
         Infos::create($validatedData);
@@ -81,6 +91,9 @@ class InfosController extends Controller
             'email'=>'required',
             'phoneNumber'=>'required',
             'LinkIframeMap' => 'required',
+            'instagram' => 'required',
+            'facebook' => 'required',
+            'twitter' => 'required',
         ]);
 
         $info=Infos::findOrFail($id);

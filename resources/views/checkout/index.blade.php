@@ -14,56 +14,7 @@
     </div>
     <section class="mt-50 mb-50">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mb-sm-15">
-                    <div class="toggle_info">
-                        <span><i class="fi-rs-user mr-10"></i><span class="text-muted">Already have an account?</span> <a href="#loginform" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">Click here to login</a></span>
-                    </div>
-                    <div class="panel-collapse collapse login_form" id="loginform">
-                        <div class="panel-body">
-                            <p class="mb-30 font-sm">If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing &amp; Shipping section.</p>
-                            <form method="post">
-                                <div class="form-group">
-                                    <input type="text" name="email" placeholder="Username Or Email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password" placeholder="Password">
-                                </div>
-                                <div class="login_footer form-group">
-                                    <div class="chek-form">
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="remember" value="">
-                                            <label class="form-check-label" for="remember"><span>Remember me</span></label>
-                                        </div>
-                                    </div>
-                                    <a href="#">Forgot password?</a>
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-md" name="login">Log in</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="toggle_info">
-                        <span><i class="fi-rs-label mr-10"></i><span class="text-muted">Have a coupon?</span> <a href="#coupon" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">Click here to enter your code</a></span>
-                    </div>
-                    <div class="panel-collapse collapse coupon_form " id="coupon">
-                        <div class="panel-body">
-                            <p class="mb-30 font-sm">If you have a coupon code, please apply it below.</p>
-                            <form method="post">
-                                <div class="form-group">
-                                    <input type="text" placeholder="Enter Coupon Code...">
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn  btn-md" name="login">Apply Coupon</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col-12">
                     <div class="divider mt-50 mb-50"></div>
@@ -88,33 +39,33 @@
                                 <option  value="{{$data->id}}">{{$data->name}}</option>
                             @endforeach
                             </select>
-                           
+
                         </div>
                         <div class="form-group mb-3">
                             {{-- <label for="province">State</label> --}}
                             <select id="state-dd"  name="province" class="form-control" required>
                                 <option value="">Select State...</option>
                             </select>
-                           
+
                         </div>
                         <div class="form-group mb-3">
                             {{-- <label for="city">City</label> --}}
                             <select id="city-dd"  name="city" class="form-control" required>
                                 <option value="">Select City...</option>
                             </select>
-                           
+
                         </div>
-                           
-                    
+
+
                         <div class="form-group">
                             <input type="text" name="shipping_address" required="" placeholder="Address *">
                         </div>
-                        
-                        
+
+
                         <div class="form-group">
                             <input required="" type="text" name="zip_code" placeholder="Postcode / ZIP *">
                         </div>
-                        
+
                         <div class="form-group">
                             <input required="" type="text" name="telephone_number"  placeholder="Phone *">
                         </div>
@@ -126,7 +77,7 @@
                         <div class="form-group">
                             <button type="submit">Proceed to Payment</button>
                         </div>
-                        
+
                     </form>
                 </div>
                 <div class="col-md-6">
@@ -144,7 +95,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($cartItems as $cartItem)
-                                            
+
                                              <tr>
                                                 <td class="image product-thumbnail"><img src="{{ asset('images/' . json_decode($cartItem->product->images)[0]) }}"  alt="product_image"></td>
                                                 <td>
@@ -153,9 +104,9 @@
                                                 <td>${{ $cartItem->product->price }}</td>
                                             </tr>
                                     @endforeach
-                                     
-                                    
-                                  
+
+
+
                                     <tr>
                                         <th>Total</th>
                                         <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900">${{ $cartItems->sum(function ($cartItem) {

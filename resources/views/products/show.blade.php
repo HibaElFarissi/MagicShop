@@ -39,19 +39,19 @@
                                             <span> Brands: <a href="shop.html">{{ $product->brand->name }}</a></span>
                                         </div>
                                         <div class="product-rate-cover text-end">
-                                            @foreach ($productsWithReviewCount as $item)
+                                            {{-- @foreach ($productsWithReviewCount as $item) --}}
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating"
-                                                        style="width:{{ $item->review_count }}px">
+                                                        style="width:{{ $productsWithReviewCount}}px">
                                                     </div>
                                                 </div>
                                                 <span class="font-small ml-5 text-muted"> (
 
-                                                    {{ $item->review_count }}
+                                                    {{$productsWithReviewCount }}
 
                                                     reviews)</span>
                                         </div>
-                                        @endforeach
+                                        {{-- @endforeach --}}
                                     </div>
                                     <div class="clearfix product-price-cover">
                                         <div class="product-price primary-color float-left">
@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="bt-1 border-color-1 mt-15 mb-15"></div>
                                     <div class="short-desc mb-30">
-                                        <p>{{ $product->description }}</p>
+                                        <p>{{ $product->slug }}</p>
                                     </div>
                                     <div class="product_sort_info font-xs mb-30">
                                         <ul>
@@ -76,43 +76,37 @@
 
                                         </ul>
                                     </div>
-                                   
-                                    
+
+
                                     <form method="POST" action="{{ route('cart.add', $product) }}">
                                         @csrf
-                                    <div class="attr-detail attr-color mb-15">
-                                        <strong class="mr-10">Color</strong>
-                                        <ul class="list-filter color-filter">
-                                            @foreach ($product->colors as $color)
-                                                <li  name="color" ><a href="#" data-color="{{ $color->name }}">
-                                                        <span name="color"
-                                                            style="background-color: {{ $color->code }};"></span></a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                        {{-- <select name="color" id="color_id" class="form-select">
-                                           
-                        
-                                            @foreach ($product->colors as $color)
-                                                <option value="{{ $color->name }}">{{ $color->name }}</option>
-                                            @endforeach
-                        
-                                        </select> --}}
-                                    </div>
-                                    <div class="attr-detail attr-size">
-                                        <strong class="mr-10">Size</strong>
-                                        <ul class="list-filter size-filter font-small">
-                                            @foreach ($product->sizes as $size)
-                                                <li name="size" ><a href="#" name="color" >{{ $size->name }}</a></li>
-                                            @endforeach
-                                        </ul>
-                                        {{-- <select name="size" id="size_id" class="form-select">
-                                            @foreach ($product->sizes as $size)
-                                                <option value="{{ $size->name }}">{{ $size->name }}</option>
-                                            @endforeach
-                        
-                                        </select> --}}
-                                    </div>
+                                         @if (!$product->colors->isEmpty())
+                                        <div class="attr-detail attr-color mb-15">
+                                            <strong class="mr-10">Color</strong>
+                                            <ul class="list-filter color-filter">
+                                                @foreach ($product->colors as $color)
+                                                    <li  name="color" ><a href="#" data-color="{{ $color->name }}">
+                                                            <span name="color"
+                                                                style="background-color: {{ $color->code }};"></span></a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+
+                                        @endif
+
+
+                                        @if (!$product->sizes->isEmpty())
+                                        <div class="attr-detail attr-size">
+                                            <strong class="mr-10">Size</strong>
+                                            <ul class="list-filter size-filter font-small">
+                                                @foreach ($product->sizes as $size)
+                                                    <li name="size" ><a href="#" name="color" >{{ $size->name }}</a></li>
+                                                @endforeach
+                                            </ul>
+
+                                        </div>
+                                        @endif
                                     <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                                     <div class="detail-extralink">
                                         <div class="detail-qty border radius">
@@ -121,28 +115,28 @@
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                             </select>
-                                           
+
                                         </div>
                                          <!-- Hidden input fields for color and size -->
                                          <input type="hidden" name="color" id="selected_color">
                                          <input type="hidden" name="size" id="selected_size">
-                                       
+
                                         <div class="product-extra-link2">
-                                              
+
                                                 <button type="submit" class="button button-add-to-cart">Add to Cart</button>
                                  </form>
-                                            
+
                                                 <a aria-label="Add To Wishlist" style="display: none;" class="action-btn hover-up"
                                                 >
                                                 <form id="wishlistForm_{{ $product->id }}" method="POST" action="{{ route('wishlist.add', $product) }}">
                                                     @csrf
                                                     <button type="submit" style="display: none;"></button> <!-- Hide the submit button -->
                                                 </form>
-                                                
+
                                                 <a href="#" onclick="event.preventDefault(); document.getElementById('wishlistForm_{{ $product->id }}').submit();">
                                                     <i class="fi-rs-heart"></i>
                                                 </a>
-                                                
+
                                                 </a>
                                             <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i
                                                 class="fi-rs-shuffle"></i></a>
@@ -150,9 +144,14 @@
                                     </div>
                                     <ul class="product-meta font-xs color-grey mt-50">
                                         {{-- <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li> --}}
-                                        {{-- @foreach ($Tags as $Tag)
-                                        <li class="mb-5">Tags: <a href="#" rel="tag">{{ $Tag->name }},</a></li>
-                                        @endforeach --}}
+                                   @if (!$product->tags->isEmpty())
+                                        <li class="mb-5">Tags:
+                                            @foreach ($product->tags as $item)
+                                            <a href="#" rel="tag">{{ $item->name }}</a>
+                                            @endforeach
+                                        </li>
+                                    @endif
+
                                         <li>Availability:<span class="in-stock text-success ml-5">{{ $product->status }}</span></li>
                                     </ul>
                                 </div>
@@ -165,147 +164,42 @@
                                     <a class="nav-link active" id="Description-tab" data-bs-toggle="tab"
                                         href="#Description">Description</a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab"
-                                        href="#Additional-info">Additional info</a>
-                                </li>
-                                <li class="nav-item">
-                                    @foreach ($productsWithReviewCount as $item)
+                                    {{-- @foreach ($productsWithReviewCount as $item) --}}
                                     <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab"
-                                        href="#Reviews">Reviews ({{ $item->review_count }})</a>
-                                    @endforeach
+                                        href="#Reviews">Reviews ({{ $productsWithReviewCount}})</a>
+                                    {{-- @endforeach --}}
                                 </li>
                             </ul>
                             <div class="tab-content shop_info_tab entry-main-content">
                                 <div class="tab-pane fade show active" id="Description">
                                     <div class="">
-                                        <p>{{ $product->description }} </p>
+                                        <p>{{ $product->slug }} </p>
                                         <ul class="product-more-infor mt-30">
-                                            <li><span>Type Of Packing</span> Bottle</li>
-                                            <li><span>Color</span> Green, Pink, Powder Blue, Purple</li>
-                                            <li><span>Quantity Per Case</span> 100ml</li>
-                                            <li><span>Ethyl Alcohol</span> 70%</li>
-                                            <li><span>Piece In One</span> Carton</li>
+                                            @if (!$product->colors->isEmpty())
+                                                <li><span>Color</span>@foreach ($product->colors as $item)
+                                                    {{ $item->name }},
+                                                @endforeach</li>
+                                            @endif
+
+                                            @if (!$product->sizes->isEmpty())
+                                                <li><span>Size</span>@foreach ($product->sizes as $item)
+                                                    {{ $item->name }},
+                                                @endforeach</li>
+                                            @endif
+                                            <li><span>Quantity</span> x{{ $product->quantity }}</li>
+                                            <li><span>Sold</span>{{ $product->sold }}%</li>
+                                            <li><span>Type</span>  Cash on Delivery available</li>
                                         </ul>
                                         <hr class="wp-block-separator is-style-dots">
-                                        <p>Laconic overheard dear woodchuck wow this outrageously taut beaver hey hello
-                                            far meadowlark imitatively egregiously hugged that yikes minimally unanimous
-                                            pouted flirtatiously as beaver beheld above forward
-                                            energetic across this jeepers beneficently cockily less a the raucously that
-                                            magic upheld far so the this where crud then below after jeez enchanting
-                                            drunkenly more much wow callously irrespective limpet.</p>
-                                        <h4 class="mt-30">Packaging & Delivery</h4>
-                                        <hr class="wp-block-separator is-style-wide">
-                                        <p>Less lion goodness that euphemistically robin expeditiously bluebird smugly
-                                            scratched far while thus cackled sheepishly rigid after due one assenting
-                                            regarding censorious while occasional or this more crane
-                                            went more as this less much amid overhung anathematic because much held one
-                                            exuberantly sheep goodness so where rat wry well concomitantly.
-                                        </p>
-                                        <p>Scallop or far crud plain remarkably far by thus far iguana lewd precociously
-                                            and and less rattlesnake contrary caustic wow this near alas and next and
-                                            pled the yikes articulate about as less cackled dalmatian
-                                            in much less well jeering for the thanks blindly sentimental whimpered less
-                                            across objectively fanciful grimaced wildly some wow and rose jeepers
-                                            outgrew lugubrious luridly irrationally attractively
-                                            dachshund.
-                                        </p>
+                                        <p>{{ $product->description }} </p>
+                                        <hr>
+
+
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="Additional-info">
-                                    <table class="font-md">
-                                        <tbody>
-                                            <tr class="stand-up">
-                                                <th>Stand Up</th>
-                                                <td>
-                                                    <p>35″L x 24″W x 37-45″H(front to back wheel)</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="folded-wo-wheels">
-                                                <th>Folded (w/o wheels)</th>
-                                                <td>
-                                                    <p>32.5″L x 18.5″W x 16.5″H</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="folded-w-wheels">
-                                                <th>Folded (w/ wheels)</th>
-                                                <td>
-                                                    <p>32.5″L x 24″W x 18.5″H</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="door-pass-through">
-                                                <th>Door Pass Through</th>
-                                                <td>
-                                                    <p>24</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="frame">
-                                                <th>Frame</th>
-                                                <td>
-                                                    <p>Aluminum</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="weight-wo-wheels">
-                                                <th>Weight (w/o wheels)</th>
-                                                <td>
-                                                    <p>20 LBS</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="weight-capacity">
-                                                <th>Weight Capacity</th>
-                                                <td>
-                                                    <p>60 LBS</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="width">
-                                                <th>Width</th>
-                                                <td>
-                                                    <p>24″</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="handle-height-ground-to-handle">
-                                                <th>Handle height (ground to handle)</th>
-                                                <td>
-                                                    <p>37-45″</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="wheels">
-                                                <th>Wheels</th>
-                                                <td>
-                                                    <p>12″ air / wide track slick tread</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="seat-back-height">
-                                                <th>Seat back height</th>
-                                                <td>
-                                                    <p>21.5″</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="head-room-inside-canopy">
-                                                <th>Head room (inside canopy)</th>
-                                                <td>
-                                                    <p>25″</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="pa_color">
-                                                <th>Color</th>
-                                                <td>
-                                                    @foreach ($product->colors as $color)
-                                                    <p>{{$color->name}},</p>
-                                                    @endforeach
-                                                </td>
-                                            </tr>
-                                            <tr class="pa_size">
-                                                <th>Size</th>
-                                                <td>
-                                                    @foreach ($product->sizes as $size)
-                                                    <p>{{$size->name}},</p>
-                                                    @endforeach
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+
                                 <div class="tab-pane fade" id="Reviews">
                                     <!--Comments-->
                                     <div class="comments-area">
@@ -324,7 +218,7 @@
                                                             <p class="font-xxs">{{ $Review->updated_at->format('d-m') }}</p>
                                                         </div>
                                                         <div class="desc">
-                                                            
+
                                                             <div class="product-rate d-inline-block">
                                                                 <div class="product-rating" style="width:{{ $Review->rating }}9px">
                                                                 </div>
@@ -334,7 +228,7 @@
                                                             <div class="d-flex justify-content-between">
                                                                 <div class="d-flex align-items-center">
                                                                     <p class="font-xs mr-30">{{ $Review->updated_at}}</p>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -344,7 +238,7 @@
                                                   <h5>no  reviews yet!</h5>
                                                    @endforelse
                                                     <!--single-comment -->
-                                                  
+
                                                 </div>
                                             </div>
                                             {{-- <div class="col-lg-4">
@@ -440,7 +334,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -448,15 +342,15 @@
                     <div class="widget-category mb-30">
                         <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
                         <ul class="categories">
-                            @forelse ($categories as $category)
-                                <li><a href="#">{{ $category->name }}</a></li>
+                            @forelse ($categories as $item)
+                                <li><a {{ route('product-category',$item) }}>{{ $item->name }}</a></li>
                             @empty
                                 <p>No Category here!</p>
                             @endforelse
-                            
+
                         </ul>
                     </div>
-                   
+
                      <!-- Product sidebar Widget -->
                         <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
                             <div class="widget-header position-relative mb-20 pb-10">
@@ -481,7 +375,7 @@
                                 <p>No Product found !</p>
                             @endforelse
                         </div>
-                       
+
                 </div>
             </div>
         </div>
@@ -695,7 +589,7 @@
     <script src="{{ asset('frontEnd/js/plugins/scrollup.js') }}"></script>
     <script src="{{ asset('frontEnd/js/plugins/jquery.vticker-min.js') }}"></script>
     <script src="{{ asset('frontEnd/js/plugins/jquery.theia.sticky.js') }}"></script>
-    <script src="{{ asset('frontEnd/js/plugins/jquery.elevatezoom.js') }}"></script> 
+    <script src="{{ asset('frontEnd/js/plugins/jquery.elevatezoom.js') }}"></script>
     <!-- Template  JS -->
     {{-- <script src="{{ asset('frontEnd/js/main.js?v=3.3') }}"></script> --}}
     <script src="{{ asset('frontEnd/js/shop.js?v=3.3') }}"></script>
@@ -708,7 +602,7 @@
                 document.getElementById('selected_color').value = color;
             });
         });
-    
+
         // JavaScript to capture selected size
         document.querySelectorAll('.size-filter a').forEach(function(link) {
             link.addEventListener('click', function(event) {

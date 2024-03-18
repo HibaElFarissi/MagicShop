@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('adresse');
             $table->string('email');
             $table->string('phoneNumber');
+            $table->string('instagram');
+            $table->string('facebook');
+            $table->string('twitter');
             $table->longText('LinkIframeMap');
             $table->timestamps();
         });

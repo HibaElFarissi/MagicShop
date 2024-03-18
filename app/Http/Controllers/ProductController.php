@@ -18,6 +18,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ProductController extends Controller
 {
 
+    public function __construct()
+    {
+
+        $this->middleware(['auth','role:admin'])->except('show');
+
+    }
+
     public function index()
     {
         //
@@ -122,12 +129,14 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-   public function show(string $id)
+   public function show(Request $request ,string $id)
     {
 
         $product = Product::findOrFail($id);
-        $cartIcon = Product::withCount('cartItems')->get();
-        $totalCartCount = $cartIcon->sum('cart_items_count');
+        $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
         $Tag = Tag::all();
         $products = Product::all();
         $product->load('colors'); // BOUCLE
@@ -136,10 +145,10 @@ class ProductController extends Controller
         $infos = Infos::paginate(1);
         $categories = Category::all();
         $product->load('tags');
-        $Reviews=Review::all();
-        $productsWithReviewCount = Product::withCount('review')->limit(1)->get();
-
-        return view('products.show', compact('product','categories','infos','Reviews','productsWithReviewCount','new_products','Tag','products','totalCartCount','cartIcon'));
+        // $totalCartCount = $request->user()->cartItems()->count();
+        $Reviews = Review::where('product_id', $id)->get();
+        $productsWithReviewCount = Review::where('product_id', $id)->count();
+        return view('products.show', compact('product','categories','infos','Reviews','productsWithReviewCount','new_products','Tag','products','totalCartCount'));
     }
 
 

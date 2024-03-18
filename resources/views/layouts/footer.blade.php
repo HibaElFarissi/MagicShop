@@ -54,7 +54,6 @@
             <li><i class="bx bx-chevron-right"></i> <a href="/shop">Shop</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="{{ route('about') }}">About us</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="{{ route('contact.create') }}">Contact</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="/privacy">Privacy policy</a></li>
           </ul>
         </div>
 
@@ -71,11 +70,12 @@
           <h4>Our Social Networks</h4>
           <p class="">Discover the magic beyond our products – follow us on social networks for daily enchantment and exclusive updates – </p>
           <div class="social-links mt-3">
-            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            @foreach ($infos as $item)
+                <a href="{{ $item->twitter }}" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="{{ $item->facebook }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="{{ $item->instagram }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+            @endforeach
+
           </div>
         </div>
 

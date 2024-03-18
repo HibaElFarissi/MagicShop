@@ -15,5 +15,8 @@ class Infos extends Model
         'email',
         'adresse',
         'phoneNumber',
+        'instagram',
+        'facebook',
+        'twitter',
     ];
 }

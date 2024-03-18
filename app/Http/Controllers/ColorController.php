@@ -11,6 +11,15 @@ class ColorController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+    public function __construct()
+    {
+
+        $this->middleware(['auth','role:admin']);
+
+    }
+    
     public function index()
     {
         $Colors=Color::all();
@@ -87,7 +96,7 @@ class ColorController extends Controller
     public function destroy(string $id)
     {
         Color::findOrFail($id)->delete();
-        Alert::success('Successfully Deleted!', "The Color has been Deleted");
+        Alert::error('Deleted!', "The Color has been Deleted");
         return to_route('Color.index');
     }
 }

@@ -15,6 +15,14 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+
+        $this->middleware(['auth','role:admin'])->except(['Afficher']);
+
+    }
+
+
     public function index()
     {
         //
@@ -33,7 +41,7 @@ class CategoryController extends Controller
         $isUpdate = false;
         return view('categories.form', compact('category', 'isUpdate'));
     }
-    
+
     /**
      * Store a newly created resource in storage:
      */
@@ -66,6 +74,22 @@ class CategoryController extends Controller
        $products =  $category->products()->get();
        $infos = Infos::paginate(1);
        return view('categories.show', compact('category', 'products','infos'));
+    }
+
+
+    public function Afficher(Request $request, string $id)
+    {
+        //
+        $category = Category::findOrfail($id);
+       $products =  $category->products()->get();
+       $last_categories = Category::paginate(6);
+       $categories = Category::all();
+       $infos = Infos::paginate(1);
+       $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
+       return view('pages.products-category', compact( 'products','infos','last_categories','categories','totalCartCount','category'));
     }
 
 

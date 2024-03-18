@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class WishlistController extends Controller
 {
+
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+
+    }
+    
     public function index(Request $request)
     {
         // $wishlistItems = Wishlist::with('product')->get();

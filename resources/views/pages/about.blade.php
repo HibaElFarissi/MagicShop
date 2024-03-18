@@ -17,7 +17,7 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    @foreach ( $abouts as $about )
+                    @forelse ( $abouts as $about )
                         <h3>{{ $about->Title_Globale }}</h3>
                         <p>"{{ $about->description_Globale}}"</p>
 
@@ -50,7 +50,9 @@
                                 </div>
                             </li>
                         </ul>
-                        @endforeach
+                        @empty
+                        <h4>No Data Found !</h4>
+                        @endforelse
 
                     </div>
                 </div>
@@ -133,8 +135,6 @@
                     @endforelse
 
 
-
-
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
@@ -146,7 +146,7 @@
         <section class="section-padding">
             <div class="container pt-25">
                 <div class="row">
-                    @foreach ($abouts as $about )
+                    @forelse ($abouts as $about )
                         <div class="col-lg-6 align-self-center mb-lg-0 mb-4">
                             <h6 class="mt-0 mb-15 text-uppercase font-sm text-brand wow fadeIn animated">Our Company</h6>
                             <h1 class="font-heading mb-40">{{ $about->Title2 }}</h1>
@@ -155,7 +155,9 @@
                         <div class="col-lg-6">
                             <img src="storage/{{ $about->image2 }}" alt="">
                         </div>
-                    @endforeach
+                    @empty
+                        <h4>No Data found ! </h4>
+                    @endforelse
 
                 </div>
             </div>
@@ -163,7 +165,7 @@
         <section id="testimonials" class="section-padding">
             <div class="container pt-25">
                 <div class="row mb-50">
-                    @foreach ($abouts as $about )
+                    @forelse ($abouts as $about )
                         <div class="col-lg-12 col-md-12 text-center">
                             <h6 class="mt-0 mb-10 text-uppercase  text-brand font-sm wow fadeIn animated">some facts</h6>
                             <h2 class="mb-15 text-grey-1 wow fadeIn animated">
@@ -171,7 +173,9 @@
                             </h2>
                             <p class="w-50 m-auto text-grey-3 wow fadeIn animated">{{ $about->SlugFacts }}</p>
                         </div>
-                    @endforeach
+                    @empty
+                        <h1>No Data found!</h1>
+                    @endforelse
                 </div>
                 {{-- Foreach of the  Quotes  --}}
                 <div class="row align-items-center">
@@ -211,19 +215,21 @@
         <section id="portfolio" class="portfolio">
             <div class="container" data-aos="fade-up">
 
-                @foreach ( $abouts as $about )
+                @forelse ( $abouts as $about )
                         <div class="section-title">
                             <h3>{{ $about->TitleCategory }}</h3>
                             <p>{{ $about->SlugCategory }}</p>
                         </div>
-                @endforeach
+                @empty
+                    <h4>No data found!</h4>
+                @endforelse
 
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-                    @forelse ($categories as $category )
+                    @forelse ($last_categories as $item )
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="storage/{{ $category->image }}" class="img-fluid" alt="">
+                        <img src="storage/{{ $item->image }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4 class="text-center">{{ $category->name }}</h4>
+                            <h4 class="text-center">{{ $item->name }}</h4>
                             {{-- <a href="#" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a> --}}
                         </div>
                     </div>
@@ -240,14 +246,16 @@
             <div class="container" data-aos="fade-up">
 
 
-                    @foreach ( $abouts as $about )
+                    @forelse ( $abouts as $about )
                         <div class="section-title">
                             <h3>{{ $about->TitleFaq }}</h3>
                             <p>{{ $about->SlugFaq }}</p>
                         </div>
-                    @endforeach
+                    @empty
+                        <h4>No Data found !</h4>
+                    @endforelse
 
-
+                    <br>
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
                         <ul class="faq-list">

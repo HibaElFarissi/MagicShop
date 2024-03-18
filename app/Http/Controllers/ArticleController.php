@@ -4,29 +4,26 @@ namespace App\Http\Controllers;
 
 
 
+use App\Models\Infos;
+use App\Models\Banner;
 use App\Models\Article;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Console\View\Components\Info;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-   // public function __construct()
-    // {
+   public function __construct()
+    {
 
-    //     $this->middleware(['auth','role:admin'])->except(['show','search']);
+        $this->middleware(['auth','role:admin'])->except('show');
 
-    // }
-    // public function search(Request $request){
-    //     $search =  $request->input('search');
-    //     $Articles= Article::where(function($query) use($search){
-    //         $query->where('title', 'like', "%$search%");
-    //     })->get();
-    //     return view('pages.Article', compact('Articles','search'));
-    // }
+    }
 
     public function index()
     {
@@ -75,15 +72,20 @@ class ArticleController extends Controller
      * Display the specified resource.
       */
 
-    public function show(string $id)
+    public function show(Request $request ,string $id)
      {
-    //     $Categories=Category::all();
-    //     $Categories = Category::withCount('blog')->get();
-    //     $ARTICLES=Article::paginate(2);
-    //     $Post=Article::paginate(4);
-    //     $Article = Article::findOrFail($id);
+        $banners = Banner::paginate(1);
+        $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
+        $categories=Category::all();
+        $infos = Infos::paginate(1);
+        // $ARTICLES=Article::paginate(2);
+        $Post=Article::paginate(3);
+        $Article = Article::findOrFail($id);
 
-    //     return view('Articles.show', compact('Article','ARTICLES','Post','Categories', 'Settings'));
+        return view('Articles.show', compact('Article','categories','infos','totalCartCount','banners','Post'));
     }
 
     /**

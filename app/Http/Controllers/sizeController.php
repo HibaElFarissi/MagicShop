@@ -11,10 +11,16 @@ class SizeController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+
+        $this->middleware(['auth','role:admin']);
+
+    }
+
     public function index()
     {
         $Sizes=Size::all();
-        Alert::success('Successfully Deleted!', "The Size has been Added");
         return view('sizes.index',compact('Sizes'));
     }
 
@@ -25,6 +31,7 @@ class SizeController extends Controller
     {
         $isUpdate = false;
         $Size = new Size();
+        Alert::success('Successfully!', "The Size has been Added");
         return view('sizes.form',compact('isUpdate','Size'));
     }
 
@@ -73,6 +80,7 @@ class SizeController extends Controller
         ]);
         $Size=Size::findOrFail($id);
         $Size->update($validatedData);
+        Alert::success('Successfully!', "The Size has been Updated");
         return to_route('sizes.index');
     }
 
@@ -83,9 +91,8 @@ class SizeController extends Controller
     {
         // Size::findOrFail($id)->delete();
         // return redirect('sizes.index');
-
         $size->delete();
-        Alert::success('Successfully Deleted!', "The Size has been Deleted");
+        Alert::error('Deleted!', "The Size has been Deleted");
         return to_route('sizes.index');
     }
 }

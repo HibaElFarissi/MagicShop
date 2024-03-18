@@ -13,6 +13,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ContactController extends Controller
 {
     //
+    public function __construct()
+    {
+
+        $this->middleware(['auth','role:admin'])->except(['create','store']);
+
+    }
+
     public function index(){
 
         $categories = Category::all();
@@ -20,17 +27,15 @@ class ContactController extends Controller
         return view('Email.inbox', compact('contacts', 'categories'));
     }
 
-
-
-    public function create(){
-        $cartIcon = Product::withCount('cartItems')->get();
-        $totalCartCount = $cartIcon->sum('cart_items_count');
+    public function create(Request $request){
+        $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
         $categories = Category::all();
         $contact = new Contact();
         $infos = Infos::get();
-        return view('pages.contact',compact('categories','contact','infos','cartIcon','totalCartCount'));
-
-
+        return view('pages.contact',compact('categories','contact','infos','totalCartCount'));
 
     }
 
@@ -52,5 +57,3 @@ class ContactController extends Controller
         return redirect()->back();
     }
 }
-
-

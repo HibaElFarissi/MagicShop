@@ -53,9 +53,29 @@
 
 
     <div class="mb-3">
-        <label for="LinkIframeMap" class="form-label">Link Iframe Map: </label>
+        <label for="LinkIframeMap" class="form-label">Link Iframe Map </label>
         <input type="text" class="form-control" id="LinkIframeMap" placeholder="Your Location" name="LinkIframeMap"
             value="{{ old('LinkIframeMap', $info->LinkIframeMap) }}">
+    </div>
+    <br>
+
+    <div class="mb-3">
+        <label for="instagram" class="form-label">Instagram </label>
+        <input type="text" class="form-control" id="instagram" placeholder="Enter Instagram" name="instagram"
+            value="{{ old('instagram', $info->instagram) }}">
+    </div>
+    <br>
+
+    <div class="mb-3">
+        <label for="facebook" class="form-label">Facebook </label>
+        <input type="text" class="form-control" id="facebook" placeholder="Enter Facebook" name="facebook"
+            value="{{ old('facebook', $info->facebook) }}">
+    </div>
+    <br>
+    <div class="mb-3">
+        <label for="twitter" class="form-label">Twitter </label>
+        <input type="text" class="form-control" id="twitter" placeholder="Enter Twitter " name="twitter"
+            value="{{ old('twitter', $info->twitter) }}">
     </div>
     <br>
 

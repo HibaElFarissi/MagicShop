@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->middleware(['auth','role:admin']);
+
+    }
+    
     public function index()
     {
         // Retrieve all orders from the database

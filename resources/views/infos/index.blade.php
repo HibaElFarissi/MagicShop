@@ -42,12 +42,15 @@
             <table class="table align-middle">
             <thead>
             <tr>
-            
+
 
             <th>Title</th>
             <th>Adresse</th>
             <th>Email</th>
             <th>phoneNumber</th>
+            <th>Instagram</th>
+            <th>Facebook</th>
+            <th>Twitter</th>
             {{-- <th>LinkIframeMap</th> --}}
             <th>Actions</th>
         </tr>
@@ -61,6 +64,9 @@
                 <td>{{$info->adresse}}</td>
                 <td>{{$info->email}}</td>
                 <td>{{$info->phoneNumber}}</td>
+                <td>{{$info->instagram}}</td>
+                <td>{{$info->facebook}}</td>
+                <td>{{$info->twitter}}</td>
                 {{-- <td>{{$info->LinkIframeMap}}</td> --}}
 
                 <td>

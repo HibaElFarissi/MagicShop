@@ -39,7 +39,7 @@
                                 class="btn btn-primary bg-primary text-primary py-2 px-3 bg-opacity-10 border-0 fw-semibold w-sm-100 d-inline-block mt-2 mt-sm-0">Wish
                                 List</a>
                         </li>
-                       
+
                         <li>
                             <a href="{{ route('delete_user') }}"
                                 class="btn btn-primary bg-primary text-primary py-2 px-3 bg-opacity-10 border-0 fw-semibold w-sm-100 d-inline-block mt-2 mt-sm-0">delete</a>
@@ -50,7 +50,7 @@
                             <div class="d-sm-flex justify-content-between align-items-center border-bottom pb-20 mb-20">
                                 <h4 class="fw-bold fs-18 mb-0 text-center">Recent Orders</h4>
                                 <div class="d-sm-flex align-items-center gap-3 mt-3 mt-sm-0 justify-content-center">
-                                    <form class="src-form position-relative">
+                                    {{-- <form class="src-form position-relative">
                                         <input type="text" class="form-control h-40 bg-body-bg border-0 text-dark"
                                             placeholder="Search here..">
                                         <button type="submit"
@@ -58,7 +58,7 @@
                                             <i data-feather="search"
                                                 style="stroke: #757FEF; width: 20px; height: 20px;"></i>
                                         </button>
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </div>
                             <div class="default-table-area recent-orders">
@@ -74,7 +74,7 @@
                                                 <th scope="col">Price</th>
                                                 <th scope="col">quantity</th>
                                                 <th scope="col">Date</th>
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -82,7 +82,7 @@
                                           <tr>
                                             <td class="fs-15 fw-semibold">#{{ $item->id }}</td>
                                             <td>
-                                                 <a href="#" class="d-flex align-items-center"> 
+                                                 <a href="#" class="d-flex align-items-center">
                                                         <img src="{{ asset('images/' . json_decode($item->product->images)[0]) }}" class="wh-55 rounded-3" width="60" height="50" alt="Product Image">
                                                     <h6 class="fw-semibold">{{ $item->product->name}}</h6>
                                                 </a>
@@ -93,13 +93,13 @@
                                             <td>${{$item->order->total_cost}}</td>
                                             <td>{{$item->quantity}}</td>
                                             <td>{{$item->updated_at->format('d-m-y')}}</td>
-                                           
-                                            
-                                        </tr> 
+
+
+                                        </tr>
                                           @empty
                                               <h4>No Data Found!</h4>
                                           @endforelse
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>

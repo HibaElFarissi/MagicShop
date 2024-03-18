@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\About;
 use App\Models\Faq;
+use App\Models\About;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+// use RealRashid\SweetAlert\Facades\Alert;
 
 class FaqController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    public function __construct()
+    {
+
+        $this->middleware(['auth','role:admin']);
+
+    }
+
     public function index()
     {
         //
@@ -67,13 +74,29 @@ class FaqController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $Faq = Faq::findOrFail($id);
+        $Faq->update($request->all());
+        return to_route('faqs.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
+
+     public function destroyAll()
+    {
+        Faq::truncate(); // Delete all records from the faqs table
+        Alert::error('Successfully Deleted!', 'All FAQs have been deleted.');
+        return redirect()->route('faqs.index');
+    }
+
     public function destroy(string $id)
     {
         //
+        $Faq=Faq::findOrFail($id);
+        $Faq->delete();
+        Alert::error('Successfully Deleted!', "The Faq has been Deleted");
+        return to_route('faqs.index');
     }
 }

@@ -13,8 +13,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
+
 class CheckoutController extends Controller
 {
+
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+
+    }
     public function Factory(Request $request)
     {
         $orders = Order::latest()->paginate(1);
@@ -25,13 +33,15 @@ class CheckoutController extends Controller
 
     public function index( Request $request)
     {
-        $cartIcon = Product::withCount('cartItems')->get();
-        $totalCartCount = $cartIcon->sum('cart_items_count');
+        $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
         $infos = Infos::paginate(1);
         $categories = Category::all();
         $counteries = Country::get(['name','id']);
         $cartItems = $request->user()->cartItems()->with('product')->get();
-        return view('checkout.index', compact('cartItems', 'counteries','infos','categories','totalCartCount','cartIcon'));
+        return view('checkout.index', compact('cartItems', 'counteries','infos','categories','totalCartCount'));
     }
 
     public function placeOrder(Request $request)

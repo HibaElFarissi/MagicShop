@@ -54,10 +54,13 @@
         <tr>
             <td>
                 <div class="form-check p-0 d-flex align-items-center">
-                    <a href="#" class="d-flex align-items-center ms-4">
-                        <img src="{{ asset('images/' . json_decode($slide->images)[0]) }}"  class="wh-44 rounded"  alt="slide_images">
-                    </a>
+                    @foreach(json_decode($slide->images) as $image)
+                        <a href="#" class="d-flex align-items-center ms-4">
+                            <img src="{{ asset('slide_images/' . $image) }}" class="wh-44 rounded" alt="slide_image">
+                        </a>
+                    @endforeach
                 </div>
+
             </td>
 
 

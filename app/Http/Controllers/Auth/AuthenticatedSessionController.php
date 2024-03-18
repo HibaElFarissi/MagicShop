@@ -18,13 +18,15 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
-        $cartIcon = Product::withCount('cartItems')->get();
-        $totalCartCount = $cartIcon->sum('cart_items_count');
+        $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
         $categories= Category::all();
         $infos = Infos::paginate(1);
-        return view('auth.login',compact('categories','infos','cartIcon','totalCartCount'));
+        return view('auth.login',compact('categories','infos','totalCartCount'));
     }
 
      /**

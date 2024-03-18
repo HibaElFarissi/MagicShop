@@ -12,14 +12,16 @@ class MoreCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cartIcon = Product::withCount('cartItems')->get();
-        $totalCartCount = $cartIcon->sum('cart_items_count');
+        $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
         $categories = Category::all();
         $infos = Infos::paginate(1);
         $last_categories = Category::paginate(6);
-        return view('categories.more-Category',compact('categories','last_categories','infos','cartIcon','totalCartCount'));
+        return view('categories.more-Category',compact('categories','last_categories','infos','totalCartCount'));
     }
 
     /**

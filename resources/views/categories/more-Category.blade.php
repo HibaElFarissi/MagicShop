@@ -29,13 +29,12 @@
                 <div class="row gy-4 portfolio-container">
                   <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap">
-                      <a href="/" data-gallery="portfolio-gallery-app" ><img class="card-img-top" src="storage/{{ $category->image }}" alt=""></a>
+                      <a href="{{ route('product-category',$category) }}" data-gallery="portfolio-gallery-app" ><img class="card-img-top" src="storage/{{ $category->image }}" alt=""></a>
                       <div class="portfolio-info">
                         <h4>{{ $category->name }}</h4>
                       </div>
                     </div>
                   </div>
-                <!-- End Category Item -->
                 @endforeach
                 </div>
             </div>

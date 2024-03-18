@@ -152,12 +152,7 @@
                             </a>
                         </li>
 
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                Blogs
-                            </a>
-                        </li>
-
+                      
                         <li class="menu-item">
                             <a href="{{ route('quotes.index') }}" class="menu-link">
                                 Quotes
@@ -350,7 +345,7 @@
                     </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle active">
-        
+
                             <i data-feather="at-sign" class="menu-icon tf-icons"></i>
                             <span class="title">Infos</span>
                         </a>

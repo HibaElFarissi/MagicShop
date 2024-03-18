@@ -19,15 +19,30 @@ class AboutController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function __construct()
+     {
+
+        $this->middleware(['auth','role:admin'])->except('about');
+        // ila knti user ghzdi tchof gha about bohdha
+        // user->  about
+        // admin -> all
+
+    }
     public function index(){
-        $cartIcon = Product::withCount('cartItems')->get();
-        $totalCartCount = $cartIcon->sum('cart_items_count');
+
         $abouts = About::paginate(1);
+
         $infos = Infos::paginate(1);
-        return view('abouts.index', compact('abouts','infos','cartIcon','totalCartCount'));
+        return view('abouts.index', compact('abouts','infos'));
     }
 
-    public function about(){
+    public function about(Request $request){
+        $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
+        $last_categories = Category::paginate(2);
         $categories = Category::all();
         $infos = Infos::paginate(1);
         $brands = Brand::all();
@@ -35,7 +50,7 @@ class AboutController extends Controller
         $Faqs = Faq::all();
         $Quotes = Quotes::paginate(6);
         $feedbacks = Feedback::paginate(6);
-        return view('pages.about',compact('categories', 'Faqs','abouts','Quotes','feedbacks','brands','infos'));
+        return view('pages.about',compact('last_categories', 'Faqs','abouts','Quotes','feedbacks','brands','infos','totalCartCount','categories'));
     }
     /**
      * Show the form for creating a new resource.

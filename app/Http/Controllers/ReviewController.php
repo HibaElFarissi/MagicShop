@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class ReviewController extends Controller
 {
     // app/Http/Controllers/ReviewController.php
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+
+    }
 
 public function store(Request $request)
 {

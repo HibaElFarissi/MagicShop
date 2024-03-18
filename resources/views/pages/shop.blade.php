@@ -23,7 +23,7 @@
 
 
         <div class="cover">
-            <form  class="flex-form" method="get" action="/search_Article">
+            <form  class="flex-form" method="get" action="/search_Shop">
               <label for="from">
               </label>
               <input type="search" name="search" placeholder="Search here..." value="{{isset($search)? $search : ''}}">
@@ -67,19 +67,19 @@
                                                                         class="fi-rs-eye"></i></a>
                                                                 {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up"
                                                                     href="wishlist.php"><i class="fi-rs-heart"></i></a> --}}
-                                                                    <a aria-label="Add To Wishlist" style="display: none;" 
+                                                                    <a aria-label="Add To Wishlist" style="display: none;"
                                                                     > <i class="fi-rs-heart"></i>
                                                                     <form id="wishlistForm_{{ $product->id }}" method="POST" action="{{ route('wishlist.add', $product) }}">
                                                                         @csrf
                                                                         <button type="submit" style="display: none;"></button> <!-- Hide the submit button -->
                                                                     </form>
-                                                                    
+
                                                                     <a href="#" aria-label="Add To WishList" onclick="event.preventDefault(); document.getElementById('wishlistForm_{{ $product->id }}').submit();" class="action-btn hover-up" >
                                                                         <i class="fi-rs-heart"></i>
                                                                     </a>
-                                                                    
+
                                                                     </a>
-                                                                
+
                                                             </div>
                                                             <div
                                                                 class="product-badges product-badges-position product-badges-mrg">
@@ -101,11 +101,18 @@
                                                                 <span>${{ $product->price }} </span>
                                                                 <span class="old-price">${{ $product->old_price }}</span>
                                                             </div>
-                                                            <div class="product-action-1 show">
-                                                                <a aria-label="Add To Cart" class="action-btn hover-up"
-                                                                    href="/cart"><i
-                                                                        class="fi-rs-shopping-bag-add"></i></a>
-                                                            </div>
+
+                                                    <div class="product-action-1 show">
+                                                        <a style="display: none;" href="#">
+                                                              <form  id="AddCart{{ $product->id }}" method="POST" action="{{ route('cart.add', $product) }}">
+                                                                  @csrf
+                                                                  <button type="submit" style="display: none"></button>
+                                                              </form>
+                                                              <a href="#"  aria-label="Add To Cart" class="action-btn hover-up" onclick="event.preventDefault(); document.getElementById('AddCart{{ $product->id }}').submit();">
+                                                                  <i class="fi-rs-shopping-bag-add"></i>
+                                                              </a>
+                                                          </a>
+                                                      </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -116,7 +123,7 @@
 
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <!--Widget Tags-->
                         </section>
@@ -146,7 +153,7 @@
                             <ul class="categories">
 
                                 @forelse ($last_categories as $last )
-                                    <li><a href="{{ route('shop') }}">{{ $last->name }}</a></li>
+                                    <li><a href="{{ route('product-category',$last) }}">{{ $last->name }}</a></li>
                                 @empty
                                 <p>no categories yet.</
                                 @endforelse
@@ -179,9 +186,9 @@
                                 <p>No Product found !</p>
                             @endforelse
                         </div>
-                       
 
-                        
+
+
                         {{-- <div class="banner-img wow fadeIn mb-45 animated d-lg-block d-none">
                             <img src="frontEnd/imgs/banner/banner-11.jpg" alt="">
                             <div class="banner-text">
@@ -190,9 +197,9 @@
                                 <a href="shop.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
                             </div>
                         </div> --}}
-                       
+
                     </div>
-                    {{-- <div class="sidebar-widget widget_tags mb-50"> 
+                    {{-- <div class="sidebar-widget widget_tags mb-50">
                         <div class="widget-header position-relative mb-20 pb-10">
                             <h5 class="widget-title">Popular tags </h5>
                         </div>
@@ -203,9 +210,9 @@
                                 <h4>no tag here !!</h4>
                             @endforelse
                         </div>
-                   
+
                 </div> --}}
-                
+
             </div>
         </section>
     </main>
