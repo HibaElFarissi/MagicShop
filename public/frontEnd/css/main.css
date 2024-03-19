@@ -2990,7 +2990,7 @@ table .product-thumbnail img {
 }
 
 .banner-big .btn {
-  background: #ff014fff !important;
+  background: git  !important;
   color: #fff;
   border-radius: 3px;
   font-size: 13px;
@@ -10356,12 +10356,12 @@ button:focus {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
-  
-  
-  
+
+
+
   .icon-angle-left:before {
     content: '\f111'; }
-  
+
   .icon-angle-right:before {
     content: '\f112'; }
 
