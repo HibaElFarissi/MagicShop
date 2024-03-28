@@ -40,15 +40,14 @@
                 @forelse ($infos as $info)
                     <div class="contact-info d-flex align-items-center">
                         <i class="bi bi-envelope d-flex align-items-center"><a
-                                href="mailto:{{ $info->email }}">{{ $info->email }}</a></i>
+                            href="mailto:{{ $info->email }}">{{ $info->email }}</a></i>
                         <i class="bi bi-phone d-flex align-items-center ms-4"><a
-                                href="tel:{{ $info->phoneNumber }}">{{ $info->phoneNumber }}</a></i>
+                            href="tel:{{ $info->phoneNumber }}">{{ $info->phoneNumber }}</a></i>
                     </div>
                 @empty
                     <p class="text-white">There is no Data here yet...</p>
                 @endforelse
             </div>
-
 
             {{-- auhentification --}}
             @guest
@@ -200,6 +199,6 @@
 
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+    class="bi bi-arrow-up-short"></i></a>
 
 </html>

@@ -20,8 +20,6 @@
                     @forelse ( $abouts as $about )
                         <h3>{{ $about->Title_Globale }}</h3>
                         <p>"{{ $about->description_Globale}}"</p>
-
-
                     {{-- <h2>About</h2> --}}
                 </div>
 

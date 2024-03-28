@@ -88,7 +88,7 @@
                                                         </div>
                                                         <div class="product-content-wrap">
                                                             <div class="product-category">
-                                                                <a href="shop.html">{{ $product->category->name }}</a>
+                                                                <a href="">{{ $product->category->name }}</a>
                                                             </div>
                                                             <h2><a href="{{ route('products.show', $product) }}"> {{ $product->name }}</a>
                                                             </h2>
@@ -155,7 +155,7 @@
                                 @forelse ($last_categories as $last )
                                     <li><a href="{{ route('product-category',$last) }}">{{ $last->name }}</a></li>
                                 @empty
-                                <p>no categories yet.</
+                                <p>no categories yet.</p>
                                 @endforelse
 
                             </ul>

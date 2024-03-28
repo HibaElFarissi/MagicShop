@@ -27,7 +27,7 @@ class StoreController extends Controller
         $slides = Slide::all();
         $categories = Category::all();
         $infos = Infos::paginate(1);
-        $products = Product::query()->orderBy('created_at', 'desc')->limit(8)->get();
+        $products = Product::query()->orderBy('created_at', 'desc')->limit(12)->get();
         return view('store.index', compact('products', 'categories', 'brands', 'banners', 'slides', 'infos', 'totalCartCount'));
     }
 
