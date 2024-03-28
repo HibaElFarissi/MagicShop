@@ -28,9 +28,10 @@ class ProductController extends Controller
     {
         //
         $categories = Category::all();
+        $tags = Tag::all();
         $infos = Infos::paginate(1);
         $products = Product::query()->with('category')->paginate(6);
-        return view('products.index', compact('products', 'categories','infos'));
+        return view('products.index', compact('products', 'categories','infos','tags'));
     }
 
 
@@ -137,6 +138,7 @@ class ProductController extends Controller
             $totalCartCount = $request->user()->cartItems()->count();
         }
         $Tag = Tag::all();
+        $tags = Tag::all();
         $products = Product::all();
         $product->load('colors'); // BOUCLE
         $product->load('sizes');
@@ -147,7 +149,7 @@ class ProductController extends Controller
         // $totalCartCount = $request->user()->cartItems()->count();
         $Reviews = Review::where('product_id', $id)->get();
         $productsWithReviewCount = Review::where('product_id', $id)->count();
-        return view('products.show', compact('product','categories','infos','Reviews','productsWithReviewCount','new_products','Tag','products','totalCartCount'));
+        return view('products.show', compact('product','categories','infos','Reviews','productsWithReviewCount','new_products','Tag','products','totalCartCount','tags'));
     }
 
 
@@ -158,12 +160,13 @@ class ProductController extends Controller
     {
 
         $isUpdate = true;
+        $tags=Tag::all();
         $categories = Category::all();
         $brands = Brand::all();
         $colors=Color::all();
         $sizes=Size::all();
 
-        return view('products.form', compact('product', 'isUpdate', 'categories', 'brands','colors','sizes'));
+        return view('products.form', compact('product', 'isUpdate', 'categories', 'brands','colors','sizes','tags'));
     }
 
     /**
