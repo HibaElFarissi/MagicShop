@@ -31,7 +31,7 @@
                             <tbody>
                                 @forelse($cartItems as $cartItem)
                                 <tr>
-                                    <td class="image product-thumbnail"><img class="default-img" src="{{ asset('images/' . json_decode($cartItem->product->images)[0]) }}"  alt="product_image"></td>
+                                    <td class="image product-thumbnail"><img class="default-img" src="{{ asset('storage/' . json_decode($cartItem->product->images)[0]) }}"  alt="product_image"></td>
 
                                     <td class="product-des product-name">
                                         <h5 class="product-name"><a>{{ $cartItem->product->name }}</a></h5>

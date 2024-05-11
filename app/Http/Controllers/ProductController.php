@@ -82,12 +82,11 @@ class ProductController extends Controller
             $imagePaths = [];
             foreach ($request->file('images') as $image) {
                 $imageName = $image->getClientOriginalName();
-                $image->move(public_path('images'), $imageName);
-                $imagePaths[] = $imageName;
+                $imagePath = $image->store('images', 'public');
+                $imagePaths[] = $imagePath;
             }
 
             // Add the image paths to the validated data
-
             $validatedData['images'] = json_encode($imagePaths);
         }
 
@@ -205,12 +204,11 @@ class ProductController extends Controller
             $imagePaths = [];
             foreach ($request->file('images') as $image) {
                 $imageName = $image->getClientOriginalName();
-                $image->move(public_path('images'), $imageName);
-                $imagePaths[] = $imageName;
+                $imagePath = $image->store('images', 'public');
+                $imagePaths[] = $imagePath;
             }
 
             // Add the image paths to the validated data
-
             $validatedData['images'] = json_encode($imagePaths);
         }
 

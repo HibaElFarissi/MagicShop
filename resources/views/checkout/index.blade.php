@@ -6,7 +6,7 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow">Home</a>
+                <a href="/" rel="nofollow">Home</a>
                 <span></span> Shop
                 <span></span> Checkout
             </div>
@@ -97,7 +97,7 @@
                                     @foreach ($cartItems as $cartItem)
 
                                              <tr>
-                                                <td class="image product-thumbnail"><img src="{{ asset('images/' . json_decode($cartItem->product->images)[0]) }}"  alt="product_image"></td>
+                                                <td class="image product-thumbnail"><img src="{{ asset('storage/' . json_decode($cartItem->product->images)[0]) }}"  alt="product_image"></td>
                                                 <td>
                                                     <h5><a href="">{{ $cartItem->product->name }}</a></h5> <span class="product-qty">x {{ $cartItem->quantity }}</span>
                                                 </td>

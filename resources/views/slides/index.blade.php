@@ -56,7 +56,7 @@
                 <div class="form-check p-0 d-flex align-items-center">
                     @foreach(json_decode($slide->images) as $image)
                         <a href="#" class="d-flex align-items-center ms-4">
-                            <img src="{{ asset('slide_images/' . $image) }}" class="wh-44 rounded" alt="slide_image">
+                            <img src="{{ asset('storage/' . $image) }}" class="wh-44 rounded" alt="slide_image">
                         </a>
                     @endforeach
                 </div>

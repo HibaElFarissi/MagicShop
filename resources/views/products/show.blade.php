@@ -14,7 +14,7 @@
                                     <div class="product-image-slider">
                                         @foreach (json_decode($product->images) as $image)
                                             <figure class="border-radius-10">
-                                                <img src="{{ asset('images/' . $image) }}" alt="product image">
+                                                <img src="{{ asset('storage/' . $image) }}" alt="product image">
                                             </figure>
                                         @endforeach
                                     </div>
@@ -23,7 +23,7 @@
                                     <!-- THUMBNAILS -->
                                     <div class="slider-nav-thumbnails pl-15 pr-15">
                                         @foreach (json_decode($product->images) as $image)
-                                            <div><img src="{{ asset('images/' . $image) }}" alt="product image">
+                                            <div><img src="{{ asset('storage/' . $image) }}" alt="product image">
                                             </div>
                                         @endforeach
                                     </div>
@@ -36,7 +36,7 @@
                                     <h2 class="title-detail">{{ $product->name }}</h2>
                                     <div class="product-detail-rating">
                                         <div class="pro-details-brand">
-                                            <span> Brands: <a href="shop.html">{{ $product->brand->name }}</a></span>
+                                            <span> Brands: <a href="{{ route('shop') }}">{{ $product->brand->name }}</a></span>
                                         </div>
                                         <div class="product-rate-cover text-end">
                                             {{-- @foreach ($productsWithReviewCount as $item) --}}
@@ -360,7 +360,7 @@
                             <div class="single-post clearfix">
                                 @forelse ($new_products as $new )
                                 <div class="image">
-                                    <img  src="{{ asset('images/' . json_decode($new->images)[0]) }}"  alt="new product">
+                                    <img  src="{{ asset('storage/' . json_decode($new->images)[0]) }}"  alt="new product">
                                 </div>
                                 <div class="content pt-10">
                                     <h5><a href="{{ route('products.show', $new) }}">{{ $new->name }}</a></h5>

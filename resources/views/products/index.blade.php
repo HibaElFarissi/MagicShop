@@ -66,7 +66,7 @@
             <td>
                 <div class="form-check p-0 d-flex align-items-center">
                     <a href="#" class="d-flex align-items-center ms-4">
-                        <img src="{{ asset('images/' . json_decode($product->images)[0]) }}"  class="wh-44 rounded"  alt="product">
+                        <img src="{{ asset('storage/' . json_decode($product->images)[0]) }}"  class="wh-44 rounded"  alt="product">
                     </a>
                 </div>
             </td>

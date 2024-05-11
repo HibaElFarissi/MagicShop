@@ -39,6 +39,6 @@
                 </div>
             </div>
           </section>
-        <!-- End Category Section --> -
+        <!-- End Category Section -->
 
 @endsection

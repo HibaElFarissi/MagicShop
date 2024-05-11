@@ -18,7 +18,7 @@ class slideController extends Controller
         $this->middleware(['auth','role:admin']);
 
     }
-    
+
     public function index()
     {
         //
@@ -44,17 +44,18 @@ class slideController extends Controller
     {
         //
         $validatedData = $request->validate([
-        'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        'images.*' => 'nullable'
         ]);
 
         if ($request->hasFile('images')) {
             $imagePaths = [];
             foreach ($request->file('images') as $image) {
                 $imageName = $image->getClientOriginalName();
-                $image->move(public_path('slide_images'), $imageName);
-                $imagePaths[] = $imageName;
+                $imagePath = $image->store('Slide_images', 'public');
+                $imagePaths[] = $imagePath;
             }
 
+            // Add the image paths to the validated data
             $validatedData['images'] = json_encode($imagePaths);
         }
 
@@ -92,17 +93,18 @@ class slideController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'images.*' => 'nullable',
         ]);
 
         if ($request->hasFile('images')) {
             $imagePaths = [];
             foreach ($request->file('images') as $image) {
                 $imageName = $image->getClientOriginalName();
-                $image->move(public_path('slide_images'), $imageName);
-                $imagePaths[] = $imageName;
+                $imagePath = $image->store('Slide_images', 'public');
+                $imagePaths[] = $imagePath;
             }
 
+            // Add the image paths to the validated data
             $validatedData['images'] = json_encode($imagePaths);
         }
 

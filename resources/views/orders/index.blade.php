@@ -70,7 +70,7 @@
                                             <td class="fs-15 fw-semibold">#{{ $item->id }}</td>
                                             <td>
                                                  <a href="#" class="d-flex align-items-center">
-                                                        <img src="{{ asset('images/' . json_decode($item->product->images)[0]) }}" class="wh-55 rounded-3" width="60" height="50" alt="Product Image">
+                                                        <img src="{{ asset('storage/' . json_decode($item->product->images)[0]) }}" class="wh-55 rounded-3" width="60" height="50" alt="Product Image">
                                                     <h6 class="fw-semibold">{{ $item->product->name}}</h6>
                                                 </a>
                                             </td>

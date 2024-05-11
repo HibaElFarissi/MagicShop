@@ -26,8 +26,8 @@
                                 <div class="intro-slide">
                                     <figure class="slide-image">
                                         <picture>
-                                            <source media="(max-width: 480px)" srcset="{{ asset('slide_images/' . $image) }}">
-                                            <img src="{{ asset('slide_images/' . $image) }}" alt="Slide_image">
+                                            <source media="(max-width: 480px)" srcset="{{ asset('storage/' . $image) }}">
+                                            <img src="{{ asset('storage/' . $image) }}" alt="Slide_image">
                                     </figure>
                                 </div>
                                 @endforeach
@@ -169,7 +169,8 @@
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
                                             <a href="{{ route('products.show',$product) }}">
-                                                <img class="default-img" src="{{ asset('images/' . json_decode($product->images)[0]) }}"  alt="product_image">
+                                                <img class="default-img" src="{{ asset('storage/' . json_decode($product->images)[0]) }}"  alt="product_image">
+                                                {{-- <img src="{{ asset('storage/' . $image) }}" alt="Image"> --}}
                                             </a>
                                         </div>
                                         <div class="product-action-1">
@@ -275,7 +276,7 @@
                         <div class="product-img-action-wrap">
                             <div class="product-img product-img-zoom">
                                 <a href="{{ route('products.show',$product) }}">
-                                    <img class="default-img" src="{{ asset('images/' . json_decode($product->images)[0]) }}" alt="image_products">
+                                    <img class="default-img" src="{{ asset('storage/' . json_decode($product->images)[0]) }}" alt="image_products">
                                 </a>
                             </div>
                             <div class="product-action-1">

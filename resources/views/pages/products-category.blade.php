@@ -48,7 +48,7 @@
                                                             <div class="product-img product-img-zoom">
                                                                 <a href="{{ route('products.show', $product) }}">
                                                                     <img class="default-img"
-                                                                    src="{{ asset('images/' . json_decode($product->images)[0]) }}"  alt="">
+                                                                    src="{{ asset('storage/' . json_decode($product->images)[0]) }}"  alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="product-action-1">

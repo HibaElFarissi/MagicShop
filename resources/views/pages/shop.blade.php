@@ -59,7 +59,7 @@
                                                             <div class="product-img product-img-zoom">
                                                                 <a href="{{ route('products.show', $product) }}">
                                                                     <img class="default-img"
-                                                                    src="{{ asset('images/' . json_decode($product->images)[0]) }}"  alt="">
+                                                                    src="{{ asset('storage/' . json_decode($product->images)[0]) }}"  alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="product-action-1">
@@ -171,7 +171,7 @@
                             <div class="single-post clearfix">
                                 @forelse ($new_products as $new )
                                 <div class="image">
-                                    <img  src="{{ asset('images/' . json_decode($new->images)[0]) }}"  alt="new product">
+                                    <img  src="{{ asset('storage/' . json_decode($new->images)[0]) }}"  alt="new product">
                                 </div>
                                 <div class="content pt-10">
                                     <h5><a href="{{ route('products.show', $new) }}">{{ $new->name }}</a></h5>
